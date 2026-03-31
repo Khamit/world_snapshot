@@ -1,7 +1,5 @@
 // admin/BriefEditor.tsx
 import { useEffect, useState } from 'react';
-
-const API_URL = import.meta.env.VITE_API_URL;
 /*
 world_snapshot/src/admin/BriefEditor.tsx — аналогичная проблема
 Строка 5: const API_URL = import.meta.env.VITE_API_URL; 
@@ -9,9 +7,8 @@ world_snapshot/src/admin/BriefEditor.tsx — аналогичная пробле
 Нужно: Использовать относительный путь /api/...
 */
 
-export default function BriefEditor({ token, onUpdate }: any) {
+export default function BriefEditor({ onUpdate }: any) {
   const [brief, setBrief] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [lastFetchTime, setLastFetchTime] = useState<Date | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
@@ -32,9 +29,10 @@ export default function BriefEditor({ token, onUpdate }: any) {
   const handleRefresh = async () => {
     setRefreshing(true);
     try {
+      // Уберите заголовок x-admin-token, если он не нужен для этого эндпоинта
       const response = await fetch('/api/fetch-brief', {
         method: 'POST',
-        headers: { 'x-admin-token': token }
+        // headers: { 'x-admin-token': token }
       });
       if (response.ok) {
         alert('Lightning brief refreshed successfully');

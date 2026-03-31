@@ -27,6 +27,7 @@ const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'your-secret-token-here';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -713,6 +714,15 @@ app.get('/api/snapshot/latest', (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+// Раздаем статические файлы из папки dist
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// Все неизвестные GET-запросы направляем на index.html (для клиентского роутинга)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+});
+// ----------------------------------------
 
 // Запуск
 fetchNews();

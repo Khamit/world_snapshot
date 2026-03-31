@@ -16,5 +16,9 @@ src/data/20*/   # исторические снапшоты
 .env.local
 .env.production
 
+# Node
+node_modules/
+dist/
+
 # OS
 .DS_Store
