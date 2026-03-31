@@ -4,7 +4,6 @@ dist
 dev.txt
 
 # Server-generated data
-src/data/events.json
 src/data/latest.json
 src/data/deaths_statistics.json
 src/data/lightning_brief.json
