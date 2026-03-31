@@ -1291,6 +1291,18 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
+
+// После других эндпоинтов, добавьте прокси для world-atlas
+app.get('/api/world-atlas/countries-50m.json', async (req, res) => {
+  try {
+    const response = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json');
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching world atlas:', error);
+    res.status(500).json({ error: 'Failed to fetch map data' });
+  }
+});
 // ----------------------------------------
 
 // Запуск

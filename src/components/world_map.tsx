@@ -62,7 +62,7 @@ export default function WorldMap({ onSelect }: Props) {
     
     tooltipRef.current = tooltip;
 
-    fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
+    fetch("/api/world-atlas/countries-50m.json")
       .then((res) => res.json())
       .then((worldData: any) => {
         const features = (topojson.feature(worldData, worldData.objects.countries) as any).features;
