@@ -2,6 +2,8 @@
 
 A real-time geopolitical intelligence dashboard that aggregates, categorizes, and visualizes global news, conflicts, disasters, and mortality statistics. Built with React, Node.js, and D3.js.
 
+the link: https://world-snapshot.onrender.com
+
 ## Overview
 
 World Snapshot provides a comprehensive overview of global events by:
