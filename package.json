@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-   "dev": "vite",
+    "dev": "vite",
     "build": "tsc -b && vite build",
     "build:server": "tsc -p server/tsconfig.json",
     "start": "node server/index.js",
@@ -23,6 +23,7 @@
     "i18n-iso-countries": "^7.14.0",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
+    "nodemailer": "^8.0.4",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.2",

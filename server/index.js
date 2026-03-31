@@ -9,11 +9,17 @@ import fs, { mkdirSync } from 'fs';
 import helmet from 'helmet';
 import cron from 'node-cron';
 import fetch from 'node-fetch';
-import nodemailer from 'nodemailer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import winston from 'winston';
 import { analyzeSentiment, calculateIntensity, categorizeNews, isOutdated } from './analyzer_new.js';
+let nodemailer;
+try {
+  nodemailer = await import('nodemailer');
+  nodemailer = nodemailer.default;
+} catch (e) {
+  console.log('nodemailer not installed, email alerts disabled');
+}
 
 let cachedData = null;
 let lastFetchTime = null;
@@ -45,15 +51,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Настройка email транспорта
-const emailTransporter = process.env.SMTP_HOST ? nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT || 587,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-}) : null;
+const emailTransporter = (nodemailer && process.env.SMTP_HOST) 
+  ? nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT || 587,
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    })
+  : null;
 
 // Замените существующий logger на этот
 const logger = winston.createLogger({
