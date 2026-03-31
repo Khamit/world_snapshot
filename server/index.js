@@ -1284,15 +1284,7 @@ app.post('/api/admin/cleanup', adminAuth, (req, res) => {
   }
 });
 
-// Раздаем статические файлы из папки dist
-app.use(express.static(path.join(__dirname, '../dist')));
-
-// Все неизвестные GET-запросы направляем на index.html (для клиентского роутинга)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
-});
-
-// Прокси для world-atlas (должен быть до app.use(express.static))
+// world-atlas (ДО статики)
 app.get('/api/world-atlas/countries-50m.json', async (req, res) => {
   try {
     const response = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json');
@@ -1308,6 +1300,14 @@ app.get('/api/world-atlas/countries-50m.json', async (req, res) => {
     console.error('Error fetching world atlas:', error);
     res.status(500).json({ error: 'Failed to fetch map data', details: error.message });
   }
+});
+
+// Раздаем статические файлы из папки dist
+app.use(express.static(path.join(__dirname, '../dist')));
+
+// Все неизвестные GET-запросы направляем на index.html (для клиентского роутинга)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
 // ----------------------------------------
