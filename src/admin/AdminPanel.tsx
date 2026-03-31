@@ -6,6 +6,32 @@ import CountryEditor from './CountryEditor';
 import EventsEditor from './EventsEditor';
 import MetricsEditor from './MetricsEditor';
 
+interface NewsEvent {
+  id: string;
+  category: string;
+  title: string;
+  detail?: string;
+  intensity?: number;
+  source?: string;
+  publishedAt?: string;
+  createdAt?: string;
+  url?: string;
+}
+
+interface GlobalMetrics {
+  dailyDeaths: number;
+  hourlyDeaths: number;
+  minuteDeaths: number;
+  secondDeaths: number;
+  deathsChange: string;
+  activeConflicts: number;
+  ecoCrises: number;
+  politicalInstabilityDelta: string;
+  scientificBreakthroughs: number;
+  healthCrises: number;
+  economicStress: number;
+}
+
 const ADMIN_TOKEN_KEY = 'admin_token';
 
 export default function AdminPanel() {
@@ -13,32 +39,39 @@ export default function AdminPanel() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState('');
   const [countries, setCountries] = useState<CountryData[]>([]);
-  const [events, setEvents] = useState([]);
-  const [metrics, setMetrics] = useState(null);
+  const [events, setEvents] = useState<NewsEvent[]>([]);
+  const [metrics, setMetrics] = useState<GlobalMetrics | null>(null);
+  const [isVerifying, setIsVerifying] = useState(false);
 
-  // Инициализируем страны из статического файла
   useEffect(() => {
     setCountries(getAllCountries());
   }, []);
 
-  // Проверка токена для остальных вкладок
+  // Проверяем сохраненный токен при загрузке
   useEffect(() => {
     const savedToken = localStorage.getItem(ADMIN_TOKEN_KEY);
     if (savedToken) {
-      setToken(savedToken);
-      setIsAuthenticated(true);
-      fetchSnapshot(savedToken);
+      verifyToken(savedToken);
     }
   }, []);
 
-  const fetchSnapshot = async (authToken: string) => {
+  const notifyDataUpdate = () => {
+    // For cross-tab communication
+    localStorage.setItem('adminDataUpdated', 'true');
+    // For same-tab communication
+    window.dispatchEvent(new CustomEvent('admin-data-updated'));
+  };
+
+  const fetchEvents = async (authToken: string) => {
     try {
-      const eventsRes = await fetch('/api/snapshot', {
+      const response = await fetch('/api/snapshot', {
         headers: { 'x-admin-token': authToken }
       });
-      if (eventsRes.ok) {
-        const data = await eventsRes.json();
-        setEvents(data.globalEvents || []);
+      
+      if (response.ok) {
+        const data = await response.json();
+        const allEvents: NewsEvent[] = [...(data.globalEvents || []), ...(data.adminEvents || [])];
+        setEvents(allEvents);
         setMetrics(data.globalMetrics);
       }
     } catch (error) {
@@ -46,19 +79,132 @@ export default function AdminPanel() {
     }
   };
 
-  const handleUpdateCountries = (newCountries: CountryData[]) => {
-    setCountries(newCountries);
-    // Опционально: сохраняем в localStorage
-    // localStorage.setItem('admin_countries', JSON.stringify(newCountries));
+  const handleAddEvent = async (eventData: Omit<NewsEvent, 'id' | 'createdAt' | 'source'>) => {
+    try {
+      const response = await fetch('/api/admin/events', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json', 
+          'x-admin-token': token 
+        },
+        body: JSON.stringify(eventData)
+      });
+      
+      if (response.ok) {
+        // Notify main app to refresh data
+        notifyDataUpdate();
+        // Refresh admin panel data
+        await fetchEvents(token);
+      }
+      return response.ok;
+    } catch (error) {
+      console.error('Error adding event:', error);
+      return false;
+    }
   };
 
-  const handleLogin = () => {
-    if (token.trim()) {
-      localStorage.setItem(ADMIN_TOKEN_KEY, token);
-      setIsAuthenticated(true);
-      fetchSnapshot(token);
-    } else {
+  const handleUpdateEvent = async (eventId: string, updates: Partial<NewsEvent>) => {
+    try {
+      const response = await fetch(`/api/admin/events/${eventId}`, {
+        method: 'PUT',
+        headers: { 
+          'Content-Type': 'application/json', 
+          'x-admin-token': token 
+        },
+        body: JSON.stringify(updates)
+      });
+      
+      if (response.ok) {
+        notifyDataUpdate();
+        await fetchEvents(token);
+      }
+      return response.ok;
+    } catch (error) {
+      console.error('Error updating event:', error);
+      return false;
+    }
+  };
+
+  const handleDeleteEvent = async (eventId: string) => {
+    try {
+      const response = await fetch(`/api/admin/events/${eventId}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-token': token }
+      });
+      
+      if (response.ok) {
+        notifyDataUpdate();
+        await fetchEvents(token);
+      }
+      return response.ok;
+    } catch (error) {
+      console.error('Error deleting event:', error);
+      return false;
+    }
+  };
+
+  // Проверка токена на сервере
+  const verifyToken = async (authToken: string) => {
+    setIsVerifying(true);
+    try {
+      const response = await fetch('/api/snapshot', {
+        headers: { 'x-admin-token': authToken }
+      });
+      
+      if (response.ok) {
+        // Токен правильный
+        setToken(authToken);
+        setIsAuthenticated(true);
+        const data = await response.json();
+        const allEvents: NewsEvent[] = [...(data.globalEvents || []), ...(data.adminEvents || [])];
+        setEvents(allEvents);
+        setMetrics(data.globalMetrics);
+      } else {
+        // Токен неверный - удаляем из localStorage
+        localStorage.removeItem(ADMIN_TOKEN_KEY);
+        setToken('');
+        setIsAuthenticated(false);
+      }
+    } catch (error) {
+      console.error('Token verification failed:', error);
+      localStorage.removeItem(ADMIN_TOKEN_KEY);
+      setIsAuthenticated(false);
+    } finally {
+      setIsVerifying(false);
+    }
+  };
+
+  // ФУНКЦИЯ ЛОГИНА
+  const handleLogin = async () => {
+    if (!token.trim()) {
       alert('Please enter a token');
+      return;
+    }
+    
+    setIsVerifying(true);
+    try {
+      const response = await fetch('/api/snapshot', {
+        headers: { 'x-admin-token': token }
+      });
+      
+      if (response.ok) {
+        // Токен правильный
+        localStorage.setItem(ADMIN_TOKEN_KEY, token);
+        setIsAuthenticated(true);
+        const data = await response.json();
+        const allEvents: NewsEvent[] = [...(data.globalEvents || []), ...(data.adminEvents || [])];
+        setEvents(allEvents);
+        setMetrics(data.globalMetrics);
+      } else {
+        // Токен неверный
+        alert('Invalid admin token');
+        setToken('');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+      alert('Failed to connect to server');
+    } finally {
+      setIsVerifying(false);
     }
   };
 
@@ -66,6 +212,10 @@ export default function AdminPanel() {
     localStorage.removeItem(ADMIN_TOKEN_KEY);
     setIsAuthenticated(false);
     setToken('');
+  };
+
+  const handleUpdateCountries = (newCountries: CountryData[]) => {
+    setCountries(newCountries);
   };
 
   if (!isAuthenticated) {
@@ -80,12 +230,14 @@ export default function AdminPanel() {
             onChange={(e) => setToken(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
             className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white mb-4"
+            disabled={isVerifying}
           />
           <button
             onClick={handleLogin}
-            className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 rounded-lg transition"
+            disabled={isVerifying}
+            className="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Login
+            {isVerifying ? 'Verifying...' : 'Login'}
           </button>
         </div>
       </div>
@@ -129,6 +281,7 @@ export default function AdminPanel() {
         {activeTab === 'countries' && (
           <CountryEditor
             countries={countries}
+            token={token}  // Добавляем передачу token
             onUpdate={handleUpdateCountries}
           />
         )}
@@ -136,20 +289,23 @@ export default function AdminPanel() {
           <EventsEditor
             events={events}
             token={token}
-            onUpdate={() => fetchSnapshot(token)}
+            onUpdate={() => fetchEvents(token)}
+            onAddEvent={handleAddEvent}
+            onUpdateEvent={handleUpdateEvent}
+            onDeleteEvent={handleDeleteEvent}
           />
         )}
         {activeTab === 'metrics' && (
           <MetricsEditor
             metrics={metrics}
             token={token}
-            onUpdate={() => fetchSnapshot(token)}
+            onUpdate={() => fetchEvents(token)}
           />
         )}
         {activeTab === 'brief' && (
           <BriefEditor
             token={token}
-            onUpdate={() => fetchSnapshot(token)}
+            onUpdate={() => fetchEvents(token)}
           />
         )}
       </div>

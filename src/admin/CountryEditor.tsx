@@ -1,3 +1,4 @@
+// world_snapshot/src/admin/CountryEditor.tsx
 import { useState } from 'react';
 import { CountryData } from '../data/countries';
 
@@ -9,20 +10,45 @@ const statusOptions = [
   { value: 'eco_crisis', label: 'Eco Crisis', icon: 'fas fa-leaf', color: '#0891b2' },
 ];
 
+// Функция для уведомления главного приложения
+const notifyMainApp = () => {
+  localStorage.setItem('adminDataUpdated', 'true');
+  window.dispatchEvent(new CustomEvent('admin-data-updated'));
+};
+
 interface Props {
   countries: CountryData[];
+  token: string; // Добавляем token в пропсы
   onUpdate: (updatedCountries: CountryData[]) => void;
 }
 
-export default function CountryEditor({ countries, onUpdate }: Props) {
+export default function CountryEditor({ countries, token, onUpdate }: Props) {
   const [editingCountry, setEditingCountry] = useState<CountryData | null>(null);
 
-  const handleSave = (updated: CountryData) => {
-    const newCountries = countries.map(c =>
-      c.id === updated.id ? updated : c
-    );
-    onUpdate(newCountries);
-    setEditingCountry(null);
+  const handleSave = async (updated: CountryData) => {
+    try {
+      const response = await fetch(`/api/admin/countries/${updated.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-token': token
+        },
+        body: JSON.stringify(updated)
+      });
+      
+      if (response.ok) {
+        const newCountries = countries.map(c => c.id === updated.id ? updated : c);
+        onUpdate(newCountries);
+        setEditingCountry(null);
+        notifyMainApp();
+        alert('Country updated successfully');
+      } else {
+        alert('Failed to update country');
+      }
+    } catch (error) {
+      console.error('Failed to save country:', error);
+      alert('Error saving country');
+    }
   };
 
   return (

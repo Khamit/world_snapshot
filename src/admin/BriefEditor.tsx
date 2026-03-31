@@ -1,13 +1,13 @@
-// admin/BriefEditor.tsx
+// world_snapshot/src/admin/BriefEditor.tsx
 import { useEffect, useState } from 'react';
-/*
-world_snapshot/src/admin/BriefEditor.tsx — аналогичная проблема
-Строка 5: const API_URL = import.meta.env.VITE_API_URL; 
-— не будет работать на сервере
-Нужно: Использовать относительный путь /api/...
-*/
 
-export default function BriefEditor({ onUpdate }: any) {
+// Функция для уведомления главного приложения об обновлении
+const notifyMainApp = () => {
+  localStorage.setItem('adminDataUpdated', 'true');
+  window.dispatchEvent(new CustomEvent('admin-data-updated'));
+};
+
+export default function BriefEditor({ token, onUpdate }: any) {
   const [brief, setBrief] = useState<any>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [lastFetchTime, setLastFetchTime] = useState<Date | null>(null);
@@ -29,15 +29,15 @@ export default function BriefEditor({ onUpdate }: any) {
   const handleRefresh = async () => {
     setRefreshing(true);
     try {
-      // Уберите заголовок x-admin-token, если он не нужен для этого эндпоинта
       const response = await fetch('/api/fetch-brief', {
         method: 'POST',
-        // headers: { 'x-admin-token': token }
+        headers: { 'x-admin-token': token }
       });
       if (response.ok) {
         alert('Lightning brief refreshed successfully');
         await fetchBrief();
-        onUpdate();
+        notifyMainApp(); // Уведомляем главное приложение
+        onUpdate(); // Обновляем админку
       } else {
         alert('Failed to refresh brief');
       }

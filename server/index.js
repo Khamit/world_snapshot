@@ -1,25 +1,38 @@
 // world_snapshot/server/index.js
 import * as cheerio from 'cheerio';
+import compression from 'compression';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import fs, { mkdirSync } from 'fs';
+import helmet from 'helmet';
 import cron from 'node-cron';
 import fetch from 'node-fetch';
+import nodemailer from 'nodemailer';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { analyzeSentiment, calculateIntensity, categorizeNews } from './analyzer_new.js';
+import winston from 'winston';
+import { analyzeSentiment, calculateIntensity, categorizeNews, isOutdated } from './analyzer_new.js';
 
 let cachedData = null;
 let lastFetchTime = null;
 
 dotenv.config();
-/*
-world_snapshot/server/index.js — проблема с import.meta.env.VITE_API_URL
-Строка 340: const API_URL = import.meta.env.VITE_API_URL; 
-— это фронтенд-переменная, она не работает в Node.js!
-Нужно: Удалить эту строку и заменить на правильный импорт
-*/
+
+// Общий лимит для всех API
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 минут
+  max: 100, // максимум 100 запросов
+  message: { error: 'Too many requests, please try again later.' }
+});
+
+// Более строгий лимит для тяжелых эндпоинтов
+const heavyLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 час
+  max: 10, // максимум 10 запросов
+  message: { error: 'Rate limit exceeded for this operation.' }
+});
 
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'your-secret-token-here';
 
@@ -31,8 +44,66 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Настройка email транспорта
+const emailTransporter = process.env.SMTP_HOST ? nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT || 587,
+  secure: false,
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+}) : null;
+
+// Замените существующий logger на этот
+const logger = winston.createLogger({
+  level: process.env.LOG_LEVEL || 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.errors({ stack: true }),
+    winston.format.json()
+  ),
+  transports: [
+    // Все логи в файл
+    new winston.transports.File({ 
+      filename: 'logs/error.log', 
+      level: 'error',
+      maxsize: 5242880, // 5MB
+      maxFiles: 5,
+    }),
+    new winston.transports.File({ 
+      filename: 'logs/combined.log',
+      maxsize: 5242880,
+      maxFiles: 5,
+    }),
+  ],
+});
+
+// Добавляем console в development
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple(),
+  }));
+}
+
+// Функция для логирования с уведомлениями
+function logWithAlert(level, message, error = null, sendAlert = false) {
+  const logData = { message };
+  if (error) {
+    logData.error = error.stack || error.message || error;
+  }
+  
+  logger.log(level, message, logData);
+  
+  if (sendAlert && (level === 'error' || level === 'crit')) {
+    sendCriticalAlert(message, logData.error || message, error);
+  }
+}
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://world-snapshot.onrender.com', process.env.FRONTEND_URL].filter(Boolean)
+    : 'http://localhost:5173',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'x-admin-token'],
@@ -41,6 +112,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
+app.use(helmet());
+app.use(compression());
 
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -50,12 +123,14 @@ app.use((req, res, next) => {
 });
 
 const GNEWS_API_KEY = process.env.GNEWS_API_KEY;
+const NEWSDATA_API_KEY = process.env.NEWSDATA_API_KEY; // Добавляем NewsData API
 const DATA_PATH = path.join(__dirname, '../src/data/events.json');
 const DEATHS_DATA_PATH = path.join(__dirname, '../src/data/deaths_statistics.json');
 
-console.log('=== GNews API Status ===');
-console.log('API Key:', GNEWS_API_KEY ? `${GNEWS_API_KEY.substring(0, 10)}... ` : ' NOT FOUND');
-console.log('========================\n');
+console.log('=== API Status ===');
+console.log('GNews API Key:', GNEWS_API_KEY ? `${GNEWS_API_KEY.substring(0, 10)}... ` : ' NOT FOUND');
+console.log('NewsData API Key:', NEWSDATA_API_KEY ? `${NEWSDATA_API_KEY.substring(0, 10)}... ` : ' NOT FOUND');
+console.log('==================\n');
 
 
 // Маппинг названий стран для статистики смертей
@@ -73,6 +148,38 @@ const countryNameMapping = {
   'Kazakhstan': 'KZ', 'Cambodia': 'KH', 'Ethiopia': 'ET', 'Egypt': 'EG',
   'Thailand': 'TH', 'Vietnam': 'VN', 'Philippines': 'PH', 'Myanmar': 'MM'
 };
+
+// Функция для отправки критических уведомлений
+async function sendCriticalAlert(subject, message, error = null) {
+  if (!emailTransporter || !process.env.ALERT_EMAIL) return;
+  
+  const emailContent = `
+    (!) CRITICAL ALERT - World Snapshot Server
+    
+    Time: ${new Date().toISOString()}
+    Subject: ${subject}
+    
+    ${message}
+    
+    ${error ? `Error Details:\n${error.stack || error.message || error}` : ''}
+    
+    ---
+    Server: ${process.env.HOSTNAME || 'localhost'}
+    Node Version: ${process.version}
+  `;
+  
+  try {
+    await emailTransporter.sendMail({
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: process.env.ALERT_EMAIL,
+      subject: `[WorldSnapshot] ${subject}`,
+      text: emailContent,
+    });
+    logger.info(`Alert email sent: ${subject}`);
+  } catch (err) {
+    logger.error('Failed to send alert email:', err);
+  }
+}
 
 // Функция для парсинга статистики смертей
 async function fetchDeathStatistics() {
@@ -182,11 +289,141 @@ function saveDataByDate(data) {
   return snapshotFile;
 }
 
+// Добавьте после функции saveDataByDate
+function cleanOldData() {
+  console.log('\nStarting data cleanup...');
+  
+  const dataDir = path.join(__dirname, '../src/data');
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = String(now.getMonth() + 1).padStart(2, '0');
+  
+  let deletedCount = 0;
+  let keptCount = 0;
+  
+  try {
+    // Читаем все папки по годам
+    const years = fs.readdirSync(dataDir).filter(f => {
+      const fullPath = path.join(dataDir, f);
+      return fs.statSync(fullPath).isDirectory() && /^\d{4}$/.test(f);
+    });
+    
+    for (const year of years) {
+      const yearPath = path.join(dataDir, year);
+      const months = fs.readdirSync(yearPath).filter(f => {
+        const fullPath = path.join(yearPath, f);
+        return fs.statSync(fullPath).isDirectory() && /^\d{2}$/.test(f);
+      });
+      
+      for (const month of months) {
+        const monthPath = path.join(yearPath, month);
+        const files = fs.readdirSync(monthPath).filter(f => f.endsWith('.json'));
+        
+        for (const file of files) {
+          const filePath = path.join(monthPath, file);
+          const fileStat = fs.statSync(filePath);
+          const fileDate = new Date(fileStat.mtime);
+          
+          // Оставляем только:
+          // 1. Текущий месяц
+          // 2. Последние 7 дней в других месяцах
+          const isCurrentMonth = (year === currentYear && month === currentMonth);
+          const daysOld = (now.getTime() - fileDate.getTime()) / (1000 * 60 * 60 * 24);
+          const isRecent = daysOld <= 7;
+          
+          if (!isCurrentMonth && !isRecent) {
+            // Удаляем старый файл
+            fs.unlinkSync(filePath);
+            deletedCount++;
+            console.log(`   Deleted: ${year}/${month}/${file} (${Math.round(daysOld)} days old)`);
+          } else {
+            keptCount++;
+          }
+        }
+        
+        // Удаляем пустые папки
+        try {
+          const remainingFiles = fs.readdirSync(monthPath);
+          if (remainingFiles.length === 0) {
+            fs.rmdirSync(monthPath);
+            console.log(`   Removed empty folder: ${year}/${month}`);
+          }
+        } catch (e) {
+          // Папка не пуста или ошибка
+        }
+      }
+      
+      // Удаляем пустые папки годов
+      try {
+        const remainingMonths = fs.readdirSync(yearPath);
+        if (remainingMonths.length === 0) {
+          fs.rmdirSync(yearPath);
+          console.log(`   Removed empty folder: ${year}`);
+        }
+      } catch (e) {}
+    }
+    
+    console.log(`Cleanup complete: ${deletedCount} files deleted, ${keptCount} files kept\n`);
+    
+  } catch (error) {
+    console.error('Error during cleanup:', error);
+  }
+}
+
+// Добавьте после cleanOldData
+function cleanOldBriefData() {
+  const briefPath = path.join(__dirname, '../src/data/lightning_brief.json');
+  
+  try {
+    if (fs.existsSync(briefPath)) {
+      const data = JSON.parse(fs.readFileSync(briefPath, 'utf8'));
+      const briefDate = new Date(data.lastUpdated);
+      const now = new Date();
+      const daysOld = (now.getTime() - briefDate.getTime()) / (1000 * 60 * 60 * 24);
+      
+      // Если brief старше 7 дней, удаляем его (он обновится при следующем fetch)
+      if (daysOld > 7) {
+        fs.unlinkSync(briefPath);
+        console.log(`   Deleted old lightning brief (${Math.round(daysOld)} days old)`);
+      }
+    }
+  } catch (error) {
+    console.error('Error cleaning brief data:', error);
+  }
+}
+
+// Добавьте после cleanOldBriefData
+function cleanOldAdminEvents() {
+  const adminPath = path.join(__dirname, '../src/data/admin_events.json');
+  
+  try {
+    if (fs.existsSync(adminPath)) {
+      const events = JSON.parse(fs.readFileSync(adminPath, 'utf8'));
+      const now = new Date();
+      const threeMonthsAgo = new Date();
+      threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+      
+      const filteredEvents = events.filter(event => {
+        const eventDate = new Date(event.createdAt);
+        return eventDate > threeMonthsAgo;
+      });
+      
+      if (filteredEvents.length !== events.length) {
+        fs.writeFileSync(adminPath, JSON.stringify(filteredEvents, null, 2));
+        console.log(`   Admin events: removed ${events.length - filteredEvents.length} old events, kept ${filteredEvents.length}`);
+      }
+    }
+  } catch (error) {
+    console.error('Error cleaning admin events:', error);
+  }
+}
+
 // Функция для парсинга globalissues.org
 async function fetchLightningBrief() {
+  try {
   console.log(`\n[${new Date().toISOString()}] Fetching lightning brief from globalissues.org...`);
   const url = 'https://www.globalissues.org/news/2026';
-  
+
   try {
     const response = await fetch(url, {
       headers: {
@@ -195,43 +432,51 @@ async function fetchLightningBrief() {
     });
     const html = await response.text();
     const $ = cheerio.load(html);
-    
+
     const briefItems = [];
-    
-    // Парсим новости - адаптируйте селекторы под структуру сайта
-    // Обычно на globalissues.org новости в тегах <article> или <div class="news-item">
-    $('article, .news-item, .story, .post').each((index, element) => {
-      const titleElement = $(element).find('h2, h3, .title, .headline');
-      const linkElement = $(element).find('a').first();
-      const descriptionElement = $(element).find('p, .summary, .description');
-      const dateElement = $(element).find('time, .date, .published');
-      
+
+    // ✅ Прямой отбор div.node
+    $('div.node').each((index, element) => {
+      const titleElement = $(element).find('h2 a');
+      const link = titleElement.attr('href');
       const title = titleElement.text().trim();
-      const link = linkElement.attr('href');
-      const description = descriptionElement.text().trim().substring(0, 150);
-      const date = dateElement.text().trim();
-      
+
+      const descriptionElement = $(element).find('div.content p').first();
+      let description = descriptionElement.text().trim();
+
+      // если нет описания — берём текст из div.content
+      if (!description) {
+        description = $(element).find('div.content').text().trim().substring(0, 200);
+      }
+
+      const dateElement = $(element).find('span.submitted');
+      let date = dateElement.text().trim();
+
+      // если дата не найдена — оставляем пустую (потом заменим)
+      if (!date) {
+        date = new Date().toISOString();
+      }
+
       if (title && link) {
         briefItems.push({
           id: `brief-${Date.now()}-${index}`,
           title: title,
-          description: description || 'Read more...',
+          description: description.substring(0, 300) || 'Read more...',
           url: link.startsWith('http') ? link : `https://www.globalissues.org${link}`,
-          date: date || new Date().toISOString(),
+          date: date,
           category: 'brief'
         });
       }
     });
-    
-    // Если не нашли статьи по стандартным селекторам, пробуем альтернативный подход
+
+    console.log(`Found ${briefItems.length} div.node elements`);
+
+    // Если всё ещё ничего не нашли — используем fallback по ссылкам
     if (briefItems.length === 0) {
-      // Ищем любые ссылки с заголовками
       $('a').each((index, element) => {
         const title = $(element).text().trim();
         const link = $(element).attr('href');
-        
-        // Фильтруем: заголовок должен быть достаточно длинным и не быть навигацией
-        if (title && title.length > 20 && title.length < 200 && 
+        if (title && title.length > 30 && title.length < 200 &&
             link && !link.includes('/archive') && !link.includes('/about')) {
           briefItems.push({
             id: `brief-${Date.now()}-${index}`,
@@ -244,25 +489,45 @@ async function fetchLightningBrief() {
         }
       });
     }
-    
-    // Ограничиваем количество (первые 10-15 новостей)
-    const topBriefs = briefItems.slice(0, 12);
-    
-    // Сохраняем в отдельный JSON файл
+
+    // Убираем дубликаты по URL
+    const uniqueBriefs = [];
+    const urls = new Set();
+    for (const item of briefItems) {
+      if (!urls.has(item.url)) {
+        urls.add(item.url);
+        uniqueBriefs.push(item);
+      }
+    }
+
+    // Берём первые 10 новостей (можно 12, но 10 достаточно)
+    const topBriefs = uniqueBriefs.slice(0, 10);
+
+    console.log(`Lightning brief: ${uniqueBriefs.length} unique, saving ${topBriefs.length}`);
+
     const BRIEF_PATH = path.join(__dirname, '../src/data/lightning_brief.json');
     const briefData = {
       items: topBriefs,
       lastUpdated: new Date().toISOString(),
       source: 'globalissues.org'
     };
-    
+
     fs.writeFileSync(BRIEF_PATH, JSON.stringify(briefData, null, 2));
-    console.log(`✅ Lightning brief saved: ${topBriefs.length} items`);
-    
+    console.log(`Lightning brief saved: ${topBriefs.length} items`);
+
+    // Вывод первых заголовков для проверки
+    topBriefs.forEach((item, i) => {
+      console.log(`   ${i + 1}. ${item.title.substring(0, 60)}...`);
+    });
+
     return briefData;
-    
+
   } catch (error) {
     console.error('Error fetching lightning brief:', error);
+    return null;
+  }
+  } catch (error) {
+    logWithAlert('error', 'Failed to fetch lightning brief', error, true);
     return null;
   }
 }
@@ -282,207 +547,376 @@ app.get('/api/lightning-brief', (req, res) => {
   }
 });
 
+// Берем новости
 async function fetchNews(force = false) {
-  const now = Date.now();
-  // Кэш на 30 минут
-  if (!force && cachedData && lastFetchTime && (now - lastFetchTime) < 30 * 60 * 1000) {
-    console.log('Returning cached data (last fetch < 30 min ago)');
-    return cachedData;
-  }
-  // ----------------
-  console.log(`\n[${new Date().toISOString()}] Fetching news from GNews...`);
-  
-  if (!GNEWS_API_KEY) {
-    console.error('GNews API key not found');
-    return null;
-  }
-  
-  const allArticles = [];
-  
-  // Улучшенные запросы
-const queries = [
-  { q: 'war OR conflict OR military OR attack', category: 'military', lang: 'en', max: 8 },
-  { q: 'earthquake OR flood OR hurricane OR fire OR disaster', category: 'disasters', lang: 'en', max: 8 },
-  { q: 'economy OR inflation OR stock market OR recession OR trade', category: 'economy', lang: 'en', max: 8 }, // Увеличен max
-  { q: 'health OR disease OR pandemic OR hospital OR vaccine', category: 'health', lang: 'en', max: 8 }, // Увеличен max
-  { q: 'election OR protest OR government OR politics', category: 'politics', lang: 'en', max: 8 },
-  { q: 'space OR nasa OR research OR science OR technology', category: 'science', lang: 'en', max: 8 },
-  { q: 'celebrity OR entertainment OR viral OR trending', category: 'popular', lang: 'en', max: 6 }
-];
-  
-  for (const query of queries) {
-    try {
-      const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query.q)}&lang=${query.lang}&max=${query.max}&apikey=${GNEWS_API_KEY}`;
-      console.log(`${query.category}...`);
+  try{
+    const now = Date.now();
+    
+    // Кэш на 30 минут
+    if (!force && cachedData && lastFetchTime && (now - lastFetchTime) < 30 * 60 * 1000) {
+      console.log('Returning cached data (last fetch < 30 min ago)');
+      return cachedData;
+    }
+    
+    console.log(`\n[${new Date().toISOString()}] Fetching news...`);
+    
+    const allArticles = [];
+    
+    // Запросы для обоих API
+    const queries = [
+      { q: 'war OR conflict OR military OR attack', category: 'military', max: 8 },
+      { q: 'earthquake OR flood OR hurricane OR fire OR disaster', category: 'disasters', max: 8 },
+      { q: 'economy OR inflation OR stock market OR recession OR trade', category: 'economy', max: 8 },
+      { q: 'health OR disease OR pandemic OR hospital OR vaccine', category: 'health', max: 8 },
+      { q: 'election OR protest OR government OR politics', category: 'politics', max: 8 },
+      { q: 'space OR nasa OR research OR science OR technology', category: 'science', max: 8 },
+      { q: 'celebrity OR entertainment OR viral OR trending', category: 'popular', max: 6 }
+    ];
+    
+    // Пробуем сначала GNews
+    let gnewsSuccess = false;
+    let newsdataSuccess = false;
+    
+    if (GNEWS_API_KEY && GNEWS_API_KEY !== 'disabled') {
+      console.log('Trying GNews API...');
       
-      const response = await fetch(url);
-      
-      if (!response.ok) {
-        console.error(`Error: ${response.status}`);
-        continue;
-      }
-      
-      const data = await response.json();
-      
-      if (data.articles && data.articles.length > 0) {
-        console.log(`${data.articles.length} articles`);
-        
-        data.articles.forEach(article => {
-          const fullText = `${article.title} ${article.description || ''} ${article.content || ''}`;
+      for (const query of queries) {
+        try {
+          const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query.q)}&lang=en&max=${query.max}&apikey=${GNEWS_API_KEY}`;
+          console.log(`   GNews: ${query.category}...`);
           
-          // Определяем категорию
-          const detectedCategory = categorizeNews(article.title, article.description);
+          const response = await fetch(url);
           
-          // Пропускаем игнорируемый контент (спорт)
-          if (detectedCategory === 'ignored') {
-            console.log(`   ⏭ Skipped (sports): ${article.title.substring(0, 50)}...`);
-            return;
+          if (response.status === 403) {
+            console.log(`   GNews quota exceeded for ${query.category}`);
+            break;
           }
           
-          // Анализируем тональность только для релевантных новостей
-          const sentimentScore = analyzeSentiment(fullText);
-          const intensity = calculateIntensity(sentimentScore, detectedCategory, fullText);
+          if (!response.ok) {
+            console.error(`   GNews error: ${response.status}`);
+            continue;
+          }
           
-          allArticles.push({
-            id: `news-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-            category: detectedCategory,
-            title: article.title,
-            detail: article.description || article.content || 'No description',
-            intensity: intensity,
-            sentimentScore: sentimentScore,
-            source: article.source?.name || 'GNews',
-            url: article.url,
-            publishedAt: article.publishedAt || new Date().toISOString(),
-            country: null
-          });
-        });
-      } else {
-        console.log(`No articles`);
+          const data = await response.json();
+          
+          if (data.articles && data.articles.length > 0) {
+            console.log(`   Found ${data.articles.length} articles`);
+            gnewsSuccess = true;
+            
+            data.articles.forEach(article => {
+              const fullText = `${article.title} ${article.description || ''} ${article.content || ''}`;
+              const detectedCategory = categorizeNews(article.title, article.description);
+              
+              if (detectedCategory === 'ignored') {
+                console.log(`      ⏭ Skipped (sports): ${article.title.substring(0, 50)}...`);
+                return;
+              }
+              
+              const sentimentScore = analyzeSentiment(fullText);
+              const intensity = calculateIntensity(sentimentScore, detectedCategory, fullText);
+              
+              allArticles.push({
+                id: `news-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                category: detectedCategory,
+                title: article.title,
+                detail: article.description || article.content || 'No description',
+                intensity: intensity,
+                sentimentScore: sentimentScore,
+                source: article.source?.name || 'GNews',
+                url: article.url,
+                publishedAt: article.publishedAt || new Date().toISOString(),
+                country: null
+              });
+            });
+          } else {
+            console.log(`   No articles`);
+          }
+          
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+        } catch (error) {
+          console.error(`   GNews error:`, error.message);
+        }
       }
+    }
+    
+    // Если GNews не дал результатов, пробуем NewsData
+    if (!gnewsSuccess || allArticles.length < 10) {
+      if (NEWSDATA_API_KEY && NEWSDATA_API_KEY !== 'disabled') {
+        console.log('\nTrying NewsData API as fallback...');
+        
+        for (const query of queries) {
+          const articles = await fetchFromNewsData(query.q, query.category, query.max);
+          allArticles.push(...articles);
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+        newsdataSuccess = allArticles.length > 0;
+      }
+    }
+    
+    console.log(`\nTotal: ${allArticles.length} articles`);
+    
+    // Если не удалось получить новости ни из одного API, используем локальные данные
+    if (allArticles.length === 0) {
+      console.log('No articles from any API, loading local data...');
+      return loadLocalData();
+    }
+    
+    // Убираем дубликаты
+    const uniqueArticles = [];
+    const titles = new Set();
+    
+    for (const article of allArticles) {
+      const shortTitle = article.title.substring(0, 100);
+      if (!titles.has(shortTitle)) {
+        titles.add(shortTitle);
+        uniqueArticles.push(article);
+      }
+    }
+    
+    const topArticles = uniqueArticles.slice(0, 30);
+    
+    // Статистика по категориям
+    const stats = {
+      military: topArticles.filter(a => a.category === 'military').length,
+      disasters: topArticles.filter(a => a.category === 'disasters').length,
+      politics: topArticles.filter(a => a.category === 'politics').length,
+      science: topArticles.filter(a => a.category === 'science').length,
+      popular: topArticles.filter(a => a.category === 'popular').length,
+      economy: topArticles.filter(a => a.category === 'economy').length,
+      health: topArticles.filter(a => a.category === 'health').length
+    };
+    
+    console.log('\nCategories distribution:');
+    Object.entries(stats).forEach(([cat, count]) => {
+      if (count > 0) console.log(`   ${cat}: ${count} articles`);
+    });
+    
+    // Получаем статистику смертей
+    const deathStats = await fetchDeathStatistics();
+    const briefData = await fetchLightningBrief();
+
+    const adminEventsPath = path.join(__dirname, '../src/data/admin_events.json');
+
+    let adminEvents = [];
+    if (fs.existsSync(adminEventsPath)) {
+      adminEvents = JSON.parse(fs.readFileSync(adminEventsPath, 'utf8'));
+    }
+
+    const globalData = {
+      globalEvents: topArticles.map(article => ({
+        id: article.id,
+        category: article.category,
+        title: article.title,
+        detail: article.detail,
+        intensity: article.intensity,
+        sentimentScore: article.sentimentScore,
+        url: article.url,
+        source: article.source,
+        publishedAt: article.publishedAt
+      })),
+      globalMetrics: {
+        dailyDeaths: deathStats?.global?.daily || Math.floor(Math.random() * 50000) + 120000,
+        hourlyDeaths: deathStats?.global?.hourly || 7258,
+        minuteDeaths: deathStats?.global?.minute || 121,
+        secondDeaths: deathStats?.global?.second || 2.02,
+        deathsChange: (Math.random() * 10 - 2).toFixed(1),
+        activeConflicts: stats.military + 12,
+        ecoCrises: stats.disasters + 5,
+        politicalInstabilityDelta: (Math.random() * 20 - 5).toFixed(0),
+        scientificBreakthroughs: stats.science + 3,
+        healthCrises: stats.health || 0,
+        economicStress: stats.economy || 0
+      },
+      adminEvents: adminEvents.slice(0, 20),
+      lightningBrief: briefData,
+      lastUpdated: new Date().toISOString()
+    };
+    
+    const savedPath = saveDataByDate(globalData);
+    console.log(`\nSaved ${topArticles.length} articles to ${DATA_PATH}\n`);
+    
+    cachedData = globalData;
+    lastFetchTime = now;
+    return globalData;
+  } catch (error) {
+    logWithAlert('error', 'Critical error in fetchNews', error, true);
+    return loadLocalData();
+  }
+}
+
+// после fetchNews, но до fetchLightningBrief
+async function fetchFromNewsData(query, category, max = 10) {
+  try {
+    const url = `https://newsdata.io/api/1/news?apikey=${NEWSDATA_API_KEY}&q=${encodeURIComponent(query)}&language=en&size=${max}`;
+    console.log(`   NewsData: ${category}...`);
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      console.error(`   NewsData error: ${response.status}`);
+      return [];
+    }
+    
+    const data = await response.json();
+    
+    if (data.status === 'success' && data.results) {
+      console.log(`   Found ${data.results.length} articles`);
       
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Обрабатываем каждую статью с проверкой на устаревшие новости
+      const articles = data.results.map(article => {
+        // Проверка на устаревшие новости
+        if (isOutdated(article.pubDate)) {
+          console.log(`   ⏭ Skipped outdated: ${article.title.substring(0, 50)}...`);
+          return null;
+        }
+        
+        const fullText = `${article.title} ${article.description || ''} ${article.content || ''}`;
+        const detectedCategory = categorizeNews(article.title, article.description);
+        
+        if (detectedCategory === 'ignored') return null;
+        
+        const sentimentScore = analyzeSentiment(fullText);
+        const intensity = calculateIntensity(sentimentScore, detectedCategory, fullText);
+        
+        return {
+          id: `newsdata-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          category: detectedCategory,
+          title: article.title,
+          detail: article.description || article.content || 'No description',
+          intensity: intensity,
+          sentimentScore: sentimentScore,
+          source: article.source_id || 'NewsData',
+          url: article.link || article.url,
+          publishedAt: article.pubDate || new Date().toISOString(),
+          country: null
+        };
+      }).filter(article => article !== null);
       
-    } catch (error) {
-      console.error(`Error:`, error.message);
+      return articles;
     }
+    
+    return [];
+  } catch (error) {
+    console.error(`   NewsData error:`, error.message);
+    return [];
   }
-  
-  console.log(`\nTotal: ${allArticles.length} articles`);
-  
-  if (allArticles.length === 0) {
-    console.log('No articles found');
-    return null;
-  }
-  
-  // Убираем дубликаты
-  const uniqueArticles = [];
-  const titles = new Set();
-  
-  for (const article of allArticles) {
-    const shortTitle = article.title.substring(0, 100);
-    if (!titles.has(shortTitle)) {
-      titles.add(shortTitle);
-      uniqueArticles.push(article);
+}
+
+// Функция для загрузки локальных данных
+function loadLocalData() {
+  try {
+    if (fs.existsSync(DATA_PATH)) {
+      const localData = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
+      console.log('Loaded existing local data');
+      cachedData = localData;
+      lastFetchTime = Date.now();
+      return localData;
     }
+  } catch (error) {
+    console.error('Error loading local data:', error);
   }
   
-  const topArticles = uniqueArticles.slice(0, 30);
-  
-  // Статистика по категориям
-  const stats = {
-    military: topArticles.filter(a => a.category === 'military').length,
-    disasters: topArticles.filter(a => a.category === 'disasters').length,
-    politics: topArticles.filter(a => a.category === 'politics').length,
-    science: topArticles.filter(a => a.category === 'science').length,
-    popular: topArticles.filter(a => a.category === 'popular').length,
-    economy: topArticles.filter(a => a.category === 'economy').length,
-    health: topArticles.filter(a => a.category === 'health').length
-  };
-  
-  console.log('\nCategories distribution:');
-  Object.entries(stats).forEach(([cat, count]) => {
-    if (count > 0) console.log(`   ${cat}: ${count} articles`);
-  });
-  
-  // Средняя интенсивность по категориям
-  const avgIntensity = {};
-  for (const article of topArticles) {
-    if (!avgIntensity[article.category]) {
-      avgIntensity[article.category] = { sum: 0, count: 0 };
-    }
-    avgIntensity[article.category].sum += article.intensity;
-    avgIntensity[article.category].count++;
-  }
-  
-  console.log('\nAverage intensity by category:');
-  Object.entries(avgIntensity).forEach(([cat, data]) => {
-    console.log(`   ${cat}: ${Math.round(data.sum / data.count)}%`);
-  });
-  
-  // Получаем статистику смертей
-  const deathStats = await fetchDeathStatistics();
-  const briefData = await fetchLightningBrief();
-
-  const adminEventsPath = path.join(__dirname, '../src/data/admin_events.json');
-
-  let adminEvents = [];
-  if (fs.existsSync(adminEventsPath)) {
-    adminEvents = JSON.parse(fs.readFileSync(adminEventsPath, 'utf8'));
-  }
-
-  const globalData = {
-    globalEvents: topArticles.map(article => ({
-      id: article.id,
-      category: article.category,
-      title: article.title,
-      detail: article.detail,
-      intensity: article.intensity,
-      sentimentScore: article.sentimentScore,
-      url: article.url,
-      source: article.source,
-      publishedAt: article.publishedAt
-    })),
+  // Если нет данных, создаем пустую структуру
+  const emptyData = {
+    globalEvents: [],
     globalMetrics: {
-      dailyDeaths: deathStats?.global?.daily || Math.floor(Math.random() * 50000) + 120000,
-      hourlyDeaths: deathStats?.global?.hourly || 7258,
-      minuteDeaths: deathStats?.global?.minute || 121,
-      secondDeaths: deathStats?.global?.second || 2.02,
-      deathsChange: (Math.random() * 10 - 2).toFixed(1),
-      activeConflicts: stats.military + 12,
-      ecoCrises: stats.disasters + 5,
-      politicalInstabilityDelta: (Math.random() * 20 - 5).toFixed(0),
-      scientificBreakthroughs: stats.science + 3,
-      healthCrises: stats.health || 0,
-      economicStress: stats.economy || 0
+      dailyDeaths: 174194,
+      hourlyDeaths: 7258,
+      minuteDeaths: 121,
+      secondDeaths: 2.02,
+      deathsChange: "0",
+      activeConflicts: 0,
+      ecoCrises: 0,
+      politicalInstabilityDelta: "0",
+      scientificBreakthroughs: 0,
+      healthCrises: 0,
+      economicStress: 0
     },
-    adminEvents: adminEvents.slice(0, 20), // лимит
-    lightningBrief: briefData,
+    adminEvents: [],
+    lightningBrief: null,
     lastUpdated: new Date().toISOString()
   };
   
-  const savedPath = saveDataByDate(globalData);
-  console.log(`\nSaved ${topArticles.length} articles to ${DATA_PATH}\n`);
-  
-  cachedData = globalData;
-  lastFetchTime = now;
-  return globalData;
+  console.log('Created empty data structure');
+  return emptyData;
 }
+
+// before the /api/server/config endpoint
+function getNextServerUpdateTime() {
+  const now = new Date();
+  const nyTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+  
+  // Current hour in NY time
+  const currentHour = nyTime.getHours();
+  
+  // Next update times: 8 AM (8) and 8 PM (20)
+  let nextHour;
+  if (currentHour < 8) {
+    nextHour = 8;
+  } else if (currentHour < 20) {
+    nextHour = 20;
+  } else {
+    // After 8 PM, next is tomorrow 8 AM
+    const tomorrow = new Date(nyTime);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(8, 0, 0, 0);
+    return tomorrow;
+  }
+  
+  const nextUpdate = new Date(nyTime);
+  nextUpdate.setHours(nextHour, 0, 0, 0);
+  
+  // If next update time is in the past (shouldn't happen with above logic)
+  if (nextUpdate <= nyTime) {
+    nextUpdate.setHours(nextHour + 12, 0, 0, 0);
+  }
+  
+  return nextUpdate;
+}
+
 // hand parsing
-app.post('/api/fetch-brief', async (req, res) => {
+app.post('/api/fetch-brief', heavyLimiter, async (req, res) => {
   console.log('Manual lightning brief fetch requested');
   const data = await fetchLightningBrief();
   res.json({ success: !!data, data });
 });
 
 // В POST /api/fetch можно передавать force=true
-app.post('/api/fetch', async (req, res) => {
+app.post('/api/fetch',heavyLimiter, async (req, res) => {
   console.log('Manual fetch requested');
   const data = await fetchNews(true); // force refresh
   res.json({ success: !!data, data });
 });
 
 // API endpoints
-app.get('/api/snapshot', (req, res) => {
+// Защищенный эндпоинт для админки
+// Публичный эндпоинт (без авторизации) для фронтенда
+app.get('/api/public/snapshot', (req, res) => {
+  try {
+    if (fs.existsSync(DATA_PATH)) {
+      const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
+      res.json(data);
+    } else {
+      res.status(404).json({ error: 'No data yet' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to read data' });
+  }
+});
+
+app.get('/api/server/config', (req, res) => {
+  const nextUpdateTime = getNextServerUpdateTime(); // Calculate next 8AM/8PM NY time
+  res.json({
+    updateSchedule: '0 12,0 * * *', // Cron pattern
+    timezone: 'America/New_York',
+    nextUpdate: nextUpdateTime,
+    updateInterval: '12 hours'
+  });
+});
+
+// Защищенный эндпоинт для админки (требует токен)
+app.get('/api/snapshot', adminAuth, (req, res) => {
   try {
     if (fs.existsSync(DATA_PATH)) {
       const data = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
@@ -495,7 +929,7 @@ app.get('/api/snapshot', (req, res) => {
   }
 });
 
-// Новый endpoint для получения статистики смертей
+// Новый endpoint для получения статистики смертей (публичный)
 app.get('/api/deaths', (req, res) => {
   try {
     if (fs.existsSync(DEATHS_DATA_PATH)) {
@@ -531,10 +965,12 @@ function adminAuth(req, res, next) {
   const token = req.headers['x-admin-token'];
   
   if (!token) {
+    logWithAlert('warn', `Admin access denied: missing token from ${req.ip}`, null, false);
     return res.status(401).json({ error: 'Missing admin token' });
   }
   
   if (token !== ADMIN_TOKEN) {
+    logWithAlert('error', `Admin access denied: invalid token from ${req.ip}`, null, true);
     return res.status(403).json({ error: 'Invalid admin token' });
   }
   
@@ -601,6 +1037,26 @@ app.put('/api/admin/countries/:id', adminAuth, (req, res) => {
   try {
     const { id } = req.params;
     const updates = req.body;
+    
+    // Валидация ID
+    if (!id || typeof id !== 'string' || id.length > 50) {
+      return res.status(400).json({ error: 'Invalid country ID' });
+    }
+    
+    // Проверка размера тела
+    const bodySize = JSON.stringify(updates).length;
+    if (bodySize > 10000) { // 10KB лимит
+      return res.status(413).json({ error: 'Payload too large' });
+    }
+    
+    // Белый список разрешенных полей
+    const allowedFields = ['name', 'status', 'color', 'summary', 'military', 'politics', 'eco', 'science', 'deaths_estimate'];
+    const sanitizedUpdates = {};
+    for (const field of allowedFields) {
+      if (updates[field] !== undefined) {
+        sanitizedUpdates[field] = updates[field];
+      }
+    }
     const adminDataPath = path.join(__dirname, '../src/data/admin_countries.json');
     let countries = {};
     if (fs.existsSync(adminDataPath)) {
@@ -740,18 +1196,46 @@ app.put('/api/admin/metrics', adminAuth, (req, res) => {
 
 app.get('/api/snapshot/history/:date', (req, res) => {
   try {
-    const { date } = req.params; // формат: 2026-03-29
+    const { date } = req.params;
+    
+    // Валидация формата YYYY-MM-DD
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      return res.status(400).json({ error: 'Invalid date format. Use YYYY-MM-DD' });
+    }
+    
     const [year, month, day] = date.split('-');
+    
+    // Проверка диапазонов
+    const yearNum = parseInt(year);
+    const monthNum = parseInt(month);
+    const dayNum = parseInt(day);
+    
+    if (yearNum < 2020 || yearNum > 2030 || monthNum < 1 || monthNum > 12 || dayNum < 1 || dayNum > 31) {
+      return res.status(400).json({ error: 'Invalid date values' });
+    }
+    
     const historyPath = path.join(__dirname, `../src/data/${year}/${month}/snapshot_${year}_${month}_${day}.json`);
     
-    if (fs.existsSync(historyPath)) {
-      const data = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
-      res.json(data);
-    } else {
-      res.status(404).json({ error: 'No data for this date' });
+    // Проверка существования файла перед realpathSync
+    if (!fs.existsSync(historyPath)) {
+      return res.status(404).json({ error: 'No data for this date' });
     }
+    
+    // Проверка, что путь внутри data директории
+    const realPath = fs.realpathSync(historyPath);
+    const dataDir = fs.realpathSync(path.join(__dirname, '../src/data'));
+    
+    if (!realPath.startsWith(dataDir)) {
+      logger.warn(`Path traversal attempt: ${date} from ${req.ip}`);
+      return res.status(403).json({ error: 'Access denied' });
+    }
+    
+    const data = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
+    res.json(data);
+    
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    logger.error(`Error in /api/snapshot/history/${req.params.date}:`, error);
+    res.status(500).json({ error: 'Failed to read snapshot data' });
   }
 });
 
@@ -769,6 +1253,29 @@ app.get('/api/snapshot/latest', (req, res) => {
   }
 });
 
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    memory: process.memoryUsage(),
+    dataExists: fs.existsSync(DATA_PATH)
+  });
+});
+
+// Добавьте после других эндпоинтов
+app.post('/api/admin/cleanup', adminAuth, (req, res) => {
+  console.log('Manual cleanup requested');
+  try {
+    cleanOldData();
+    cleanOldBriefData();
+    cleanOldAdminEvents();
+    res.json({ success: true, message: 'Cleanup completed' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Раздаем статические файлы из папки dist
 app.use(express.static(path.join(__dirname, '../dist')));
 
@@ -780,18 +1287,53 @@ app.get('*', (req, res) => {
 
 // Запуск
 fetchNews();
+fetchLightningBrief();
+cleanOldData();       
+cleanOldBriefData();  
+cleanOldAdminEvents();
 
+// Ежедневная очистка в 2:00 AM
+cron.schedule('0 2 * * *', async () => {
+  console.log('\nRunning daily cleanup...');
+  cleanOldData();
+  cleanOldBriefData();
+  cleanOldAdminEvents();
+}, { timezone: "America/New_York" });
+
+// Основные обновления в 8 AM и 8 PM
 cron.schedule('0 12,0 * * *', async () => {
   console.log('\nScheduled fetch (8AM/8PM NY)...');
   await fetchNews();
-  await fetchLightningBrief(); // Добавляем обновление brief
+  await fetchLightningBrief();
 }, { timezone: "America/New_York" });
 
 app.listen(PORT, () => {
+  logger.info(`Server started on port ${PORT}`);
+  logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  
   console.log(`\nServer on http://localhost:${PORT}`);
   console.log(`API endpoints:`);
   console.log(`   GET  /api/snapshot`);
   console.log(`   GET  /api/deaths`);
   console.log(`   POST /api/fetch`);
   console.log(`   GET  /api/status\n`);
+  console.log(`   Cleanup schedule: daily at 2:00 AM NY time`);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM received, closing server...');
+  server.close(() => {
+    logger.info('Server closed');
+    process.exit(0);
+  });
+});
+
+process.on('uncaughtException', (error) => {
+  logWithAlert('crit', 'Uncaught Exception', error, true);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason) => {
+  logWithAlert('crit', 'Unhandled Rejection', reason, true);
 });

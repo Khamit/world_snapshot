@@ -1,17 +1,20 @@
 // world_snapshot/src/types/index.ts
 export type Category = "science" | "military" | "disasters" | "politics" | "popular" | "economy" | "health";
 
-export interface NewsEvent {  // ← переименовано с Event на NewsEvent
+export interface NewsEvent {
   id: string;
   category: Category;
   title: string;
   detail?: string;
   intensity?: number;
   sentimentScore?: number;
-  url?: string;           // ← добавьте недостающие поля
-  source?: string;        // ← добавьте недостающие поля
-  publishedAt?: string;   // ← добавьте недостающие поля
-  createdAt?: string;     // ← для admin событий
+  url?: string;
+  source?: string;
+  publishedAt?: string;
+  createdAt?: string;
+  updatedAt?: string;        // ← добавим для отслеживания обновлений
+  country?: string | null;   // ← страна, если привязана
+  source_type?: 'api' | 'admin'; // ← тип источника
 }
 
 export interface GlobalMetrics {
@@ -44,10 +47,10 @@ export interface LightningBrief {
 }
 
 export interface GlobalData {
-  globalEvents: NewsEvent[];  // ← изменено
+  globalEvents: NewsEvent[];
   globalMetrics: GlobalMetrics;
-  adminEvents?: NewsEvent[];   // ← изменено
-  lightningBrief?: LightningBrief;  // ← уточните тип вместо any
+  adminEvents?: NewsEvent[];
+  lightningBrief?: LightningBrief;
   lastUpdated: string;
 }
 

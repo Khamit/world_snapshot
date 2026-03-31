@@ -1,51 +1,117 @@
 {
   "globalEvents": [
     {
-      "id": "news-1774937611239-kho4lgjur",
+      "id": "news-1774939372055-3otl8oyg2",
       "category": "military",
-      "title": "‘Quite interested’: Trump may ask Arab countries to fund Iran war, says White House",
-      "detail": "Karoline Leavitt said what Tehran says publicly differs from what it tells US officials in private.",
-      "intensity": 90,
-      "sentimentScore": -10,
-      "url": "https://www.hindustantimes.com/world-news/us-news/quite-interested-trump-may-ask-arab-countries-to-fund-iran-war-says-white-house-101774894146378.html",
-      "source": "Hindustan Times",
-      "publishedAt": "2026-03-30T18:12:57Z"
-    },
-    {
-      "id": "news-1774937611240-0wqbqidru",
-      "category": "military",
-      "title": "Trump’s choice: Hegseth’s holy war or the pope's peace",
-      "detail": "Pope Leo XIV’s Palm Sunday sermon warned against invoking God to justify violence.",
-      "intensity": 90,
-      "sentimentScore": -10,
-      "url": "https://www.bostonglobe.com/2026/03/30/opinion/trump-war-pope-religion/",
-      "source": "The Boston Globe",
-      "publishedAt": "2026-03-30T18:12:35Z"
-    },
-    {
-      "id": "news-1774937611240-zj6chpyj7",
-      "category": "military",
-      "title": "US Iran tensions rise as ground war plans signal dangerous escalation | Explained",
-      "detail": "US President Donald Trump is said to be considering a decisive military move, with reports suggesting that Washington has developed a “final blow” strategy against Iran. This plan is expected to combine large-scale aerial bombardment with targeted ground assaults, focusing on specific high-value locations rather than a full-scale invasion.",
+      "title": "3 Jet Destruction Raises Alarm Over Military Surveillance Gap",
+      "detail": "The US E-3 Jet destruction in an Iranian strike on a Saudi air base is sending shockwaves through defense circles, with analysts warning it could weaken Washington’s ability to detect and respond to distant threats. Wreckage at Strategic Air Base Striking images circulating online—and later verified—show the shattered remains of a Boeing E-3 Sentry at US E-3 Jet destruction weakens surveillance after Iranian strike on Saudi air base assets",
       "intensity": 100,
-      "sentimentScore": -40,
-      "url": "https://zeenews.india.com/world/us-iran-tensions-rise-as-ground-war-plans-signal-dangerous-escalation-explained-3032089.html",
-      "source": "Zee News",
-      "publishedAt": "2026-03-30T18:10:47Z"
+      "sentimentScore": -25,
+      "url": "https://usaherald.com/us-e-3-jet-destruction-raises-alarm-over-military-surveillance-gap/",
+      "source": "USA Herald",
+      "publishedAt": "2026-03-30T18:42:13Z"
     },
     {
-      "id": "news-1774937611248-0wnbpwuz9",
+      "id": "news-1774939372064-tu3n97vcd",
       "category": "military",
-      "title": "Rising gas prices double blow for drivers using own vehicles for work",
-      "detail": "The Iran war has pushed up the average U.S. price for a gallon of regular gas by $1. Some companies compensate employees for using their own vehicles, including the cost of gas, but not all.",
+      "title": "What could Trump achieve by threatening Iran's Kharg Island?",
+      "detail": "It has no oil wells, but it has Iran's largest oil terminal, pipelines and storage tanks as well as military facilities.",
+      "intensity": 70,
+      "sentimentScore": 0,
+      "url": "https://nationalpost.com/news/world/israel-middle-east/what-could-trump-achieve-by-threatening-irans-kharg-island",
+      "source": "National Post",
+      "publishedAt": "2026-03-30T18:40:07Z"
+    },
+    {
+      "id": "news-1774939372065-qs51eck17",
+      "category": "military",
+      "title": "Jerusalem Tensions Flare: Cardinal's Holy Sepulchre Entry Blocked, Then Reversed",
+      "detail": "Israel initially blocked Jerusalem's Catholic cardinal from marking Palm Sunday at the Church of the Holy Sepulchre due to security concerns related to the Iran war. International backlash prompted Prime Minister Netanyahu to reverse the decision, reinstating access for Holy Week. Critics included leaders from Italy, France, and the Vatican.",
       "intensity": 90,
       "sentimentScore": -15,
-      "url": "https://www.dailycamera.com/2026/03/30/gas-prices-driving-for-work/",
-      "source": "Boulder Daily Camera",
-      "publishedAt": "2026-03-30T18:09:45Z"
+      "url": "https://www.devdiscourse.com/article/law-order/3856358-jerusalem-tensions-flare-cardinals-holy-sepulchre-entry-blocked-then-reversed",
+      "source": "Devdiscourse",
+      "publishedAt": "2026-03-30T18:40:05Z"
     },
     {
-      "id": "news-1774937613162-yq8rippy8",
+      "id": "news-1774939372065-lmfnnfcon",
+      "category": "military",
+      "title": "Early government modelling assumes fuel rationing when stockpile falls to 10 days' diesel supply",
+      "detail": "Diesel stocks would last about six months if Australia's imports dropped by 20 per cent, according to modelling compiled for the federal government early in the Middle East war.",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://www.abc.net.au/news/2026-03-31/modelling-assumes-rationing-if-diesel-stockpile-drops-to-10-days/106513966",
+      "source": "ABC (Australian Broadcasting Corporation)",
+      "publishedAt": "2026-03-30T18:39:16Z"
+    },
+    {
+      "id": "news-1774939373940-z0d5vx5v7",
+      "category": "disasters",
+      "title": "acre wildfire containment efforts ahead of red flag conditions in New Mexico",
+      "detail": "Fire crews are working to contain the 282-acre Sago Fire on the Mescalero Apache Reservation as the National Weather Service forecasts high winds and possible red flag conditions later this week in southern New Mexico.",
+      "intensity": 75,
+      "sentimentScore": 0,
+      "url": "https://www.abqjournal.com/news/wildland-crews-race-to-contain-sago-fire-near-mescalero-as-red-flag-conditions-loom-this-week/3012768",
+      "source": "Albuquerque Journal",
+      "publishedAt": "2026-03-30T18:33:00Z"
+    },
+    {
+      "id": "news-1774939373941-n5x7it5ab",
+      "category": "disasters",
+      "title": "LA Utility Taps Muni Market as Buyers Weigh Wildfire Legal Risk",
+      "detail": "Los Angeles’ water and power utility is tapping the municipal bond market with its first offering since a judge ruled last month that the utility must face hundreds of lawsuits faulting its response to the devastating 2025 Palisades Fire.",
+      "intensity": 75,
+      "sentimentScore": 0,
+      "url": "https://www.bloomberg.com/news/articles/2026-03-30/la-utility-taps-muni-market-as-buyers-weigh-wildfire-legal-risk",
+      "source": "Bloomberg",
+      "publishedAt": "2026-03-30T18:29:44Z"
+    },
+    {
+      "id": "news-1774939373941-fp9i3pey7",
+      "category": "disasters",
+      "title": "Engine Fire Forces Delta Flight To Make Emergency Landing In Brazil's Sao Paulo",
+      "detail": "Delta A330-300 flight makes emergency landing in Brazil's Sao Paulo after its left engine failure sends flames and sparks shooting, prompting the crew to initiate an emergency landing.",
+      "intensity": 100,
+      "sentimentScore": -5,
+      "url": "https://www.republicworld.com/world-news/engine-fire-forces-delta-flight-to-make-emergency-landing-in-brazil-s-sao-paulo",
+      "source": "Republic World",
+      "publishedAt": "2026-03-30T18:24:31Z"
+    },
+    {
+      "id": "news-1774939373942-zqzx2z5sf",
+      "category": "military",
+      "title": "'Five alarm fire': Megyn Kelly shocked at Trump's lowest approval rating; 'We need to get out of Iran'",
+      "detail": "US News: Conservative commentator Megyn Kelly who has been strongly condemning President Donald Trump's war in Iran said the lowest approval rating of the pres.",
+      "intensity": 90,
+      "sentimentScore": -10,
+      "url": "https://timesofindia.indiatimes.com/world/us/five-alarm-fire-megyn-kelly-shocked-at-trumps-lowest-approval-rating-we-need-to-get-out-of-iran/articleshow/129909092.cms",
+      "source": "Times of India",
+      "publishedAt": "2026-03-30T18:23:00Z"
+    },
+    {
+      "id": "news-1774939373942-wjkj0di28",
+      "category": "disasters",
+      "title": "Dear Chase Elliott Fans: Stop Trying to Fire Alan Gustafson",
+      "detail": "It's time to respect Alan Gustafson a little bit more, and stop calling for him to be replaced atop the pit box of the No. 9.",
+      "intensity": 75,
+      "sentimentScore": 0,
+      "url": "https://www.si.com/onsi/racing-america/news/dear-chase-elliott-fans-stop-trying-to-fire-alan-gustafson",
+      "source": "Sports Illustrated",
+      "publishedAt": "2026-03-30T18:17:51Z"
+    },
+    {
+      "id": "news-1774939373943-dzxnifadq",
+      "category": "disasters",
+      "title": "Man shot dead in border village in Amritsar",
+      "detail": "Amritsar, Mar 30 (PTI) A man was shot dead from point blank range by unidentified assailants in a border village in Amritsar on Monday, police said. The deceased, identified as Sohna Singh, was going from Rajatal to Khera village when the assailants intercepted and opened fire on him from point blank range, they said. He […]",
+      "intensity": 75,
+      "sentimentScore": 5,
+      "url": "https://theprint.in/india/man-shot-dead-in-border-village-in-amritsar/2892602/",
+      "source": "ThePrint",
+      "publishedAt": "2026-03-30T18:16:33Z"
+    },
+    {
+      "id": "news-1774939373943-1j04ieluq",
       "category": "disasters",
       "title": "2 criminals injured in police encounter in Dwarka",
       "detail": "Dwarka police encounter in Delhi leaves two injured after exchange of fire while officers tried to arrest a Dabri crime suspect; both shot in legs, hospitalized.",
@@ -56,84 +122,40 @@
       "publishedAt": "2026-03-30T18:13:00Z"
     },
     {
-      "id": "news-1774937613162-i123t6e0i",
-      "category": "disasters",
-      "title": "San Rafael man accused of arson in Marin City",
-      "detail": "The suspect allegedly set bushes on fire near a business on Donahue Street.",
-      "intensity": 75,
+      "id": "news-1774939376097-jlde1e8tm",
+      "category": "economy",
+      "title": "What's Going On With Snap Stock Monday?",
+      "detail": "Snap faces EU probe into illegal content and grooming risks. Shares trade near $4 support as investors weigh regulatory headwinds.",
+      "intensity": 55,
       "sentimentScore": 0,
-      "url": "https://www.pressdemocrat.com/2026/03/30/san-rafael-man-accused-of-arson-in-marin-city/",
-      "source": "Santa Rosa Press Democrat",
-      "publishedAt": "2026-03-30T18:06:45Z"
+      "url": "https://www.benzinga.com/trading-ideas/movers/26/03/51549754/whats-going-on-with-snap-stock-monday-3",
+      "source": "Benzinga",
+      "publishedAt": "2026-03-30T18:31:12Z"
     },
     {
-      "id": "news-1774937613163-3u94rwar8",
-      "category": "disasters",
-      "title": "Staten Island man arrested for setting multiple cars on fire",
-      "detail": "The man was charged with arson, grand larceny and criminal mischief, according to police.",
-      "intensity": 75,
-      "sentimentScore": 5,
-      "url": "https://www.silive.com/news/2026/03/nypd-man-arrested-after-allegedly-setting-vehicles-on-fire-on-staten-island-street.html",
-      "source": "Staten Island Advance",
-      "publishedAt": "2026-03-30T18:05:46Z"
-    },
-    {
-      "id": "news-1774937613163-o1scs8ey6",
-      "category": "military",
-      "title": "Security guard shot near NYC's Madison Square Park in broad daylight attack",
-      "detail": "A security guard at a Manhattan shelter was shot Monday afternoon near Madison Square Park -- and police believe the assailant opened fire over an ongoing clash, law enforcement sources said.",
-      "intensity": 90,
-      "sentimentScore": -10,
-      "url": "https://nypost.com/2026/03/30/us-news/security-guard-shot-near-nycs-madison-square-park-in-broad-daylight-attack/",
-      "source": "New York Post",
-      "publishedAt": "2026-03-30T18:02:32Z"
-    },
-    {
-      "id": "news-1774937613163-5d56n3iux",
-      "category": "disasters",
-      "title": "Republican Feud Explodes Amid DHS Funding Disaster",
-      "detail": "House Republicans reject Senate's bipartisan DHS deal, deepening GOP rift as shutdown enters a record 44th day.",
-      "intensity": 100,
-      "sentimentScore": -10,
-      "url": "https://www.newsweek.com/republican-feud-explodes-amid-dhs-funding-disaster-11758245",
-      "source": "Newsweek",
-      "publishedAt": "2026-03-30T17:59:56Z"
-    },
-    {
-      "id": "news-1774937613164-s3knwkvdi",
-      "category": "disasters",
-      "title": "Our Favorite Amazon Streaming Stick Is Almost Half Off",
-      "detail": "The Fire TV Stick 4K Max is great for the Prime Video devout and handles other streaming services just as well.",
-      "intensity": 75,
+      "id": "news-1774939376098-e0s9mvryp",
+      "category": "economy",
+      "title": "2026 recession fears rise - new data signals trouble ahead for the US economy",
+      "detail": "US recession outlook 2026: New data suggests the US economy may be in trouble, with recession fears growing as stock markets slide. Investors are facing uncertainty with rising risks of an economic slowdown in 2026.",
+      "intensity": 55,
       "sentimentScore": 0,
-      "url": "https://www.wired.com/story/fire-tv-stick-max-deal-326/",
-      "source": "WIRED",
-      "publishedAt": "2026-03-30T17:58:39Z"
+      "url": "https://economictimes.indiatimes.com/news/international/us/2026-recession-fears-rise-new-data-signals-trouble-ahead-for-the-us-economy/articleshow/129908522.cms",
+      "source": "The Economic Times",
+      "publishedAt": "2026-03-30T18:14:00Z"
     },
     {
-      "id": "news-1774937613164-mf9li4bmp",
-      "category": "disasters",
-      "title": "CCCEI-branded power strips sold on Amazon recalled over fire risk",
-      "detail": "CCCEI-branded power strips sold on Amazon are being recalled due to a fire risk that could cause serious injury or death from smoke inhalation and burns.",
-      "intensity": 95,
+      "id": "news-1774939376098-nggz1rjty",
+      "category": "economy",
+      "title": "Stock Market Outlook: S&P 500 Flashing 'Ominous' Signs More Losses Coming",
+      "detail": "A cluster of trend indicators in the S&P 500 have flashed a \"sell\" signal or are moving closer to bearish territory, according to Ned Davis Research.",
+      "intensity": 75,
       "sentimentScore": -15,
-      "url": "https://www.foxbusiness.com/lifestyle/power-strips-sold-amazon-recalled-over-fire-risk-consumers-urged-stop-using-immediately",
-      "source": "Fox Business",
-      "publishedAt": "2026-03-30T17:57:40Z"
+      "url": "https://markets.businessinsider.com/news/stocks/stock-market-crash-outlook-sp500-prediction-selloff-technical-signal-ndr-2026-3",
+      "source": "Markets Insider",
+      "publishedAt": "2026-03-30T18:13:57Z"
     },
     {
-      "id": "news-1774937613165-yl07zv542",
-      "category": "disasters",
-      "title": "Greater Napanee puts new fire truck into service",
-      "detail": "(Napanee, Ontario) On Friday, Mar. 27, 2026, MPP Ric Bresee, Greater Napanee Council members, Napanee Fire Fighters, and members of the community gathered for a Push-In Ceremony and Touch the Truck event at Greater Napanee's Fire Station 1 to celebrate the addition of a new Aerial Ladder Truck to the Fire Department’s fleet.",
-      "intensity": 75,
-      "sentimentScore": 0,
-      "url": "https://www.kingstonist.com/news/greater-napanee-puts-new-fire-truck-into-service/",
-      "source": "Kingstonist",
-      "publishedAt": "2026-03-30T17:52:23Z"
-    },
-    {
-      "id": "news-1774937615236-5l5zwswqf",
+      "id": "news-1774939376099-c0ynscbps",
       "category": "economy",
       "title": "What's Going On With Bloom Energy Stock Monday?",
       "detail": "BE stock plummets 11% amid rising Iran tensions and $101 oil. Is Bloom Energy's growth story at risk? Get the full market breakdown.",
@@ -144,7 +166,7 @@
       "publishedAt": "2026-03-30T18:09:28Z"
     },
     {
-      "id": "news-1774937615237-72a3nx7dt",
+      "id": "news-1774939376101-5h0qcuu4u",
       "category": "economy",
       "title": "Nvidia sell-off extends to third day; stock down 21% from recent peak amid market jitters",
       "detail": "Nvidia shares fell 1% to $166.21, marking a 6% decline in March and 21% drop from November 2025 high. Concerns over AI revenue sustainability and broader tech sell-off amid geopolitical tensions weigh on the sector, with Nasdaq 100 entering correction territory.",
@@ -155,180 +177,158 @@
       "publishedAt": "2026-03-30T17:31:09Z"
     },
     {
-      "id": "news-1774937615237-7y6xrriom",
-      "category": "economy",
-      "title": "Stock Market: These Four Stocks Flash Strength In Weak Market",
-      "detail": "Four stocks are near buy points in Monday's stock market as IBD's stock screener shows that their relative strength touches a new high.",
-      "intensity": 55,
-      "sentimentScore": 0,
-      "url": "https://www.investors.com/research/telecom-oil-gas-stocks-permian-basin/",
-      "source": "Investor's Business Daily",
-      "publishedAt": "2026-03-30T17:22:56Z"
-    },
-    {
-      "id": "news-1774937617369-13t0e90u2",
+      "id": "news-1774939378143-lu3q91pk7",
       "category": "health",
-      "title": "Breaking Records in Robotic Surgery: Tallest Patient Undergoes Successful Knee Replacement",
-      "detail": "A private hospital in Faridabad has successfully conducted bilateral robotic knee replacement surgery on a tall Kenyan man, potentially setting a world record. The operation, led by Dr. Anurag Aggarwal, marked a significant achievement in orthopedic care, emphasizing technology-driven healthcare and speedy patient recovery.",
-      "intensity": 70,
-      "sentimentScore": 29,
-      "url": "https://www.devdiscourse.com/article/health/3856337-breaking-records-in-robotic-surgery-tallest-patient-undergoes-successful-knee-replacement",
-      "source": "Devdiscourse",
-      "publishedAt": "2026-03-30T18:11:03Z"
-    },
-    {
-      "id": "news-1774937617370-arx4ivr2g",
-      "category": "health",
-      "title": "Faridabad hospital sets record, performs robotic knee replacement on 6’6’’ Kenyan patient",
-      "detail": "Faridabad hospital sets record, performs robotic knee replacement on 6’6’’ Kenyan patient",
+      "title": "50 per cent of Australians avoid health care they need due to cost, according to Consumers Health Forum report",
+      "detail": "One in two Australians missed out on health care they needed last year mainly because they could not afford it, according to a new report by the peak healthcare consumers group.",
       "intensity": 65,
       "sentimentScore": 0,
-      "url": "https://www.hindustantimes.com/cities/gurugram-news/faridabad-hospital-sets-record-performs-robotic-knee-replacement-on-6-6-kenyan-patient-101774894252688.html",
-      "source": "Hindustan Times",
-      "publishedAt": "2026-03-30T18:10:52Z"
+      "url": "https://www.abc.net.au/news/2026-03-31/australians-delaying-health-care-due-to-cost/106511170",
+      "source": "ABC (Australian Broadcasting Corporation)",
+      "publishedAt": "2026-03-30T18:41:39Z"
     },
     {
-      "id": "news-1774937617370-x50akv4rc",
+      "id": "news-1774939378143-jzka1o4wm",
       "category": "health",
-      "title": "Reasons to Visit 24 Hour Emergency Care in Fraser Instead of Waiting for an Appointment",
-      "detail": "Health concerns rarely follow a convenient schedule. A sudden fever at midnight, a deep cut after dinner, or sharp chest discomfort during a weekend hike can throw everything off balance. When symptoms feel urgent,",
-      "intensity": 100,
-      "sentimentScore": -5,
-      "url": "https://techbullion.com/reasons-to-visit-24-hour-emergency-care-in-fraser-instead-of-waiting-for-an-appointment/",
-      "source": "TechBullion",
-      "publishedAt": "2026-03-30T18:08:13Z"
-    },
-    {
-      "id": "news-1774937617371-hebpw1qgm",
-      "category": "health",
-      "title": "Giving Back to the Community: Qualifacts Selects Colorado’s Mile High Behavioral Healthcare as ‘2026 Give Back’ Donation Recipient",
-      "detail": "Qualifacts’ Give Back Program Supports Community Behavioral Health Through Mile High Behavioral Healthcare",
+      "title": "Study finds screen time among children and adolescents has increased over 3 decades-especially after COVID-19",
+      "detail": "The first systematic review to track long-term trends across pre- and post-pandemic periods finds a dramatic rise in screen use among children and adolescents. Screen time among children and adolescents has increased significantly over the past three decades, with a clear rise occurring after the onset of the COVID-19 pandemic, according to a new systematic review conducted at the University of Turku, Finland.",
       "intensity": 65,
       "sentimentScore": 0,
-      "url": "https://www.manilatimes.net/2026/03/31/tmt-newswire/globenewswire/giving-back-to-the-community-qualifacts-selects-colorados-mile-high-behavioral-healthcare-as-2026-give-back-donation-recipient/2310835",
-      "source": "The Manila Times",
-      "publishedAt": "2026-03-30T18:07:03Z"
+      "url": "https://medicalxpress.com/news/2026-03-screen-children-adolescents-decades-covid.html",
+      "source": "Medical Xpress",
+      "publishedAt": "2026-03-30T18:40:09Z"
     },
     {
-      "id": "news-1774937617371-iqpro1lqc",
+      "id": "news-1774939378144-nt85dndwq",
       "category": "health",
-      "title": "Woman with ‘UK’s biggest boobs’ received disturbing comment from teacher",
-      "detail": "The Scot has opened up on her rare health condition in the past",
+      "title": "Student, 15, Shoots Texas High School Teacher",
+      "detail": "The teacher was taken to a hospital, and the student died at the scene, the authorities said.",
       "intensity": 65,
-      "sentimentScore": 0,
-      "url": "https://www.ladbible.com/community/summer-robert-breast-condition-biggest-boobs-uk-688598-20260330",
-      "source": "LADbible",
-      "publishedAt": "2026-03-30T18:05:22Z"
-    },
-    {
-      "id": "news-1774937617372-1qzl27p2k",
-      "category": "health",
-      "title": "Jesy Nelson shares new update on twins, 9 months, following hospital stint where her daughters were fitted with leg splints amid their ongoing treatment for SMA",
-      "detail": "Jesy Nelson has shared a new update on her twins on Instagram on Monday following her daughters being fitted with leg splints at Great Ormond Street Hospital.",
-      "intensity": 65,
-      "sentimentScore": 0,
-      "url": "https://www.dailymail.co.uk/tvshowbiz/article-15692281/Jesy-Nelson-shares-new-update-twins-9-months-following-hospital-stint-daughters-fitted-leg-splints-amid-ongoing-treatment-SMA.html",
-      "source": "Daily Mail Online",
-      "publishedAt": "2026-03-30T18:02:09Z"
-    },
-    {
-      "id": "news-1774937617372-5hwk7vd81",
-      "category": "economy",
-      "title": "81 Full-Time Paraprofessionals At Risk Under Southern Ocean School Budget",
-      "detail": "Little Egg Harbor schools are considering cutting all full-time paraprofessionals due to rising health care costs.",
-      "intensity": 55,
       "sentimentScore": 5,
-      "url": "https://patch.com/new-jersey/barnegat-manahawkin/81-full-time-paraprofessionals-risk-under-southern-ocean-school",
-      "source": "Joliet, IL Patch",
-      "publishedAt": "2026-03-30T18:02:04Z"
+      "url": "https://www.nytimes.com/2026/03/30/us/texas-shooting-teacher-student-dead-high-school.html",
+      "source": "The New York Times",
+      "publishedAt": "2026-03-30T18:39:40Z"
     },
     {
-      "id": "news-1774937619428-l5w611sei",
+      "id": "news-1774939378144-rkpr9af7f",
+      "category": "health",
+      "title": "New COVID variant in 25 states: ‘Cicada’",
+      "detail": "New variant poses challenge to vaccine effectiveness",
+      "intensity": 65,
+      "sentimentScore": 0,
+      "url": "https://www.deseret.com/lifestyle/2026/03/30/cicada-covid-19-variant-spreading-us-vaccine/",
+      "source": "Salt Lake City Deseret News",
+      "publishedAt": "2026-03-30T18:37:39Z"
+    },
+    {
+      "id": "news-1774939378145-miudsl7i8",
+      "category": "health",
+      "title": "Health workers celebrated: Gumla honors 46 sahiyas, 33 CHOs for exceptional health service; Efforts noted in lowering maternal and infant mortality rates",
+      "detail": "Gumla: The state health department felicitated 46 sahiyas, 33 community health officers and and auxiliary nurse midwives for their work at an event he.",
+      "intensity": 65,
+      "sentimentScore": 5,
+      "url": "https://timesofindia.indiatimes.com/city/ranchi/health-workers-celebrated-gumla-honors-46-sahiyas-33-chos-for-exceptional-health-service-efforts-noted-in-lowering-maternal-and-infant-mortality-rates/articleshow/129909769.cms",
+      "source": "Times of India",
+      "publishedAt": "2026-03-30T18:37:00Z"
+    },
+    {
+      "id": "news-1774939378145-n6xmspvxs",
+      "category": "health",
+      "title": "Lehigh Valley Hospital cited for failing to hand pepper-sprayed patient over to police",
+      "detail": "A Pennsylvania Department of Health report details the Sept. 14 incident",
+      "intensity": 65,
+      "sentimentScore": 0,
+      "url": "https://www.pennlive.com/news/2026/03/lehigh-valley-hospital-cited-for-failing-to-hand-pepper-sprayed-patient-over-to-police.html",
+      "source": "Mechanicsburg Patriot News ",
+      "publishedAt": "2026-03-30T18:30:16Z"
+    },
+    {
+      "id": "news-1774939378145-u3bka9544",
+      "category": "health",
+      "title": "Emmerdale fans 'rumble' who poisoned Kim - and it's not Cain or Joe",
+      "detail": "Emmerdale viewers think they know which character has poisoned Kim Tate leading to her hospital dash on the ITV soap, with suspects including Cain Dingle and Joe Tate",
+      "intensity": 85,
+      "sentimentScore": -20,
+      "url": "https://www.mirror.co.uk/tv/tv-news/emmerdale-fans-rumble-who-poisoned-36942491",
+      "source": "The Mirror",
+      "publishedAt": "2026-03-30T18:30:00Z"
+    },
+    {
+      "id": "news-1774939378146-j0yft9pq0",
+      "category": "health",
+      "title": "Crumbling ceilings haunt RG Kar hostels, students lodge protest",
+      "detail": "Kolkata: Reports of concrete falling off from the ceiling of a toilet in the RG Kar Medical College & Hospital women's hostel have put the spotlig.",
+      "intensity": 65,
+      "sentimentScore": 0,
+      "url": "https://timesofindia.indiatimes.com/city/kolkata/crumbling-ceilings-haunt-rg-kar-hostels-students-lodge-protest/articleshow/129908324.cms",
+      "source": "Times of India",
+      "publishedAt": "2026-03-30T18:21:00Z"
+    },
+    {
+      "id": "news-1774939380189-foe5myq75",
       "category": "politics",
-      "title": "Tamil Nadu Election 2026: Revisiting The Last Verdict And New Ground Realities",
-      "detail": "The ruling DMK is seeking re-election by promoting its governance record and pitching a “Dravidian Model 2.0,” while maintaining stable alliances.",
+      "title": "Reckless biker prompts clash in Jadavpur locality",
+      "detail": "Kolkata: There was tension in the Jamunanagar area of east Jadavpur after two groups clashed with one another, following a protest lodged by a youth a.",
       "intensity": 60,
       "sentimentScore": 0,
-      "url": "https://www.news18.com/elections/tamil-nadu-election-2026-revisiting-the-last-verdict-and-new-ground-realities-10006120.html",
-      "source": "News18",
-      "publishedAt": "2026-03-30T18:10:42Z"
+      "url": "https://timesofindia.indiatimes.com/city/kolkata/reckless-biker-prompts-clash-in-jadavpur-locality/articleshow/129908509.cms",
+      "source": "Times of India",
+      "publishedAt": "2026-03-30T18:42:00Z"
     },
     {
-      "id": "news-1774937619428-k9i960uz6",
+      "id": "news-1774939380189-ayqjq82p1",
       "category": "politics",
-      "title": "First Nations child welfare deal approved by Tribunal",
-      "detail": "The Canadian Human Rights Tribunal has approved a landmark First Nations child welfare deal between the federal government and First Nations in Ontario, partially ending a decades-long discrimination case.",
-      "intensity": 60,
-      "sentimentScore": 0,
-      "url": "https://www.cp24.com/news/canada/2026/03/30/human-rights-tribunal-approves-massive-child-welfare-deal-for-ontario-first-nations/",
-      "source": "CP24 Toronto",
-      "publishedAt": "2026-03-30T18:09:39Z"
-    },
-    {
-      "id": "news-1774937619429-wh4m4ftmn",
-      "category": "politics",
-      "title": "Saskatchewan to ask residents for views",
-      "detail": "Premier Scott Moe says his government is planning to ask people in Saskatchewan for their views on banning social media for children under 16.",
-      "intensity": 60,
-      "sentimentScore": 0,
-      "url": "https://www.cp24.com/news/canada/2026/03/30/saskatchewan-to-ask-residents-for-views-on-banning-social-media-for-children-under-16/",
-      "source": "CP24 Toronto",
-      "publishedAt": "2026-03-30T18:08:27Z"
-    },
-    {
-      "id": "news-1774937619429-y3i0rxres",
-      "category": "politics",
-      "title": "Most Syrian refugees in Germany expected to return home in three years",
-      "detail": "Merz’s government has taken a tougher line on refugees and migrants, amid surging support for the anti-immigration AfD party.",
-      "intensity": 60,
-      "sentimentScore": 8,
-      "url": "https://www.bbc.com/news/articles/cy41vqx4pdzo",
-      "source": "BBC News",
-      "publishedAt": "2026-03-30T18:08:12Z"
-    },
-    {
-      "id": "news-1774937619431-d6x1np5jw",
-      "category": "politics",
-      "title": "What’s inside the White House app?",
-      "detail": "According to “I Decompiled the White House’s New App,” the Android version has some odd choices for a government app that mostly shows content from the White House website.\nThat includes enabling location tracking and other monitoring via OneSignal’s analytics (which the company says are opt-in at the OS level), JavaScript loaded from some guy’s GitHub, an injected script to hide things like consent dialogs on pages users open in the app, and other hooks to non-government third-party services.\n[Link: I Decompiled the White House's New App | https://blog.thereallo.dev/blog/decompiling-the-white-house-app | Thereallo]",
-      "intensity": 60,
-      "sentimentScore": 0,
-      "url": "https://www.theverge.com/tech/903568/whats-inside-the-white-house-app",
-      "source": "The Verge",
-      "publishedAt": "2026-03-30T18:06:36Z"
-    },
-    {
-      "id": "news-1774937619432-8alds2rw8",
-      "category": "politics",
-      "title": "More Than 700 Join Phoenixville's 'No Kings' Protest Against Trump",
-      "detail": "Hundreds took to the streets of Phoenixville over the weekend to \"demonstrate that we can fight back without violence.\"",
+      "title": "CPI(M) Challenges FCRA Amendment Bill, 2026: A Fight for Constitutional Morality",
+      "detail": "The CPI(M) has demanded the withdrawal of the Foreign Contribution (Regulation) Amendment Bill, 2026, warning it poses excessive government control and diminishes federalism. They stress the bill's potential to target NGOs unjustly, threatening civil society and minority institutions, and advocate for a regulatory framework aligned with democratic principles.",
       "intensity": 80,
-      "sentimentScore": -10,
-      "url": "https://patch.com/pennsylvania/phoenixville/more-700-join-phoenixvilles-no-kings-protest-against-trump",
-      "source": "Joliet, IL Patch",
-      "publishedAt": "2026-03-30T18:03:08Z"
+      "sentimentScore": -15,
+      "url": "https://www.devdiscourse.com/article/law-order/3856359-cpim-challenges-fcra-amendment-bill-2026-a-fight-for-constitutional-morality",
+      "source": "Devdiscourse",
+      "publishedAt": "2026-03-30T18:41:21Z"
     },
     {
-      "id": "news-1774937619432-3d7po4uxr",
+      "id": "news-1774939380190-bo27ax0gn",
       "category": "politics",
-      "title": "Some wait times at airport bottlenecks ease as TSA says workers get their pay",
-      "detail": "Some wait times at airport bottlenecks are easing as TSA says its workers are receiving pay for work during the partial government shutdown.",
-      "intensity": 60,
-      "sentimentScore": 8,
-      "url": "https://abc7.com/post/wait-times-airport-bottlenecks-ease-tsa-says-workers-get-pay/18809701/",
-      "source": "KABC-TV",
-      "publishedAt": "2026-03-30T18:02:43Z"
-    },
-    {
-      "id": "news-1774937619433-xk97ht0xs",
-      "category": "politics",
-      "title": "High Stakes: First Phase Nominations in West Bengal Elections",
-      "detail": "A total of 78 nominations were submitted for the first phase of the West Bengal assembly elections, with the deadline for submissions set for April 6. Key constituencies include Nandigram with BJP's Suvendu Adhikari. The two-phase election will conclude with a vote count on May 4.",
+      "title": "Mumbai Coastal Road News: BMC Reverses Melody Road Decision; Open By Day, Shut At Night After Residents’ Protest",
+      "detail": "The BMC has revised its decision on Mumbai’s melody road, allowing daytime access while restricting it at night following resident complaints over noise and acoustic disturbance. The ₹6 crore project continues to face opposition, even as plans emerge to introduce similar musical strips on the Samruddhi Expressway.",
       "intensity": 60,
       "sentimentScore": 0,
-      "url": "https://www.devdiscourse.com/article/politics/3856331-high-stakes-first-phase-nominations-in-west-bengal-elections",
+      "url": "https://www.freepressjournal.in/mumbai/mumbai-coastal-road-news-bmc-reverses-melody-road-decision-open-by-day-shut-at-night-after-residents-protest",
+      "source": "Free Press Journal",
+      "publishedAt": "2026-03-30T18:41:00Z"
+    },
+    {
+      "id": "news-1774939380191-a64u71l0r",
+      "category": "politics",
+      "title": "Martin Family Enters Politics: Wife, Son, Son-in-Law Contest Elections in Tamil Nadu & Puducherry",
+      "detail": "The family of lottery baron Santiago Martin today resembles a diversified political portfolio. Martin’s wife, Leema Rose Martin, is AIADMK’s candidate.",
+      "intensity": 60,
+      "sentimentScore": 0,
+      "url": "https://timesofindia.indiatimes.com/city/chennai/martin-family-enters-politics-wife-son-son-in-law-contest-elections-in-tamil-nadu-puducherry/articleshow/129909817.cms",
+      "source": "Times of India",
+      "publishedAt": "2026-03-30T18:39:00Z"
+    },
+    {
+      "id": "news-1774939380191-ft7r2l1h2",
+      "category": "politics",
+      "title": "CPI(ML) Liberation Slams Government's Anti-Communist Rhetoric",
+      "detail": "The Communist Party of India (Marxist-Leninist) Liberation criticized the government for using parliamentary discussion to smear the communist movement. General Secretary Dipankar Bhattacharya accused the administration of ideological attacks and pledged resistance against what he sees as an agenda against communism perpetuated by the government.",
+      "intensity": 80,
+      "sentimentScore": -15,
+      "url": "https://www.devdiscourse.com/article/politics/3856356-cpiml-liberation-slams-governments-anti-communist-rhetoric",
       "source": "Devdiscourse",
-      "publishedAt": "2026-03-30T18:02:16Z"
+      "publishedAt": "2026-03-30T18:36:05Z"
+    },
+    {
+      "id": "news-1774939380191-j6ogx9dgv",
+      "category": "politics",
+      "title": "Spanish bishops and government sign deal for compensation of church sexual abuse victims",
+      "detail": "MADRID (AP) — Spain's Catholic bishops and the Spanish government took another step Monday toward compensating victims of sexual abuse by clergy members who…",
+      "intensity": 80,
+      "sentimentScore": -15,
+      "url": "https://wtop.com/world/2026/03/spanish-bishops-and-government-sign-deal-for-compensation-of-church-sexual-abuse-victims/",
+      "source": "WTOP",
+      "publishedAt": "2026-03-30T18:35:32Z"
     }
   ],
   "globalMetrics": {
@@ -336,13 +336,13 @@
     "hourlyDeaths": 7258,
     "minuteDeaths": 121,
     "secondDeaths": 2.02,
-    "deathsChange": "4.2",
+    "deathsChange": "3.8",
     "activeConflicts": 17,
-    "ecoCrises": 12,
-    "politicalInstabilityDelta": "7",
+    "ecoCrises": 11,
+    "politicalInstabilityDelta": "0",
     "scientificBreakthroughs": 3,
-    "healthCrises": 6,
-    "economicStress": 4
+    "healthCrises": 8,
+    "economicStress": 5
   },
   "adminEvents": [
     {
@@ -376,7 +376,7 @@
   "lightningBrief": {
     "items": [
       {
-        "id": "brief-1774937627111-0",
+        "id": "brief-1774939390140-0",
         "title": "The United Nations Needs a Secretary-General of Courage, Not ConvenienceFailing to Learn: Afghan Girls Repeat Grades to Avoid ExclusionExperts, Rights Groups Warn of Crisis of Obstetric ViolenceCSW70: Women’s Equality under SiegeDeveloping countries are being priced out, in struggle for affordable financeSea mines clearance: A new dimension of difficultyMIDDLE EAST LIVE 30 March: UN peacekeeper killed amid Israel-Hezbollah clashesUN peacekeeper killed, another seriously injured, in southern LebanonMiddle East war: UN initiatives support mediation efforts, ‘lifesaving’ fertiliser shipmentsKidnapped and tortured on an infamous migration route to Saudi ArabiaShare thisLink to this page from your site/blog",
         "description": "Monday, March 30, 2026 - Inter Press Service\nGENEVA, March 30 (IPS)  - The United Nations was not founded to be comfortable; it was founded to be nece",
         "url": "https://www.globalissues.org/news/2026/03/30/42664",
@@ -384,8 +384,8 @@
         "category": "brief"
       }
     ],
-    "lastUpdated": "2026-03-31T06:13:47.111Z",
+    "lastUpdated": "2026-03-31T06:43:10.140Z",
     "source": "globalissues.org"
   },
-  "lastUpdated": "2026-03-31T06:13:47.113Z"
+  "lastUpdated": "2026-03-31T06:43:10.141Z"
 }

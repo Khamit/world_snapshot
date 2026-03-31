@@ -1,0 +1,31 @@
+# render.yaml
+services:
+  - type: web
+    name: world-snapshot
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: ADMIN_TOKEN
+        generateValue: true  # Render автоматически сгенерирует случайный токен
+      - key: GNEWS_API_KEY
+        sync: false  # Будет запрошено при деплое
+      - key: NEWSDATA_API_KEY
+        sync: false
+      - key: FRONTEND_URL
+        value: https://world-snapshot.onrender.com
+      - key: SMTP_HOST
+        sync: false  # Опционально
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: ALERT_EMAIL
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true

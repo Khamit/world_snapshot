@@ -1,3 +1,4 @@
+// world_snapshot/src/admin/EventsEditor.tsx
 import { useState } from 'react';
 
 const categories = ['military', 'disasters', 'politics', 'science', 'economy', 'health', 'popular'];
@@ -6,6 +7,7 @@ interface NewsEvent {
   id: string;
   category: string;
   title: string;
+  url?: string;
   detail?: string;
   intensity?: number;
   source?: string;
@@ -13,6 +15,12 @@ interface NewsEvent {
   createdAt?: string;
   source_type?: 'api' | 'admin';
 }
+
+// Функция для уведомления главного приложения об обновлении
+const notifyMainApp = () => {
+  localStorage.setItem('adminDataUpdated', 'true');
+  window.dispatchEvent(new CustomEvent('admin-data-updated'));
+};
 
 export default function EventsEditor({ token, events, onUpdate }: any) {
   const [activeTab, setActiveTab] = useState<'api' | 'admin'>('api');
@@ -24,12 +32,13 @@ export default function EventsEditor({ token, events, onUpdate }: any) {
     category: 'politics', 
     title: '', 
     detail: '', 
-    intensity: 80 
+    intensity: 80,
+    url: ''
   });
 
   // Разделяем события по источнику
-  const apiEvents = events.filter((e: NewsEvent) => e.source !== 'admin');
-  const adminEvents = events.filter((e: NewsEvent) => e.source === 'admin');
+  const apiEvents = events.filter((e: NewsEvent) => !e.id?.startsWith('admin-'));
+  const adminEvents = events.filter((e: NewsEvent) => e.id?.startsWith('admin-'));
 
   // Фильтрация по категории
   const filterByCategory = (eventsList: NewsEvent[]) => {
@@ -55,8 +64,9 @@ export default function EventsEditor({ token, events, onUpdate }: any) {
       
       if (response.ok) {
         alert('Event added');
-        setNewEvent({ category: 'politics', title: '', detail: '', intensity: 80 });
-        onUpdate();
+        setNewEvent({ category: 'politics', title: '', detail: '', intensity: 80, url: '' });
+        notifyMainApp(); // Уведомляем главное приложение
+        onUpdate(); // Обновляем админку
       }
     } catch (error) {
       alert('Failed to add event');
@@ -74,7 +84,8 @@ export default function EventsEditor({ token, events, onUpdate }: any) {
       
       if (response.ok) {
         alert('Event deleted');
-        onUpdate();
+        notifyMainApp(); // Уведомляем главное приложение
+        onUpdate(); // Обновляем админку
       }
     } catch (error) {
       alert('Failed to delete');
@@ -84,8 +95,9 @@ export default function EventsEditor({ token, events, onUpdate }: any) {
   const handleEdit = async () => {
     if (!editingEvent) return;
     
+    console.log('Updating event:', editingEvent);
+    
     try {
-      // Для админских событий обновляем через API
       const response = await fetch(`/api/admin/events/${editingEvent.id}`, {
         method: 'PUT',
         headers: {
@@ -96,18 +108,27 @@ export default function EventsEditor({ token, events, onUpdate }: any) {
           title: editingEvent.title,
           detail: editingEvent.detail,
           category: editingEvent.category,
-          intensity: editingEvent.intensity
+          intensity: editingEvent.intensity,
+          url: editingEvent.url
         })
       });
       
+      console.log('Response status:', response.status);
+      
       if (response.ok) {
+        const result = await response.json();
+        console.log('Update result:', result);
         alert('Event updated');
         setEditingEvent(null);
-        onUpdate();
+        notifyMainApp(); // Уведомляем главное приложение
+        onUpdate(); // Обновляем админку
       } else {
-        alert('Failed to update event');
+        const error = await response.text();
+        console.error('Update failed:', error);
+        alert('Failed to update event: ' + response.status);
       }
     } catch (error) {
+      console.error('Error updating event:', error);
       alert('Error updating event');
     }
   };
@@ -137,6 +158,13 @@ export default function EventsEditor({ token, events, onUpdate }: any) {
             onChange={(e) => setEditingEvent({ ...editingEvent, detail: e.target.value })}
             className="w-full px-2 py-1 text-xs bg-slate-700 rounded"
             rows={2}
+          />
+          <input
+            type="url"
+            placeholder="Source URL (optional)"
+            value={editingEvent.url || ''}
+            onChange={(e) => setEditingEvent({ ...editingEvent, url: e.target.value })} 
+            className="w-full px-2 py-1 text-xs bg-slate-700 rounded"
           />
           {isAdmin && (
             <div className="flex gap-2">
@@ -181,6 +209,17 @@ export default function EventsEditor({ token, events, onUpdate }: any) {
                   </span>
                 )}
               </div>
+              {event.url && (
+                  <a 
+                    href={event.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[10px] text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1 mt-1"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <i className="fas fa-external-link-alt"></i> Source
+                  </a>
+                )}
               {event.detail && (
                 <p className="text-xs text-gray-400 mt-1 line-clamp-2">
                   {event.detail}
@@ -244,6 +283,13 @@ export default function EventsEditor({ token, events, onUpdate }: any) {
             onChange={(e) => setNewEvent({ ...newEvent, detail: e.target.value })}
             className="w-full px-3 py-2 bg-slate-700 rounded-lg"
             rows={2}
+          />
+          <input
+            type="url"
+            placeholder="Source URL (optional)"
+            value={newEvent.url}
+            onChange={(e) => setNewEvent({ ...newEvent, url: e.target.value })}
+            className="w-full px-3 py-2 bg-slate-700 rounded-lg"
           />
           <div className="flex items-center gap-3">
             <span className="text-sm text-gray-400">Intensity:</span>

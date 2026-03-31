@@ -1,10 +1,11 @@
+// world_snapshot/src/admin/MetricsEditor.tsx
 import { useState } from 'react';
 
-/*
-const API_URL = import.meta.env.VITE_API_URL;
-
-Нужно: Заменить на прямой вызов с токеном
-*/
+// Функция для уведомления главного приложения об обновлении
+const notifyMainApp = () => {
+  localStorage.setItem('adminDataUpdated', 'true');
+  window.dispatchEvent(new CustomEvent('admin-data-updated'));
+};
 
 export default function MetricsEditor({ token, metrics, onUpdate }: any) {
   const [editMetrics, setEditMetrics] = useState(metrics || {});
@@ -22,7 +23,8 @@ export default function MetricsEditor({ token, metrics, onUpdate }: any) {
       
       if (response.ok) {
         alert('Metrics updated');
-        onUpdate();
+        notifyMainApp(); // Уведомляем главное приложение
+        onUpdate(); // Обновляем админку
       }
     } catch (error) {
       alert('Failed to update');

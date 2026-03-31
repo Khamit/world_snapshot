@@ -1,0 +1,469 @@
+{
+  "globalEvents": [
+    {
+      "id": "newsdata-1774966006181-z385fgjl3",
+      "category": "military",
+      "title": "US-Israel-Iran War: Iran attacks Kuwaiti oil tanker Al-Salmi at Dubai port, sparks fire and oil spill concerns",
+      "detail": "The tanker was fully loaded at the time of the incident, and it was possible that oil could spill into the surrounding waters. However, there were no injuries from the attack, and all the crew members are safe.",
+      "intensity": 100,
+      "sentimentScore": -46.211715726000975,
+      "url": "https://www.dnaindia.com/world/report-us-israel-iran-war-iran-attacks-kuwaiti-oil-tanker-al-salmi-at-dubai-port-sparks-fire-and-oil-spill-concerns-3204657",
+      "source": "dnaindia",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966006182-t71lrlfjs",
+      "category": "disasters",
+      "title": "West Asia War: Preethi RS of DSP MF on sectors to look out for amid market disruption",
+      "detail": "Preethi RS, Fund Manager at DSP Mutual Fund, shares her views on the outlook for the BFSI sector, long-term investing in the current environment, and how retail investors should think about sector allocation",
+      "intensity": 95,
+      "sentimentScore": -19.7375320224904,
+      "url": "https://www.businesstoday.in/markets/story/west-asia-war-preethi-rs-of-dsp-mf-on-sectors-to-look-out-for-amid-market-disruption-523222-2026-03-31",
+      "source": "businesstoday",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966006182-ic2u73bbx",
+      "category": "politics",
+      "title": "Early Illinois vs UConn Predictions, Picks & Odds for Final Four",
+      "detail": "The Illini may not stay Final Four favorites according to our Illinois vs. UConn predictions and early March Madness picks for April 4.",
+      "intensity": 60,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://sports.yahoo.com/articles/early-illinois-vs-uconn-predictions-190000447.html",
+      "source": "yahoo",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966006183-jovbxdx9w",
+      "category": "disasters",
+      "title": "City co stops 2 China-bound ships, buys 50,000MT stock",
+      "detail": "Nagpur: In a daring buyout in the Arabian Sea, Nagpur-based private LPG bottling company Confidence Petroleum Ltd literally 'hijacked' two vessels lad.",
+      "intensity": 77,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://timesofindia.indiatimes.com/city/nagpur/city-co-stops-2-china-bound-ships-buys-50000mt-stock/articleshow/129910827.cms",
+      "source": "toi",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966006184-h8wbh3p7o",
+      "category": "military",
+      "title": "Middle East war live: Iran defiant as Trump makes new threat against its oil hub",
+      "detail": "Iran fired new missiles early Tuesday as it vowed defiance against US President Donald Trump, who threatened to destroy the country's oil export hub of Kharg Island along with power and desalination plants unless Tehran quickly accepts a deal to end the war. Tehran described US peace proposals as \"unrealistic\" and fired waves of missiles at Israel. Follow our liveblog for the latest developments.",
+      "intensity": 100,
+      "sentimentScore": -3.997868031116357,
+      "url": "https://www.france24.com/en/middle-east/20260331-middle-east-war-live-iran-defiant-as-trump-makes-new-threat-against-its-oil-hub-strait-of-hormuz-usa",
+      "source": "france24",
+      "publishedAt": "2026-03-31 02:05:46"
+    },
+    {
+      "id": "newsdata-1774966006193-6a1bz3o6r",
+      "category": "military",
+      "title": "Hegseth’s Broker Tried to Make Defense Investments",
+      "detail": "A broker for Defense Secretary Pete Hegseth sought to make a large investment in major defense companies in the lead up to the Iran war, the Financial Times reports.",
+      "intensity": 91,
+      "sentimentScore": -19.7375320224904,
+      "url": "https://politicalwire.com/2026/03/30/hegseths-broker-tried-to-make-defense-investments/",
+      "source": "politicalwire",
+      "publishedAt": "2026-03-31 02:05:46"
+    },
+    {
+      "id": "newsdata-1774966006194-nal86i4dz",
+      "category": "disasters",
+      "title": "Sanctions relief on Russian oil Labor’s red line",
+      "detail": "The Albanese government has revealed its red line on bringing prices down at the bowser, after announcing a cut in fuel excise.",
+      "intensity": 76,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://www.perthnow.com.au/news/politics/federal-politics/sanctions-relief-on-russian-oil-labors-red-line-c-22073535",
+      "source": "perthnow",
+      "publishedAt": "2026-03-31 02:05:45"
+    },
+    {
+      "id": "newsdata-1774966007466-5sfejt3jb",
+      "category": "disasters",
+      "title": "New e-waste and battery drop-off points for Orbost and Mallacoota",
+      "detail": "Residents in Orbost and Mallacoota now have more opportunities to safely dispose of batteries and electronic waste, thanks to new collection points funded by the Victorian Government.The funding, delivered through Sustainability Victoria, allows East Gippsland Shire Council to install battery and embedded battery collection cabinets at high-traffic community facilities. Residents can now safely drop off loose batteries, vapes, embedded batteries from toys, toothbrushes and other small rechargeable items.The move is designed to reduce hazardous waste in landfill and lower the risk of fires caused by incorrectly disposed lithium-ion batteries. Fire Rescue Victoria estimates they attend one fire a day caused by rechargeable batteries, highlighting the danger these items can pose when crushed in garbage or recycling trucks.Collection cabinets will be installed at key locations across the municipality, including the Orbost Service Centre and the Mallacoota Service Centre, alongside facilities in Bairnsdale, Lakes Entrance, Paynesville, Omeo and local libraries.Research shows nearly half of Victorian households with young children place batteries in general rubbish bins, despite e-waste being banned from landfill since 2019. Improper disposal can ignite fires, leach toxic chemicals into the environment, and create large clean-up jobs for councils when fires occur in waste trucks.\"With electronic items being delivered to households over the festive period, from phones and tablets to gaming consoles and small appliances, the risk of incorrect disposal is real,\" said Darren McQuade, Fire Rescue Victoria's Assistant Chief Fire Officer of Community Resilience.Sustainability Victoria has also launched a campaign to raise awareness of the risks of placing batteries and e-waste in kerbside bins. \"This campaign is about shining a light on embedded batteries in everyday items such as electric toothbrushes, vacuum cleaners, power tools, e-bikes, vapes, and portable chargers, and reminding Victorians that batteries and e-waste do not belong in kerbside bins,\" chief executive officer Matt Genever said.Residents can visit Sustainability Victoria's website to find an interactive map of safe disposal locations and ensure their batteries and electronics are handled responsibly. The post New e-waste and battery drop-off points for Orbost and Mallacoota first appeared on Snowy River Mail .",
+      "intensity": 85,
+      "sentimentScore": 0,
+      "url": "https://snowyrivermail.com.au/16019/new-e-waste-and-battery-drop-off-points-for-orbost-and-mallacoota/",
+      "source": "snowyrivermail",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966007467-6gjnna37l",
+      "category": "disasters",
+      "title": "Bend apartment fire caused by smoking materials, three units damaged",
+      "detail": "BEND, Ore. (KTVZ) — A fire sparked by improperly disposed smoking materials damaged three units at the Canal Commons apartment complex in Bend on Tuesday afternoon. The blaze began on a couch in an upstairs unit shortly after 4 p.m. The apartment's sprinkler system activated immediately, which first responders said performed most of the work The post Bend apartment fire caused by smoking materials, three units damaged appeared first on KTVZ .",
+      "intensity": 85,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://ktvz.com/news/2026/03/30/bend-apartment-fire-caused-by-smoking-materials-three-units-damaged/",
+      "source": "ktvz",
+      "publishedAt": "2026-03-31 02:05:30"
+    },
+    {
+      "id": "newsdata-1774966007468-wbf0dijdp",
+      "category": "military",
+      "title": "Trump tells aides he is willing to end Iran war without reopening Hormuz, WSJ reports",
+      "detail": "Trump Tells Aides He Is Willing to End Iran War Without Reopening Hormuz, WSJ Reports. Sirens Sounded on Israel's Northern Border Over Possible Drone Infiltration . Kuwait Says an Oil Tanker Hit in Iranian Attack at Dubai Port, Warns of Possible Oil Spill",
+      "intensity": 100,
+      "sentimentScore": -57.83634130445059,
+      "url": "https://www.haaretz.com/israel-news/israel-security/2026-03-31/ty-article-live/wsj-trump-tells-aides-he-is-willing-to-end-iran-war-without-reopening-hormuz/0000019d-419a-ddaa-abbd-d5df1eca0000",
+      "source": "haaretz_is",
+      "publishedAt": "2026-03-31 02:05:12"
+    },
+    {
+      "id": "newsdata-1774966007468-fqex2pbdk",
+      "category": "military",
+      "title": "\"If Deal Isn't Reached...\": Trump Again Threatens To Hit Iran's Power Plants",
+      "detail": "The US already has targeted military positions on Kharg",
+      "intensity": 71,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://www.ndtv.com/world-news/if-deal-isnt-reached-president-donald-trump-again-threatens-to-hit-irans-power-plants-oil-wells-kharg-island-middle-east-conflict-11288932",
+      "source": "ndtv",
+      "publishedAt": "2026-03-31 02:04:53"
+    },
+    {
+      "id": "newsdata-1774966007468-iixavciai",
+      "category": "disasters",
+      "title": "Free Fire MAX Redeem Codes Today March 31: List of Active Codes and How to Claim",
+      "detail": "Free Fire MAX Redeem Codes Today March 31 are out now. Check out the List of Active Codes and How to Claim. The post Free Fire MAX Redeem Codes Today March 31: List of Active Codes and How to Claim appeared first on Inside Sport India .",
+      "intensity": 86,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://www.insidesport.in/garena-free-fire/free-fire-max-redeem-codes-today-march-31-list-of-active-codes-and-how-to-claim/",
+      "source": "insidesport_in",
+      "publishedAt": "2026-03-31 02:04:42"
+    },
+    {
+      "id": "newsdata-1774966007469-0mruo4nrp",
+      "category": "military",
+      "title": "Smoke rises from Kuwait international airport after a drone strike on fuel storage in Kuwait City, Kuwait, Friday, Wednesday, March 25, 2026.",
+      "detail": "The Gulf countries host U.S. forces and bases from which the U.S. has launched strikes on Iran, but have not joined the offensive strikes.",
+      "intensity": 100,
+      "sentimentScore": -39.69304320050775,
+      "url": "https://www.etvbharat.com/en/international/gulf-allies-privately-make-the-case-to-trump-to-keep-fighting-until-iran-is-decisively-defeated-enn26033100554",
+      "source": "etvbharat",
+      "publishedAt": "2026-03-31 02:04:27"
+    },
+    {
+      "id": "newsdata-1774966008843-mosdr3sic",
+      "category": "politics",
+      "title": "Solar industry wants its zone on Ajmer Road, not near Jodhpur",
+      "detail": "Jaipur: With Ajmer Road rapidly emerging as a cluster for solar panel manufacturing, industry leaders are urging RIICO to shift its focus from Kakani .",
+      "intensity": 60,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://timesofindia.indiatimes.com/city/jaipur/solar-industry-wants-its-zone-on-ajmer-road-not-near-jodhpur/articleshow/129910831.cms",
+      "source": "toi",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966008844-cc7px3jj7",
+      "category": "politics",
+      "title": "Early Michigan vs Arizona Predictions, Picks & Odds for Final Four",
+      "detail": "It's Goliath vs. Goliath in our Michigan vs. Arizona predictions and early March Madness picks for April 4.",
+      "intensity": 60,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://sports.yahoo.com/articles/early-michigan-vs-arizona-predictions-200700375.html",
+      "source": "yahoo",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966008848-8sccplixr",
+      "category": "politics",
+      "title": "Stalin moves from conciliation to command",
+      "detail": "The seat-sharing arrangement finalised in Tamil Nadu reveals a new and forceful side to the DMK leader that has taken many by surprise.",
+      "intensity": 60,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://frontline.thehindu.com/news/dmk-alliance-seat-sharing-stalin-emerges-firm-leader/article70803199.ece",
+      "source": "frontline_thehindu",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966008849-o7039obhj",
+      "category": "disasters",
+      "title": "Unseasonal hail, rain batter Raj, ravage crops",
+      "detail": "Jaipur/Bhilwara/Kota: An active western disturbance triggered unseasonal rain, gusty winds, and intense hailstorms across several districts of Rajasth.",
+      "intensity": 95,
+      "sentimentScore": -19.7375320224904,
+      "url": "https://timesofindia.indiatimes.com/city/jaipur/unseasonal-hail-rain-batter-raj-ravage-crops/articleshow/129910823.cms",
+      "source": "toi",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966008853-4msj984mw",
+      "category": "disasters",
+      "title": "ROSEN, GLOBALLY RECOGNIZED INVESTOR COUNSEL, Encourages Corcept Therapeutics Incorporated Investors to Secure Counsel Before Important Deadline in Securities Class Action – CORT",
+      "detail": "<link type=\"text/css\" rel=\"stylesheet\" href=\"https://www.globenewswire.com/styles/gnw_nitf.css\" /> <p align=\"justify\">NEW YORK, March 30, 2026 (GLOBE NEWSWIRE) -- </p> <p align=\"justify\"><strong>WHY: </strong>Rosen Law Firm, a global investor rights law firm, reminds purchasers of common stock of Corcept Therapeutics Incorporated (NASDAQ:<a class=\"ticker\" href=\"https://www.benzinga.com/quote/CORT\" rel=\"nofollow\">CORT</a>) between October 31, 2024 and December 30, 2025, inclusive (the \"Class Period\"), of the important<strong> April 21, 2026 lead plaintiff deadline.</strong></p> <p align=\"justify\"><strong>SO WHAT:</strong> If you purchased Corcept common stock during the Class Period you may be entitled to compensation without payment of any out of pocket fees or costs through a contingency fee arrangement.</p> <p align=\"justify\"><strong>WHAT TO DO NEXT:</strong> To join the Corcept class action, go to <a href=\"https://www.globenewswire.com/Tracker?data=PMNxN6nM7HQvi5fOCJ-NRfHfnFzlxOoNHb-aMZ4kCSTG_ZVF4NqY99tfslUGlcNnv2r0vg1vPTzP3rX7hMvl1w2kU07uHDdPpQWptJDdCiq9r6vhptetaImmcOTYLXdiMqcbM6PaZnq3nT2wX-mK-DeZfbpxBWvl6dEazQerBpw=\" rel=\"nofollow\" target=\"_blank\" rel=\"nofollow\">https://rosenlegal.com/submit-form/?case_id=51868</a> or call Phillip Kim, Esq. toll-free at 866-767-3653 or email <a href=\"https://www.globenewswire.com/Tracker?data=dTip0YlT-1RLOW5aMQ0GDL_W9DS_bXK5nh3iXQ0fhAjTLX8PWG6yLl3xbQYQssZcWz5D-1RRv3_IcIcu1dRRCii7lQzHJMLsUsROBfcfAoY=\" rel=\"nofollow\" target=\"_blank\" rel=\"nofollow\"> [email protected] </a> for information on the class action. A class action lawsuit has already been filed. If you wish to serve as lead plaintiff, you must move the Court <strong>no later than April 21, 2026.</strong> A lead plaintiff is a representative party acting on behalf of other class members in directing the litigation.</p> <p align=\"justify\"><strong>WHY ROSEN LAW:</strong> We encourage investors to select qualified counsel with a track record of success in leadership roles. Often, firms issuing notices do not have comparable experience, resources, or any meaningful peer recognition. <strong>Many ...</strong></p><p><a href=https://www.benzinga.com/pressreleases/26/03/g51557746/rosen-globally-recognized-investor-counsel-encourages-corcept-therapeutics-incorporated-investors-?utm_source=benzinga_taxonomy&utm_medium=rss_feed_free&utm_content=taxonomy_rss&utm_campaign=channel alt=ROSEN, GLOBALLY RECOGNIZED INVESTOR COUNSEL, Encourages Corcept Therapeutics Incorporated Investors to Secure Counsel Before Important Deadline in Securities Class Action – CORT>Full story available on Benzinga.com</a></p>",
+      "intensity": 56,
+      "sentimentScore": 53.70495669980353,
+      "url": "https://www.benzinga.com/pressreleases/26/03/g51557746/rosen-globally-recognized-investor-counsel-encourages-corcept-therapeutics-incorporated-investors-",
+      "source": "benzinga",
+      "publishedAt": "2026-03-31 02:05:50"
+    },
+    {
+      "id": "newsdata-1774966010185-fwdyzz5jn",
+      "category": "politics",
+      "title": "Demolition of house prompted Cong leader’s murder: Police",
+      "detail": "TNNLudhiana: A day after Congress block president Parminder Tiwari was hacked to death with an axe in Takhran village, Ludhiana police on Monday revea.",
+      "intensity": 100,
+      "sentimentScore": -53.70495669980353,
+      "url": "https://timesofindia.indiatimes.com/city/ludhiana/demolition-of-house-prompted-cong-leaders-murder-police/articleshow/129910837.cms",
+      "source": "toi",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966010185-ndsiv5c9q",
+      "category": "disasters",
+      "title": "Drunk car driver hits police motorcycle, injures pedestrian",
+      "detail": "Pune: A pedestrian, Muktar Farooq Hussain (35) from Katraj, was injured and a parked police motorcycle was damaged after a drunk driver rammed his car.",
+      "intensity": 75,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://timesofindia.indiatimes.com/city/pune/drunk-car-driver-hits-police-motorcycle-injures-pedestrian/articleshow/129910826.cms",
+      "source": "toi",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966010186-srln335m5",
+      "category": "politics",
+      "title": "On Point Loyalty: Delta's SkyMiles Ranked World's Most Valuable Airline Loyalty Program at $31 Billion",
+      "detail": "New On Point Loyalty Report Highlights Growing Strategic Importance of Airline Loyalty ProgramsSINGAPORE, March 31, 2026 /PRNewswire/ -- Delta Air Lines' SkyMiles has been ranked the world's most ...",
+      "intensity": 60,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://www.finanznachrichten.de/nachrichten-2026-03/68081627-on-point-loyalty-delta-s-skymiles-ranked-world-s-most-valuable-airline-loyalty-program-at-dollar-31-billion-008.htm",
+      "source": "finanznachrichten_de",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966010187-bzawbq4uu",
+      "category": "disasters",
+      "title": "RWJBarnabas Health, Partners Celebrate South Ward Wellness Center Groundbreaking in Newark",
+      "detail": "RWJBarnabas Health joined BRICK Networks, Saint James Health Federally Qualified Health Center (FQHC), and the YMCA of Newark and Vicinity to break ground on construction of the South Ward Wellness Center in Newark, New Jersey.",
+      "intensity": 100,
+      "sentimentScore": -19.7375320224904,
+      "url": "https://www.newswise.com/articles/rwjbarnabas-health-partners-celebrate-south-ward-wellness-center-groundbreaking-in-newark/?sc=rsla",
+      "source": "newswise",
+      "publishedAt": "2026-03-31 02:05:55"
+    },
+    {
+      "id": "newsdata-1774966010187-cdbdw4v15",
+      "category": "politics",
+      "title": "ROSEN, A TRUSTED AND LEADING LAW FIRM, Encourages Camping World Holdings, Inc. to Secure ...",
+      "detail": "NEW YORK, March 30, 2026 (GLOBE NEWSWIRE) --",
+      "intensity": 50,
+      "sentimentScore": 37.99489622552249,
+      "url": "https://www.gazettextra.com/news/nation_world/rosen-a-trusted-and-leading-law-firm-encourages-camping-world-holdings-inc-to-secure/article_1b9e5547-a6d2-5d3a-bd6a-93ca716db91f.html",
+      "source": "gazettextra",
+      "publishedAt": "2026-03-31 02:05:32"
+    },
+    {
+      "id": "newsdata-1774966010188-z54l2h5qq",
+      "category": "disasters",
+      "title": "'Qatar's Food Security Remains Highly Stable'",
+      "detail": "(MENAFN - The Peninsula) Sanaullah Ataullah | The Peninsula Doha, Qatar: Minister of Municipality and Chairman of Committee for Follow-up on the Implementation of Food Security Policies H E Sheikh ...",
+      "intensity": 75,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://menafn.com/1110921911/Qatars-Food-Security-Remains-Highly-Stable",
+      "source": "menafn",
+      "publishedAt": "2026-03-31 02:05:28"
+    },
+    {
+      "id": "newsdata-1774966010189-hcbiyb9wn",
+      "category": "disasters",
+      "title": "Robert Wood Johnson University Hospital and Rutgers Robert Wood Johnson Medical School Chief of Cardiology Receives National American College of Cardiology Distinguished Scientist Award",
+      "detail": "Partho Sengupta, MD, DM, FACC, FASE, has been honored as a 2026 Distinguished Scientist (Translational Domain) at the national American College of Cardiology (ACC) Conference in New Orleans. Dr. Sengupta is Chief of Cardiology at Robert Wood Johnson University Hospital (RWJUH) and Rutgers Robert Wood Johnson Medical School (RWJMS). RWJUH is an RWJBarnabas Health facility.",
+      "intensity": 95,
+      "sentimentScore": -19.7375320224904,
+      "url": "https://www.newswise.com/articles/robert-wood-johnson-university-hospital-and-rutgers-robert-wood-johnson-medical-school-chief-of-cardiology-receives-national-american-college-of-cardiology-distinguished-scientist-award/?sc=rsla",
+      "source": "newswise",
+      "publishedAt": "2026-03-31 02:05:26"
+    },
+    {
+      "id": "newsdata-1774966011537-efcnxgmr2",
+      "category": "politics",
+      "title": "'Dog's breakfast': commuter fears over free transport",
+      "detail": "Regional residents are concerned temporary free public transport to offset fuel prices in one state will make finding a seat harder than ever.",
+      "intensity": 60,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://www.braidwoodtimes.com.au/story/9211130/dogs-breakfast-commuter-fears-over-free-transport/?src=rss",
+      "source": "braidwoodtimes",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966011540-1gu0ezc03",
+      "category": "politics",
+      "title": "CM Sharma’s advisers will ‘ruin him’, warns Gehlot",
+      "detail": "Jaipur: Former Chief Minister Ashok Gehlot Monday sought to quell a brewing political row over his recent remarks on dynastic politics, asserting that.",
+      "intensity": 80,
+      "sentimentScore": -19.7375320224904,
+      "url": "https://timesofindia.indiatimes.com/city/jaipur/cm-sharmas-advisers-will-ruin-him-warns-gehlot/articleshow/129910828.cms",
+      "source": "toi",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966012897-qf1r9eyf2",
+      "category": "politics",
+      "title": "RBSE class 12 result to be declared today",
+      "detail": "Ajmer: The Rajasthan Board of Secondary Education (RBSE) will declare the class 12 board exam result Tuesday at 10am. The education minister Madan Dil.",
+      "intensity": 60,
+      "sentimentScore": 9.966799462495581,
+      "url": "https://timesofindia.indiatimes.com/city/jaipur/rbse-class-12-result-to-be-declared-today/articleshow/129910822.cms",
+      "source": "toi",
+      "publishedAt": "2026-03-31 02:06:00"
+    },
+    {
+      "id": "newsdata-1774966014219-9sj9qjbuz",
+      "category": "politics",
+      "title": "‘Threat to civil society orgs’: CPI(M) writes to PM Modi on FCRA Bill",
+      "detail": "New Delhi: The CPI(M) on Monday demanded the rescinding of the Foreign Contribution (Regulation) Amendment Bill, 2026, citing concerns over “constitutional morality” and warning that the proposed law could lead to excessive government control and erosion of federal principles. In a letter addressed to Prime Minister Narendra Modi, party general secretary MA Baby expressed “deep ... Get the latest updates in Hyderabad City News , Technology , Entertainment , Sports , Politics and Top Stories on WhatsApp & Telegram by subscribing to our channels. You can also download our app for Android and iOS .",
+      "intensity": 90,
+      "sentimentScore": -19.7375320224904,
+      "url": "https://www.siasat.com/threat-to-civil-society-orgs-cpim-writes-to-pm-modi-on-fcra-bill-3443523/",
+      "source": "siasat",
+      "publishedAt": "2026-03-31 02:04:51"
+    },
+    {
+      "id": "newsdata-1774966014220-6plxpljjk",
+      "category": "disasters",
+      "title": "‘American Idol’ 2026 Results Tonight: Who Went Home and Who Made the Top 12?",
+      "detail": "Spoiler alert! The Top 14 'American Idol’ hopefuls returned to Hollywood, where they performed for America’s vote in hopes of making the Top 12.",
+      "intensity": 75,
+      "sentimentScore": 15.864850429749891,
+      "url": "https://www.capjournal.com/arena/lifestyle_entertainment/american-idol-2026-results-tonight-who-went-home-and-who-made-the-top-12/article_f8417d86-5a59-52ac-a98a-9531a7fdfe80.html",
+      "source": "capjournal",
+      "publishedAt": "2026-03-31 02:04:32"
+    }
+  ],
+  "globalMetrics": {
+    "dailyDeaths": 174194,
+    "hourlyDeaths": 7258,
+    "minuteDeaths": 121,
+    "secondDeaths": 2.02,
+    "deathsChange": "2.2",
+    "activeConflicts": 18,
+    "ecoCrises": 18,
+    "politicalInstabilityDelta": "6",
+    "scientificBreakthroughs": 3,
+    "healthCrises": 0,
+    "economicStress": 0
+  },
+  "adminEvents": [
+    {
+      "category": "popular",
+      "title": "WAR/POLITICS - 2026 Mar",
+      "detail": "Ukraine war escalation continues across Eastern Europe as multiple drone incidents were recorded across Baltic airspace in late March 2026, with at least 3 confirmed airspace violations reported by Lithuania, Latvia, and Estonia within a 48-hour window, intensifying NATO air-defense readiness along the 1,450 km eastern flank.",
+      "intensity": 80,
+      "id": "admin-1774799729145",
+      "createdAt": "2026-03-29T15:55:29.145Z",
+      "source": "admin",
+      "url": "https://www.cfr.org/backgrounders/ukraine-conflict-crossroads-europe-and-russia",
+      "updatedAt": "2026-03-31T08:18:30.502Z"
+    },
+    {
+      "category": "popular",
+      "title": "TECHNOLOGY - 2026 Mar",
+      "detail": "Agentic AI transition accelerates in 2026, with over 60% of new enterprise AI deployments shifting from generative models to autonomous task-executing systems, while more than 12 major countries expand “digital sovereignty” policies aimed at controlling AI infrastructure, including GPU allocation exceeding 10,000 H100-equivalent units in national compute programs.",
+      "intensity": 80,
+      "id": "admin-1774799679872",
+      "createdAt": "2026-03-29T15:54:39.872Z",
+      "source": "admin",
+      "url": "https://pacewisdom.com/blog/how-agentic-ai-is-redefining-digital-transformation",
+      "updatedAt": "2026-03-31T08:19:48.942Z"
+    },
+    {
+      "category": "popular",
+      "title": "ECONOMIC - 2026/Mar",
+      "detail": "Global economic fragmentation deepens as analysts describe a persistent K-shaped recovery, with household debt linked to buy-now-pay-later services exceeding double-digit annual growth rates in multiple OECD economies, while supply-chain volatility affects more than 30% of critical manufacturing inputs across semiconductor and energy sectors.",
+      "intensity": 80,
+      "id": "admin-1774799627902",
+      "createdAt": "2026-03-29T15:53:47.902Z",
+      "source": "admin",
+      "url": "https://www.santander.com/en/press-room/insights/how-geopolitical-fragmentation-impacts-economic-globalization#:~:text=There%20are%20not%20yet%20clear,between%20the%20U.S.%20and%20China.",
+      "updatedAt": "2026-03-31T08:20:19.215Z"
+    }
+  ],
+  "lightningBrief": {
+    "items": [
+      {
+        "id": "brief-1774966017318-15",
+        "title": "An Ominous Reckoning for the Gulf States",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/31/42668",
+        "date": "2026-03-31T14:06:57.318Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017318-16",
+        "title": "Iran War Threatens World Food Crisis",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/31/42667",
+        "date": "2026-03-31T14:06:57.318Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017318-18",
+        "title": "The United Nations Needs a Secretary-General of Courage, Not Convenience",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/30/42664",
+        "date": "2026-03-31T14:06:57.318Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017319-19",
+        "title": "Failing to Learn: Afghan Girls Repeat Grades to Avoid Exclusion",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/30/42661",
+        "date": "2026-03-31T14:06:57.319Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017319-20",
+        "title": "Experts, Rights Groups Warn of Crisis of Obstetric Violence",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/30/42660",
+        "date": "2026-03-31T14:06:57.319Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017319-21",
+        "title": "CSW70: Women’s Equality under Siege",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/30/42659",
+        "date": "2026-03-31T14:06:57.319Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017319-22",
+        "title": "Commission on the Status of Women",
+        "description": "",
+        "url": "https://www.unwomen.org/en/how-we-work/commission-on-the-status-of-women",
+        "date": "2026-03-31T14:06:57.319Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017319-23",
+        "title": "Airstrike on funeral underscores rising civilian toll in Sudan",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/30/42672",
+        "date": "2026-03-31T14:06:57.319Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017319-24",
+        "title": "UN condemns killing of two more peacekeepers in Lebanon",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/30/42671",
+        "date": "2026-03-31T14:06:57.319Z",
+        "category": "brief"
+      },
+      {
+        "id": "brief-1774966017319-25",
+        "title": "World News in Brief: Ukraine drone attacks, Afghan rights, Zero-Waste Day",
+        "description": "",
+        "url": "https://www.globalissues.org/news/2026/03/30/42670",
+        "date": "2026-03-31T14:06:57.319Z",
+        "category": "brief"
+      }
+    ],
+    "lastUpdated": "2026-03-31T14:06:57.319Z",
+    "source": "globalissues.org"
+  },
+  "lastUpdated": "2026-03-31T14:06:57.320Z"
+}

@@ -24,6 +24,7 @@ export default function LightningBrief() {
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
   const [lastFetchTime, setLastFetchTime] = useState<Date | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<number>(0);
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const fetchBrief = async () => {
     try {
@@ -66,14 +67,24 @@ export default function LightningBrief() {
     }
   };
 
-  // Проверяем, можно ли обновлять (раз в 30 минут)
+  const toggleExpand = (id: string) => {
+    setExpandedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
   const canRefresh = () => {
     if (!lastFetchTime) return true;
     const minutesSinceLastFetch = (new Date().getTime() - lastFetchTime.getTime()) / (1000 * 60);
     return minutesSinceLastFetch >= 30;
   };
 
-  // Обновляем таймер
   useEffect(() => {
     fetchBrief();
   }, []);
@@ -99,6 +110,15 @@ export default function LightningBrief() {
     return `${minutes}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    } catch {
+      return 'recent';
+    }
+  };
+
   if (loading) {
     return (
       <div className="mt-6 bg-slate-800/30 rounded-2xl p-4 border border-slate-700">
@@ -107,9 +127,9 @@ export default function LightningBrief() {
           <span className="font-semibold text-sm">lightning brief</span>
           <span className="text-xs text-gray-500 animate-pulse">loading...</span>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {[1, 2, 3, 4, 5].map(i => (
-            <div key={i} className="h-8 w-24 bg-slate-700/50 rounded-full animate-pulse"></div>
+        <div className="space-y-3">
+          {[1, 2, 3, 4].map(i => (
+            <div key={i} className="h-20 bg-slate-700/50 rounded-xl animate-pulse"></div>
           ))}
         </div>
       </div>
@@ -135,14 +155,15 @@ export default function LightningBrief() {
             }`}
           >
             {refreshing ? (
-              <><i className="fas fa-spinner fa-spin mr-1"></i> Обновление...</>
+              <><i className="fas fa-spinner fa-spin mr-1"></i> Updating...</>
             ) : !canRefresh() ? (
               <><i className="fas fa-clock mr-1"></i> {formatTimeRemaining(timeRemaining)}</>
             ) : (
-              <><i className="fas fa-sync-alt mr-1"></i> Обновить</>
+              <><i className="fas fa-sync-alt mr-1"></i> Update</>
             )}
           </button>
         </div>
+        <p className="text-center text-gray-500 py-8 text-sm">No lightning brief data available. Click Update to fetch latest news.</p>
       </div>
     );
   }
@@ -150,17 +171,18 @@ export default function LightningBrief() {
   return (
     <>
       <div className="mt-6 bg-slate-800/30 rounded-2xl p-4 border border-slate-700">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <i className="fas fa-bolt text-yellow-400"></i>
-            <span className="font-semibold text-sm">lightning brief</span>
-            <span className="text-xs text-gray-500">
-              {brief.lastUpdated ? new Date(brief.lastUpdated).toLocaleString() : 'неизвестно'}
+            <i className="fas fa-bolt text-yellow-400 animate-pulse"></i>
+            <span className="font-semibold text-sm">LIGHTNING BRIEF</span>
+            <span className="text-[10px] text-gray-500">
+              {brief.lastUpdated ? new Date(brief.lastUpdated).toLocaleString() : 'unknown'}
             </span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-[10px] text-gray-500">
-              source: {brief.source || 'Global Issues'}
+              <i className="fas fa-newspaper mr-1"></i>
+              {brief.source || 'Global Issues'}
             </span>
             <button
               onClick={handleRefresh}
@@ -182,22 +204,66 @@ export default function LightningBrief() {
           </div>
         </div>
         
-        <div className="flex flex-wrap gap-2 text-xs">
-          {brief.items.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setSelectedEvent({
-                title: item.title,
-                detail: item.description,
-                url: item.url,
-                source: brief.source || 'Global Issues',
-                publishedAt: item.date
-              })}
-              className="bg-slate-800 px-3 py-1 rounded-full hover:bg-slate-700 transition cursor-pointer text-left"
-            >
-              {item.title.length > 40 ? item.title.substring(0, 40) + '...' : item.title}
-            </button>
-          ))}
+        <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2">
+          {brief.items.map((item) => {
+            const isExpanded = expandedItems.has(item.id);
+            const shortDescription = item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description;
+            
+            return (
+              <div 
+                key={item.id}
+                className="bg-slate-800/50 rounded-xl p-3 hover:bg-slate-700/50 transition-all cursor-pointer border border-slate-700 hover:border-cyan-500/30 group"
+                onClick={() => {
+                  setSelectedEvent({
+                    title: item.title,
+                    detail: item.description,
+                    url: item.url,
+                    source: brief.source || 'Global Issues',
+                    publishedAt: item.date,
+                    category: 'brief'
+                  });
+                }}
+              >
+                <div className="flex justify-between items-start gap-2">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-[10px] px-1.5 py-0.5 bg-cyan-600/30 text-cyan-300 rounded">
+                        {formatDate(item.date)}
+                      </span>
+                    </div>
+
+                    <h4 className="font-medium text-sm leading-tight group-hover:text-cyan-300 transition">
+                      {item.title}
+                    </h4>
+
+                    <p className={`text-xs text-gray-400 mt-1 ${isExpanded ? '' : 'line-clamp-2'}`}>
+                      {isExpanded ? item.description : shortDescription}
+                    </p>
+
+                    {item.description.length > 100 && (
+                      <button 
+                        className="text-[10px] text-cyan-400/70 hover:text-cyan-300 mt-1 inline-flex items-center gap-1"
+                        onClick={(e) => {
+                          e.stopPropagation(); // важно!
+                          toggleExpand(item.id);
+                        }}
+                      >
+                        <i className={`fas fa-chevron-${isExpanded ? 'up' : 'down'} text-[8px]`}></i>
+                        {isExpanded ? 'Show less' : 'Read more'}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        
+        <div className="mt-3 pt-2 border-t border-slate-700 text-center">
+          <span className="text-[10px] text-gray-500">
+            <i className="fas fa-info-circle mr-1"></i>
+            Click on any news to expand, click external link to open full article
+          </span>
         </div>
       </div>
       
