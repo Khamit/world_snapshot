@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useGlobalData } from "../hooks/useGlobalData";
-import { Category, NewsEvent } from "../types"; // ← импортируйте NewsEvent
+import { Category, NewsEvent } from "../types";
 import NewsModal from './NewsModal';
 
 const categories: { key: Category; icon: string; title: string; color: string }[] = [
@@ -15,7 +15,7 @@ const categories: { key: Category; icon: string; title: string; color: string }[
 
 export default function SummaryCards() {
   const { data, loading, error, useRemote, setUseRemote } = useGlobalData();
-  const [selectedEvent, setSelectedEvent] = useState<NewsEvent | null>(null);  // ← тип NewsEvent
+  const [selectedEvent, setSelectedEvent] = useState<NewsEvent | null>(null);
   
   if (loading) {
     return (
@@ -32,6 +32,17 @@ export default function SummaryCards() {
   if (error) {
     console.error("Error loading data:", error);
   }
+
+  // Вычисляем общее количество новостей
+  const allEvents = data?.globalEvents || [];
+  const totalEvents = allEvents.length;
+
+  // Функция для подсчета процентов по категории
+  const getCategoryPercentage = (categoryKey: string) => {
+    const count = allEvents.filter((e: NewsEvent) => e.category === categoryKey).length;
+    if (totalEvents === 0) return 0;
+    return Math.round((count / totalEvents) * 100);
+  };
 
   return (
     <>
@@ -58,19 +69,38 @@ export default function SummaryCards() {
           </div>
         )}
 
+        {/* Статистика по категориям */}
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
           {categories.map((cat) => {
-            // Исправлено: используем NewsEvent вместо any
             const itemsAuto = data?.globalEvents?.filter((e: NewsEvent) => e.category === cat.key) || [];
             const itemsAdmin = data?.adminEvents?.filter((e: NewsEvent) => e.category === cat.key) || [];
             const items = [...itemsAdmin, ...itemsAuto];
+            const percentage = getCategoryPercentage(cat.key);
             
             return (
               <div key={cat.key} className="bg-slate-800/70 border border-slate-700 rounded-2xl p-3 backdrop-blur-sm hover:border-slate-600 transition-all">
-                <div className={`flex items-center gap-2 ${cat.color}`}>
-                  <i className={`${cat.icon} text-base`}></i>
-                  <span className="font-semibold text-sm">{cat.title}</span>
+                <div className={`flex items-center justify-between ${cat.color}`}>
+                  <div className="flex items-center gap-2">
+                    <i className={`${cat.icon} text-base`}></i>
+                    <span className="font-semibold text-sm">{cat.title}</span>
+                  </div>
+                  {/* Процент новостей */}
+                  <div className="text-xs font-bold bg-slate-700/50 px-2 py-0.5 rounded-full">
+                    {percentage}%
+                  </div>
                 </div>
+                
+                {/* Прогресс-бар */}
+                <div className="mt-2 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full rounded-full transition-all duration-500"
+                    style={{ 
+                      width: `${percentage}%`,
+                      backgroundColor: cat.color.replace('text-', 'bg-').replace('-300', '-500')
+                    }}
+                  ></div>
+                </div>
+                
                 <div className="text-xs text-gray-300 mt-2 space-y-1.5">
                   {items.slice(0, 3).map((e: NewsEvent) => (
                     <div 
@@ -78,7 +108,7 @@ export default function SummaryCards() {
                       className="leading-relaxed border-l-2 border-cyan-500/50 pl-2 cursor-pointer hover:bg-slate-700/30 transition"
                       onClick={() => setSelectedEvent(e)}
                     >
-                      • {e.title}
+                      • {e.title.length > 60 ? e.title.substring(0, 60) + '...' : e.title}
                       {e.source === 'admin' && (
                         <div className="text-[9px] text-gray-400 mt-0.5">
                           admin · {e.createdAt && new Date(e.createdAt).toLocaleDateString()}
@@ -88,6 +118,11 @@ export default function SummaryCards() {
                   ))}
                   {items.length === 0 && (
                     <div className="text-gray-500 italic">no data</div>
+                  )}
+                  {items.length > 3 && (
+                    <div className="text-[10px] text-cyan-400/70 text-center pt-1">
+                      +{items.length - 3} more
+                    </div>
                   )}
                 </div>
               </div>
@@ -132,6 +167,12 @@ export default function SummaryCards() {
               <div><i className="fas fa-tree mr-1"></i> eco-crises: {data?.globalMetrics.ecoCrises || "—"}</div>
             </div>
           </div>
+        </div>
+        
+        {/* Общая статистика внизу */}
+        <div className="text-center text-[10px] text-gray-500 pt-2 border-t border-slate-700">
+          Total news: {totalEvents} | 
+          Last updated: {data?.lastUpdated ? new Date(data.lastUpdated).toLocaleString() : '—'}
         </div>
       </div>
       

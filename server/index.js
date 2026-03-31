@@ -640,6 +640,60 @@ app.post('/api/admin/events', adminAuth, (req, res) => {
   }
 });
 
+// UPDATE admin event
+app.put('/api/admin/events/:id', adminAuth, (req, res) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+    
+    const adminEventsPath = path.join(__dirname, '../src/data/admin_events.json');
+    
+    if (!fs.existsSync(adminEventsPath)) {
+      return res.status(404).json({ error: 'No admin events found' });
+    }
+    
+    let adminEvents = JSON.parse(fs.readFileSync(adminEventsPath, 'utf8'));
+    // Убрали : any
+    const eventIndex = adminEvents.findIndex((e) => e.id === id);
+    
+    if (eventIndex === -1) {
+      return res.status(404).json({ error: 'Event not found' });
+    }
+    
+    // Обновляем событие
+    adminEvents[eventIndex] = {
+      ...adminEvents[eventIndex],
+      ...updates,
+      updatedAt: new Date().toISOString()
+    };
+    
+    fs.writeFileSync(adminEventsPath, JSON.stringify(adminEvents, null, 2));
+    
+    // Также обновляем в основном events.json если там есть это событие
+    const mainEventsPath = path.join(__dirname, '../src/data/events.json');
+    if (fs.existsSync(mainEventsPath)) {
+      const mainData = JSON.parse(fs.readFileSync(mainEventsPath, 'utf8'));
+      // Убрали : any и добавили проверку на существование
+      const mainEventIndex = mainData.adminEvents ? mainData.adminEvents.findIndex((e) => e.id === id) : -1;
+      if (mainEventIndex !== -1 && mainData.adminEvents) {
+        mainData.adminEvents[mainEventIndex] = {
+          ...mainData.adminEvents[mainEventIndex],
+          ...updates,
+          updatedAt: new Date().toISOString()
+        };
+        mainData.lastUpdated = new Date().toISOString();
+        fs.writeFileSync(mainEventsPath, JSON.stringify(mainData, null, 2));
+      }
+    }
+    
+    res.json({ success: true, event: adminEvents[eventIndex] });
+    
+  } catch (error) {
+    console.error('Error updating event:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.delete('/api/admin/events/:id', adminAuth, (req, res) => {
   try {
     const { id } = req.params;
