@@ -1,0 +1,391 @@
+{
+  "globalEvents": [
+    {
+      "id": "news-1774882101053-m6bllgtwv",
+      "category": "military",
+      "title": "Spain Tracking, Closing Airspace to U.S. Aircraft Participating in Iran War",
+      "detail": "Spain has closed its airspace to flights involved in the United States' Operation Epic Fury against Iran's Islamic regime.",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://www.breitbart.com/europe/2026/03/30/spain-closes-airspace-to-u-s-aircraft-participating-in-the-war-in-iran/",
+      "source": "Breitbart News Network",
+      "publishedAt": "2026-03-30T02:48:15Z"
+    },
+    {
+      "id": "news-1774882101054-i3r0325hz",
+      "category": "military",
+      "title": "Minimally invasive valve repair lowers hospitalizations in heart failure patients",
+      "detail": "At two years of follow-up, patients with a poorly functioning tricuspid valve in the heart who received optimal medical therapy plus a minimally invasive procedure using a clip to repair the valve were significantly less likely to die, have a heart attack or stroke and 40% less likely to be hospitalized for heart failure compared with similar patients who were randomly assigned to optimal medical therapy alone.",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://www.news-medical.net/news/20260329/Minimally-invasive-valve-repair-lowers-hospitalizations-in-heart-failure-patients.aspx",
+      "source": "News-Medical.net",
+      "publishedAt": "2026-03-30T02:46:00Z"
+    },
+    {
+      "id": "news-1774882101063-3xl25wwea",
+      "category": "military",
+      "title": "US-Israel-Iran War LIVE Updates: Trump Says Wants To Take Iran’s Oil",
+      "detail": "US-Israel-Iran War LIVE Updates: As the war between the United States, Israel and Iran has entered its fourth week, here are the latest updates.",
+      "intensity": 100,
+      "sentimentScore": -38,
+      "url": "https://www.outlookindia.com/international/usisraeliran-war-live-updates-middle-east-conflict-enters-second-month",
+      "source": "Outlook India",
+      "publishedAt": "2026-03-30T02:44:27Z"
+    },
+    {
+      "id": "news-1774882102995-uu4l5kmdq",
+      "category": "disasters",
+      "title": "Flights diverted",
+      "detail": "The attacks come after Iran warned its forces are 'waiting for American soldiers to enter on the ground so they can rain fire upon them'.",
+      "intensity": 100,
+      "sentimentScore": -50,
+      "url": "https://www.express.co.uk/news/world/2188084/dubai-explosions-live-flights-diverted",
+      "source": "Daily Express",
+      "publishedAt": "2026-03-30T02:43:00Z"
+    },
+    {
+      "id": "news-1774882102996-q13ivlf6t",
+      "category": "disasters",
+      "title": "Property feud: 1 dies as son sets father, stepmom, siblings on fire",
+      "detail": "Hyderabad: About a week after a 30-year-old man allegedly set his father, stepmother and two half-brothers on fire in Pargi of Vikarabad district over.",
+      "intensity": 75,
+      "sentimentScore": 0,
+      "url": "https://timesofindia.indiatimes.com/city/hyderabad/property-feud-1-dies-as-son-sets-father-stepmom-siblings-on-fire/articleshow/129887048.cms",
+      "source": "Times of India",
+      "publishedAt": "2026-03-30T02:36:00Z"
+    },
+    {
+      "id": "news-1774882102996-y0r76ba2r",
+      "category": "disasters",
+      "title": "No reported injuries in southwest Baltimore house fire",
+      "detail": "Fire crews battled a two-alarm house fire in southwest Baltimore on Sunday night.",
+      "intensity": 75,
+      "sentimentScore": 0,
+      "url": "https://foxbaltimore.com/news/local/no-reported-injuries-southwest-baltimore-house-fire",
+      "source": "Baltimore News",
+      "publishedAt": "2026-03-30T02:34:57Z"
+    },
+    {
+      "id": "news-1774882102997-vbfai81ig",
+      "category": "disasters",
+      "title": "Brush fire in Santee riverbed prompts evacuation of shoppers in nearby stores",
+      "detail": "Deputies were helping to evacuate people from stores along Town Center Parkway.",
+      "intensity": 90,
+      "sentimentScore": 0,
+      "url": "https://www.sandiegouniontribune.com/2026/03/29/brush-fire-in-santee-riverbed-prompts-evacuation-of-shoppers-in-nearby-stores/",
+      "source": "San Diego Union-Tribune",
+      "publishedAt": "2026-03-30T02:32:38Z"
+    },
+    {
+      "id": "news-1774882102998-w7cqm9o1k",
+      "category": "disasters",
+      "title": "Sonam Kapoor Welcomes Second Child With Husband Anand Ahuja",
+      "detail": "The post received a flood of congratulatory comments from fans and fellow celebrities",
+      "intensity": 75,
+      "sentimentScore": 0,
+      "url": "https://www.deccanchronicle.com/entertainment/sonam-kapoor-welcomes-second-child-with-husband-anand-ahuja-1947232",
+      "source": "Deccan Chronicle",
+      "publishedAt": "2026-03-30T02:24:59Z"
+    },
+    {
+      "id": "news-1774882102999-ip1eckuof",
+      "category": "disasters",
+      "title": "Santee California Fire: Vegetation Blaze Near Riverbed Triggers Major Fire Department Response | Watch",
+      "detail": "A brush fire in Santee, California, triggered a major emergency response, with firefighters and helicopters deployed to contain the vegetation blaze near River Rock Court., US News, Times Now",
+      "intensity": 100,
+      "sentimentScore": -5,
+      "url": "https://www.timesnownews.com/world/us/us-news/santee-california-fire-vegetation-blaze-near-riverbed-triggers-major-fire-department-response-watch-article-153952894",
+      "source": "Times Now",
+      "publishedAt": "2026-03-30T02:24:20Z"
+    },
+    {
+      "id": "news-1774882103000-mf2sbrn62",
+      "category": "disasters",
+      "title": "SBS Transit bus catches fire along TPE, no injuries reported",
+      "detail": "A photo uploaded on social media shows firefighters putting out a fire on the rear of a green bus. Read more at straitstimes.com.",
+      "intensity": 95,
+      "sentimentScore": -10,
+      "url": "https://www.straitstimes.com/singapore/sbs-transit-bus-catches-fire-along-tpe-no-injuries-reported",
+      "source": "The Straits Times",
+      "publishedAt": "2026-03-30T02:20:00Z"
+    },
+    {
+      "id": "news-1774882104895-er62iip3k",
+      "category": "economy",
+      "title": "Stock Market News Today Updates: GIFT Nifty Hints At Gap-Down Open; Brent Crude Surges To Near $116 A Barrel",
+      "detail": "The GIFT Nifty traded at 22,566, compared to the Friday's index close of 22,819.60.",
+      "intensity": 55,
+      "sentimentScore": 0,
+      "url": "https://www.ndtvprofit.com/markets/stock-market-crash-news-live-updates-share-market-today-sensex-nifty-gift-nifty-iran-war-us-attack-oil-market-impact-economy-fno-expiry-futures-option-11284081",
+      "source": "NDTV Profit",
+      "publishedAt": "2026-03-30T02:47:00Z"
+    },
+    {
+      "id": "news-1774882104895-r7ysabngc",
+      "category": "economy",
+      "title": "Breakout stocks to buy or sell: Sumeet Bagadia recommends five shares to buy today - 30 March 2026",
+      "detail": "The Indian stock market closed with sharp losses on Friday amid rising tensions in the Middle East. Sumeet Bagadia of Choice Broking recommends five breakout stocks to buy today amid market uncertainty.",
+      "intensity": 55,
+      "sentimentScore": 0,
+      "url": "https://www.livemint.com/market/stock-market-news/breakout-stocks-to-buy-or-sell-sumeet-bagadia-recommends-five-shares-to-buy-today-30-march-2026-11774836338248.html",
+      "source": "Livemint",
+      "publishedAt": "2026-03-30T02:42:18Z"
+    },
+    {
+      "id": "news-1774882104896-vlezunuzt",
+      "category": "military",
+      "title": "Stock Market LIVE: GIFT Nifty indicates lower open; Kospi falls over 5% as US-Iran war drags",
+      "detail": "Sensex Today | Stock Market LIVE Updates, Monday: The GIFT Nifty indicated that the Nifty50 may open lower. Asian markets logged losses as the prolonged US-Iran war weighed on investors' minds",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://www.business-standard.com/markets/news/stock-market-live-march-30-nse-bse-sensex-today-nifty-gift-nifty-us-iran-war-brent-crude-oil-prices-ipos-share-market-today-126033000075_1.html",
+      "source": "Business Standard",
+      "publishedAt": "2026-03-30T02:25:13Z"
+    },
+    {
+      "id": "news-1774882104896-atmw875kn",
+      "category": "economy",
+      "title": "Stock Market Today LIVE: Gift Nifty signals gap-down start for Nifty 50, Sensex; Asian markets slip, oil prices jump",
+      "detail": "Stock Market Today LIVE: Asian markets traded sharply lower, while the US stock market tumbled last week, with the Dow Jones, S&P 500 and Nasdaq each suffering their fifth straight weekly decline, the longest such streak in nearly four years.",
+      "intensity": 75,
+      "sentimentScore": -15,
+      "url": "https://www.livemint.com/market/stock-market-news/sensex-today-stock-market-today-nifty-gold-rate-today-silver-rate-today-us-iran-war-crude-oil-prices-trump-30-march-2026-11774835572512.html",
+      "source": "Livemint",
+      "publishedAt": "2026-03-30T01:59:58Z"
+    },
+    {
+      "id": "news-1774882104898-et6fx03ok",
+      "category": "economy",
+      "title": "Nifty 50, Sensex today: What to expect from Indian stock market in trade on March 30",
+      "detail": "Nifty 50, Sensex today: The trends on Gift Nifty also indicate a gap-down start for the Indian benchmark index. The Gift Nifty was trading around 22,551 level, a discount of nearly 266 points from the Nifty futures’ previous close.",
+      "intensity": 75,
+      "sentimentScore": -15,
+      "url": "https://www.livemint.com/market/stock-market-news/nifty-50-sensex-today-what-to-expect-from-indian-stock-market-in-trade-on-march-30-11774800551610.html",
+      "source": "Livemint",
+      "publishedAt": "2026-03-30T01:45:58Z"
+    },
+    {
+      "id": "news-1774882104899-mdubo276b",
+      "category": "economy",
+      "title": "Buy or sell: Vaishali Parekh recommends three stocks to buy today - 30 March 2026",
+      "detail": "Buy or sell: Vaishali Parekh recommends three stocks to buy today — ONGC, Aster DM Healthcare, and NALCO. Explains buying, profit-booking range, and stock market outlook",
+      "intensity": 55,
+      "sentimentScore": 0,
+      "url": "https://www.livemint.com/market/buy-or-sell-vaishali-parekh-recommends-three-stocks-to-buy-today-30-march-2026-11774833188809.html",
+      "source": "Livemint",
+      "publishedAt": "2026-03-30T01:38:41Z"
+    },
+    {
+      "id": "news-1774882104899-9ikbvmpwo",
+      "category": "military",
+      "title": "From Gift Nifty, Iran war, Nikkei, Kospi slump to oil price: 10 things that changed for Indian stock market over weekend",
+      "detail": "Gift Nifty was trading around 22,555 level, a discount of nearly 261 points from the Nifty futures’ previous close, indicating a gap-down start for the Indian stock market indices.",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-iran-war-nikkei-kospi-slump-to-oil-price-10-things-that-changed-for-indian-stock-market-over-weekend-11774800816033.html",
+      "source": "Livemint",
+      "publishedAt": "2026-03-30T01:35:38Z"
+    },
+    {
+      "id": "news-1774882107219-008t4ogi8",
+      "category": "health",
+      "title": "Trump Says Intel Chief Tulsi Gabbard 'Softer' Than Him on Iran Nuclear Issue",
+      "detail": "US News is a recognized leader in college, grad school, hospital, mutual fund, and car rankings. Track elected officials, research health conditions, and find news you can use in politics, business, health, and education.",
+      "intensity": 65,
+      "sentimentScore": 5,
+      "url": "https://www.usnews.com/news/world/articles/2026-03-29/trump-says-intel-chief-tulsi-gabbard-softer-than-him-on-iran-nuclear-issue",
+      "source": "U.S. News & World Report",
+      "publishedAt": "2026-03-30T02:48:00Z"
+    },
+    {
+      "id": "news-1774882107220-py1obguxd",
+      "category": "health",
+      "title": "US CEO apologises for laying off employee with terminal brain cancer: ‘Not a factor in layoff decision’",
+      "detail": "Epic Games CEO Tim Sweeney had apologised for laying off an employee with brain cancer, leading him to lose his health insurance.",
+      "intensity": 65,
+      "sentimentScore": 0,
+      "url": "https://www.hindustantimes.com/trending/us/us-ceo-apologises-for-laying-off-employee-with-terminal-brain-cancer-not-a-factor-in-layoff-decision-101774838254603.html",
+      "source": "Hindustan Times",
+      "publishedAt": "2026-03-30T02:46:33Z"
+    },
+    {
+      "id": "news-1774882107220-l8fnfk7qv",
+      "category": "health",
+      "title": "New drug sotatercept shows benefit in CpcPH-HFpEF patients",
+      "detail": "Patients who have heart failure with preserved ejection fraction (HFpEF) and high blood pressure in the lungs (pulmonary hypertension) experienced significant improvements in blood pressure and vascular health after taking the drug sotatercept, according to a study presented at the American College of Cardiology's Annual Scientific Session (ACC.26).",
+      "intensity": 65,
+      "sentimentScore": 0,
+      "url": "https://www.news-medical.net/news/20260329/New-drug-sotatercept-shows-benefit-in-CpcPH-HFpEF-patients.aspx",
+      "source": "News-Medical.net",
+      "publishedAt": "2026-03-30T02:43:00Z"
+    },
+    {
+      "id": "news-1774882107221-wklh6bdga",
+      "category": "health",
+      "title": "Flanagan leaves hospital, Eels gun out for two months",
+      "detail": "St George Illawarra's Kyle Flanagan has been cleared of a serious neck injury and released from hospital following...",
+      "intensity": 85,
+      "sentimentScore": -15,
+      "url": "https://www.canberratimes.com.au/story/9209869/flanagan-leaves-hospital-eels-gun-out-for-two-months/",
+      "source": "The Canberra Times",
+      "publishedAt": "2026-03-30T02:42:22Z"
+    },
+    {
+      "id": "news-1774882107221-cs1upczyl",
+      "category": "health",
+      "title": "Left-ventricular unloading during angioplasty fails to improve patient outcomes",
+      "detail": "The first randomized trial to compare standard percutaneous coronary intervention (PCI), also known as coronary angioplasty, with PCI accompanied by the use of a temporary, miniaturized pump to support the heart in patients with both severe coronary heart disease and moderate to severe heart failure found no significant difference between the two approaches.",
+      "intensity": 65,
+      "sentimentScore": 0,
+      "url": "https://www.news-medical.net/news/20260329/Left-ventricular-unloading-during-angioplasty-fails-to-improve-patient-outcomes.aspx",
+      "source": "News-Medical.net",
+      "publishedAt": "2026-03-30T02:38:00Z"
+    },
+    {
+      "id": "news-1774882107221-8648tqtuw",
+      "category": "disasters",
+      "title": "NRL star Tui Kamikamica is rushed to hospital after suffering a suspected stroke aged just 31",
+      "detail": "Tui Kamikamica played in the Storm's shock loss to North Queensland on Saturday, just over a day before the medical episode struck.",
+      "intensity": 95,
+      "sentimentScore": -15,
+      "url": "https://www.dailymail.co.uk/sport/nrl/article-15690243/NRL-star-Tui-Kamikamica-rushed-hospital-suffering-suspected-stroke-aged-just-31.html",
+      "source": "Daily Mail Online",
+      "publishedAt": "2026-03-30T02:34:39Z"
+    },
+    {
+      "id": "news-1774882107222-0rlif3rms",
+      "category": "health",
+      "title": "Trump Says White House Ballroom Is Ahead of Schedule",
+      "detail": "US News is a recognized leader in college, grad school, hospital, mutual fund, and car rankings. Track elected officials, research health conditions, and find news you can use in politics, business, health, and education.",
+      "intensity": 65,
+      "sentimentScore": 5,
+      "url": "https://www.usnews.com/news/politics/articles/2026-03-29/trump-says-white-house-ballroom-is-ahead-of-schedule",
+      "source": "U.S. News & World Report",
+      "publishedAt": "2026-03-30T02:33:00Z"
+    },
+    {
+      "id": "news-1774882107222-6fa8aexxx",
+      "category": "health",
+      "title": "7 natural ways to keep your home and garden pest-free this summer",
+      "detail": "Summer warmth often brings unwanted visitors too, from ants and cockroaches indoors to aphids, caterpillars, and mosquitoes outside. The good thing is that you do not always need harsh chemicals to manage them. A natural pest-control routine works best when it focuses on prevention, plant health, and simple physical barriers.",
+      "intensity": 85,
+      "sentimentScore": -15,
+      "url": "https://timesofindia.indiatimes.com/life-style/home-garden/7-natural-ways-to-keep-your-home-and-garden-pest-free-this-summer/photostory/129750912.cms",
+      "source": "Times of India",
+      "publishedAt": "2026-03-30T02:30:00Z"
+    },
+    {
+      "id": "news-1774882109271-g7dc7xbtn",
+      "category": "politics",
+      "title": "Tripura to introduce pre-primary units in 450 schools from next academic session",
+      "detail": "Tripura to introduce pre-primary units in 450 schools from 2026-27, raising total to 695. Move aims to boost early childhood education and government school enrolment.",
+      "intensity": 60,
+      "sentimentScore": 5,
+      "url": "https://indianexpress.com/article/education/tripura-to-introduce-pre-primary-units-in-450-schools-from-next-academic-session-10608841/",
+      "source": "The Indian Express",
+      "publishedAt": "2026-03-30T02:43:41Z"
+    },
+    {
+      "id": "news-1774882109272-c9tr1i35c",
+      "category": "military",
+      "title": "Australian Government Halves Fuel Excise Amid Price Surge",
+      "detail": "By James Glynn\nSYDNEY--The Australian government will sharply reduce federal taxes on road use and fuel costs to cushion the impact on consumers as gasoline prices surge amid the ongoing war in...",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://www.marketscreener.com/news/australian-government-halves-fuel-excise-amid-price-surge-ce7e51d8de8af025",
+      "source": "MarketScreener",
+      "publishedAt": "2026-03-30T02:39:14Z"
+    },
+    {
+      "id": "news-1774882109272-whtbpc887",
+      "category": "politics",
+      "title": "Will DMK retain its safe Harbour?",
+      "detail": "The Harbour constituency in which Fort St George, the nerve centre of the state government, is located, has traditionally been a DMK bastion.",
+      "intensity": 60,
+      "sentimentScore": 0,
+      "url": "https://www.newindianexpress.com/states/tamil-nadu/2026/Mar/30/will-dmk-retain-its-safe-harbour",
+      "source": "The New Indian Express",
+      "publishedAt": "2026-03-30T02:33:43Z"
+    },
+    {
+      "id": "news-1774882109274-i0t3bl91d",
+      "category": "military",
+      "title": "Israel adds US$10 billion to its war chest with defence budget increase",
+      "detail": "Opposition calls 2026 budget ‘greatest theft’ in Israel’s history as the government protects settlement funds while cutting public services.",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://www.scmp.com/news/world/middle-east/article/3348339/israel-adds-us10-billion-its-war-chest-defence-budget-increase",
+      "source": "South China Morning Post",
+      "publishedAt": "2026-03-30T02:26:31Z"
+    },
+    {
+      "id": "news-1774882111218-8r3ortahq",
+      "category": "health",
+      "title": "Why is NASA spending $100 billion to return to the moon? Depends on who you ask.",
+      "detail": "It could be a race with China, sustainability, or simply that the lunar surface is the next logical place for NASA to showcase its technological progress.",
+      "intensity": 65,
+      "sentimentScore": 5,
+      "url": "https://www.japantimes.co.jp/news/2026/03/30/world/nasa-100-billion-return-to-moon/",
+      "source": "The Japan Times ",
+      "publishedAt": "2026-03-30T02:44:57Z"
+    }
+  ],
+  "globalMetrics": {
+    "dailyDeaths": 174194,
+    "hourlyDeaths": 7258,
+    "minuteDeaths": 121,
+    "secondDeaths": 2.02,
+    "deathsChange": "1.1",
+    "activeConflicts": 19,
+    "ecoCrises": 13,
+    "politicalInstabilityDelta": "10",
+    "scientificBreakthroughs": 3,
+    "healthCrises": 8,
+    "economicStress": 5
+  },
+  "adminEvents": [
+    {
+      "category": "popular",
+      "title": "WAR/POLITICS - 2026 Mar",
+      "detail": "Ukraine war escalation continues across Eastern Europe as multiple drone incidents were recorded across Baltic airspace in late March 2026, with at least 3 confirmed airspace violations reported by Lithuania, Latvia, and Estonia within a 48-hour window, intensifying NATO air-defense readiness along the 1,450 km eastern flank.",
+      "intensity": 80,
+      "id": "admin-1774799729145",
+      "createdAt": "2026-03-29T15:55:29.145Z",
+      "source": "admin"
+    },
+    {
+      "category": "popular",
+      "title": "TECHNOLOGY - 2026 Mar",
+      "detail": "Agentic AI transition accelerates in 2026, with over 60% of new enterprise AI deployments shifting from generative models to autonomous task-executing systems, while more than 12 major countries expand “digital sovereignty” policies aimed at controlling AI infrastructure, including GPU allocation exceeding 10,000 H100-equivalent units in national compute programs.",
+      "intensity": 80,
+      "id": "admin-1774799679872",
+      "createdAt": "2026-03-29T15:54:39.872Z",
+      "source": "admin"
+    },
+    {
+      "category": "popular",
+      "title": "ECONOMIC - 2026/Mar",
+      "detail": "Global economic fragmentation deepens as analysts describe a persistent K-shaped recovery, with household debt linked to buy-now-pay-later services exceeding double-digit annual growth rates in multiple OECD economies, while supply-chain volatility affects more than 30% of critical manufacturing inputs across semiconductor and energy sectors.",
+      "intensity": 80,
+      "id": "admin-1774799627902",
+      "createdAt": "2026-03-29T15:53:47.902Z",
+      "source": "admin"
+    }
+  ],
+  "lightningBrief": {
+    "items": [
+      {
+        "id": "brief-1774882116147-0",
+        "title": "Experts, Rights Groups Warn of Crisis of Obstetric ViolenceCSW70: Women’s Equality under SiegeMiddle East war: UN initiatives support mediation efforts, ‘lifesaving’ fertiliser shipmentsKidnapped and tortured on an infamous migration route to Saudi ArabiaEscalating Violence and Influx of Returnees in DRC Fuel Regional InstabilityThe “Extremely Dangerous and Unpredictable” situation in Middle East and BeyondCaribbean Leaders and Civil Society Prepare for Global Push on Fossil Fuel Phase-OutWar in Iran, Middle East Threatens Global Agrifood SystemsPORTUGAL: ‘The Far Right’s Electoral Legitimacy Can Eventually Become Governmental Power’Syria: UN Commission documents grave violations in July 2025 escalation in SweidaShare thisLink to this page from your site/blog",
+        "description": "Monday, March 30, 2026 - Inter Press Service\nBRATISLAVA, March 30 (IPS)  - Government and medical professionals must implement systematic changes to d",
+        "url": "https://www.globalissues.org/news/2026/03/30/42660",
+        "date": "Monday, March 30, 2026Monday, March 30, 2026Saturday, March 28, 2026Saturday, March 28, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026",
+        "category": "brief"
+      }
+    ],
+    "lastUpdated": "2026-03-30T14:48:36.147Z",
+    "source": "globalissues.org"
+  },
+  "lastUpdated": "2026-03-30T14:48:36.148Z"
+}

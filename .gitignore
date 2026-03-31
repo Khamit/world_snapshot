@@ -1,0 +1,20 @@
+node_modules
+dist
+.env
+dev.txt
+
+# Server-generated data
+src/data/events.json
+src/data/latest.json
+src/data/deaths_statistics.json
+src/data/lightning_brief.json
+src/data/admin_*.json
+src/data/20*/   # исторические снапшоты
+
+# Environment
+.env
+.env.local
+.env.production
+
+# OS
+.DS_Store

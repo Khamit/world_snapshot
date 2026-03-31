@@ -1,0 +1,391 @@
+{
+  "globalEvents": [
+    {
+      "id": "news-1774847867182-ez2xpvp31",
+      "category": "military",
+      "title": "Twelve drones, one AWACS, multiple tankers: Iran is not just fighting back, it is dismantling America's air power | Analysis",
+      "detail": "Iranian missiles and drones struck the Prince Sultan Air Base in Saudi Arabia, roughly 96 kilometres southeast of Riyadh, damaging multiple KC-135 tanker aircraft that refuel American jets mid-flight, and hitting an E-3 Sentry AWACS aircraft, one of the most sophisticated airborne surveillance systems in the United States military.",
+      "intensity": 100,
+      "sentimentScore": -35,
+      "url": "https://zeenews.india.com/world/twelve-drones-one-awacs-multiple-tankers-iran-is-not-just-fighting-back-it-is-dismantling-americas-air-power-analysis-3031745.html",
+      "source": "Zee News",
+      "publishedAt": "2026-03-29T17:16:27Z"
+    },
+    {
+      "id": "news-1774847867183-5fz4obc57",
+      "category": "military",
+      "title": "Dalal Street Week Ahead: West Asia crisis, oil prices, FII flow, rupee, auto sales among 10 key factors to watch",
+      "detail": "In the truncated week starting from March 30, the market is expected to remain in control of bears with majorly focussing on West Asia war, oil prices, FIIs mood and Indian rupee movement against the US dollar.",
+      "intensity": 100,
+      "sentimentScore": -27,
+      "url": "https://www.moneycontrol.com/news/business/markets/dalal-street-week-ahead-west-asia-crisis-oil-prices-fii-flow-rupee-auto-sales-among-10-key-factors-to-watch-13873682.html",
+      "source": "Moneycontrol",
+      "publishedAt": "2026-03-29T17:15:46Z"
+    },
+    {
+      "id": "news-1774847867191-yetcr7hm4",
+      "category": "military",
+      "title": "Trump shares letter about ‘only way to Heaven’ as Pope Leo says ‘God doesn't listen to prayers of those who make war'",
+      "detail": "US President Donald Trump shared a letter from evangelist Franklin Graham discussing faith and the path to Heaven. Graham praised Trump’s leadership in peacemaking and urged conservatives to unite against the Democrat agenda. This follows Graham’s prior endorsement of Trump at CPAC.",
+      "intensity": 70,
+      "sentimentScore": 0,
+      "url": "https://www.livemint.com/news/us-news/trump-shares-letter-about-only-way-to-heaven-as-pope-leo-says-god-doesnt-listen-to-prayers-of-those-who-make-war-11774803647870.html",
+      "source": "Livemint",
+      "publishedAt": "2026-03-29T17:13:46Z"
+    },
+    {
+      "id": "news-1774847867192-rpvwuuq7a",
+      "category": "military",
+      "title": "Three arrested after attack outside Irlam pub leaves man seriously injured",
+      "detail": "Three men have now been arrested in connection with the incident",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://www.manchestereveningnews.co.uk/news/greater-manchester-news/three-arrested-after-attack-outside-33680909",
+      "source": "Manchester Evening News",
+      "publishedAt": "2026-03-29T17:13:01Z"
+    },
+    {
+      "id": "news-1774847867192-yt5841z7j",
+      "category": "military",
+      "title": "Foiled 'terror attack' outside Bank of America in Paris 'could be linked to Iran war'",
+      "detail": "THREE people have been arrested over a foiled \"bomb attack\" in Paris which could be connected to the war with Iran, authorities say.\nA suspect,...",
+      "intensity": 100,
+      "sentimentScore": -60,
+      "url": "https://www.thesun.ie/news/16751355/foiled-terror-attack-bank-america-paris-linked-iran-war-cops-arrest-three/",
+      "source": "The Irish Sun",
+      "publishedAt": "2026-03-29T17:11:27Z"
+    },
+    {
+      "id": "news-1774847867193-evr1ldy0s",
+      "category": "military",
+      "title": "Paramilitary attack kills at least 14 in central Sudan, group says",
+      "detail": "CAIRO (AP) — An attack by Sudanese paramilitaries and their allied rebels in the central region of Kordofan killed at least 14 people…",
+      "intensity": 100,
+      "sentimentScore": -43,
+      "url": "https://wtop.com/world/2026/03/paramilitary-attack-kills-at-least-14-in-central-sudan-group-says/",
+      "source": "WTOP",
+      "publishedAt": "2026-03-29T17:05:53Z"
+    },
+    {
+      "id": "news-1774847869924-3mjepveis",
+      "category": "disasters",
+      "title": "DC fire leaves one person injured, 2 displaced",
+      "detail": "A fire in northeast D.C. Saturday night left one person injured and two displaced.",
+      "intensity": 75,
+      "sentimentScore": 10,
+      "url": "https://wtop.com/dc/2026/03/dc-fire-leaves-one-person-injured-2-displaced/",
+      "source": "WTOP",
+      "publishedAt": "2026-03-29T17:14:09Z"
+    },
+    {
+      "id": "news-1774847869925-8puem6wc7",
+      "category": "disasters",
+      "title": "Hundreds flee as fire rips through German nightclub",
+      "detail": "3 people were injured in the fire in Kehl, southwestern Germany. Authorities said most of the building will have to be torn down.",
+      "intensity": 90,
+      "sentimentScore": 0,
+      "url": "https://www.scmp.com/news/world/europe/article/3348323/hundreds-flee-fire-rips-through-german-nightclub",
+      "source": "South China Morning Post",
+      "publishedAt": "2026-03-29T17:08:29Z"
+    },
+    {
+      "id": "news-1774847869925-m4b5j7jek",
+      "category": "disasters",
+      "title": "Fire in Bloomfield rowhouse spreads to 4 other buildings on block; no injuries reported",
+      "detail": "A three-alarm fire engulfed a Bloomfield row house Sunday afternoon and spread to four nearby homes, blanketing the densely populated neighborhood with smoke. Pittsburgh Assistant Fire Chief Brian Kokkila said no occupants or firefighters were injured in the blaze. Kokkila said firefighters were dispatched just before 3:30 p.m. to the",
+      "intensity": 75,
+      "sentimentScore": 5,
+      "url": "https://triblive.com/local/fire-in-bloomfield-rowhouse-spreads-to-4-other-buildings-on-block/",
+      "source": "Pittsburgh Tribune-Review",
+      "publishedAt": "2026-03-29T17:02:52Z"
+    },
+    {
+      "id": "news-1774847869925-e8qdfhtwb",
+      "category": "disasters",
+      "title": "1 dead after house fire in Plainwell",
+      "detail": "The victim was pronounced dead at the scene after first responders pulled them from the home.",
+      "intensity": 75,
+      "sentimentScore": 0,
+      "url": "https://www.mlive.com/news/kalamazoo/2026/03/1-dead-after-house-fire-in-plainwell.html",
+      "source": "M Live Michigan ",
+      "publishedAt": "2026-03-29T16:58:25Z"
+    },
+    {
+      "id": "news-1774847869926-srjtj8yfm",
+      "category": "disasters",
+      "title": "Sunny Fire near Deer Park in Napa County contained, over 10 acres burned",
+      "detail": "A vegetation fire that broke out in Napa County on Saturday afternoon has been fully contained after burning a dozen acres, firefighters said.",
+      "intensity": 75,
+      "sentimentScore": 5,
+      "url": "https://www.cbsnews.com/sacramento/news/sunny-fire-napa-county-deer-park-contained-12-acres/",
+      "source": "CBS News",
+      "publishedAt": "2026-03-29T16:57:00Z"
+    },
+    {
+      "id": "news-1774847869926-0u6qgjzzl",
+      "category": "military",
+      "title": "Iran warns US ground troops would be 'set on fire' as regional diplomats meet on the war",
+      "detail": "Israeli Prime Minister Benjamin Netanyahu said Israel will widen its invasion of Lebanon, expanding the 'existing security strip' in that country’s south while targeting the Iranian-backed Hezbollah militant group",
+      "intensity": 100,
+      "sentimentScore": -22,
+      "url": "https://www.moneycontrol.com/world/iran-warns-us-ground-troops-would-be-set-on-fire-as-regional-diplomats-meet-on-the-war-article-13873789.html",
+      "source": "Moneycontrol",
+      "publishedAt": "2026-03-29T16:52:23Z"
+    },
+    {
+      "id": "news-1774847869927-78hw65zlp",
+      "category": "disasters",
+      "title": "Private service set for fallen Chicago firefighter",
+      "detail": "A private funeral for Chicago firefighter Michael Altman, 32, will be held Tuesday after his death from injuries sustained in a Rogers Park fire.",
+      "intensity": 95,
+      "sentimentScore": -20,
+      "url": "https://www.chicagotribune.com/2026/03/29/private-service-rescheduled-michael-altman/",
+      "source": "Chicago Tribune",
+      "publishedAt": "2026-03-29T16:48:41Z"
+    },
+    {
+      "id": "news-1774847869927-fhv9bkb8w",
+      "category": "disasters",
+      "title": "Fire guts house in Gandhi Maidan area, property worth lakhs destroyed",
+      "detail": "Patna: Property worth lakhs of rupees were destroyed in a fire in the house of one Prem Kumar on Daldali Road in Patna’s Gandhi Maidan police station .",
+      "intensity": 75,
+      "sentimentScore": 5,
+      "url": "https://timesofindia.indiatimes.com/city/patna/fire-guts-house-in-gandhi-maidan-area-property-worth-lakhs-destroyed/articleshow/129884011.cms",
+      "source": "Times of India",
+      "publishedAt": "2026-03-29T16:48:00Z"
+    },
+    {
+      "id": "news-1774847871820-6oqnsbz6n",
+      "category": "economy",
+      "title": "\"You can't build clever little games anymore,\" says RPG legend, unless you get lucky like Clair Obscur Expedition 33: \"That doesn't please the stock market\"",
+      "detail": "For each of the big publishers, how many years has it been since they had a major new IP?",
+      "intensity": 55,
+      "sentimentScore": 0,
+      "url": "https://www.gamesradar.com/games/rpg/you-cant-build-clever-little-games-anymore-says-rpg-legend-unless-you-get-lucky-like-clair-obscur-expedition-33-that-doesnt-please-the-stock-market/",
+      "source": "GamesRadar+",
+      "publishedAt": "2026-03-29T17:00:00Z"
+    },
+    {
+      "id": "news-1774847871822-tosheaiig",
+      "category": "economy",
+      "title": "Sudbury students test their trading skills in stock market challenge",
+      "detail": "Cambrian College’s Douglas A. Smith Family School of Business showing high school students the ropes.",
+      "intensity": 75,
+      "sentimentScore": -18,
+      "url": "https://www.nugget.ca/news/sudbury-students-test-their-trading-skills-in-stock-market-challenge",
+      "source": "The North Bay Nugget",
+      "publishedAt": "2026-03-29T16:55:39Z"
+    },
+    {
+      "id": "news-1774847871829-pzftt8ht6",
+      "category": "economy",
+      "title": "Bihar planning market debut of transmission company BSPTCL: State Energy Secy",
+      "detail": "Bihar plans to list its transmission company BSPTCL on the stock market to boost public investment and enhance infrastructure.",
+      "intensity": 55,
+      "sentimentScore": 5,
+      "url": "https://www.thehindubusinessline.com/markets/bihar-planning-market-debut-of-transmission-company-bsptcl-state-energy-secy/article70800205.ece",
+      "source": "The Hindu Business Line",
+      "publishedAt": "2026-03-29T15:44:04Z"
+    },
+    {
+      "id": "news-1774847871829-hwq489j5a",
+      "category": "economy",
+      "title": "Quote of the Day by Warren Buffett: ‘You don't get paid for activity, only for…’",
+      "detail": "Berkshire Hathaway founder and chairman Warren Buffett has offered a wealth of investment advice over the years. Here's his outlook on investment activity in the stock market and being right about bets.",
+      "intensity": 75,
+      "sentimentScore": -10,
+      "url": "https://www.livemint.com/news/us-news/quote-of-the-day-by-warren-buffett-stocks-investing-advice-berkshire-not-activity-you-only-paid-for-being-right-patience-11774793793648.html",
+      "source": "Livemint",
+      "publishedAt": "2026-03-29T15:15:22Z"
+    },
+    {
+      "id": "news-1774847871830-gzwksdjw3",
+      "category": "economy",
+      "title": "Autozi Internet receives NASDAQ notification regarding minimum market value",
+      "detail": "Autozi Internet (AZI) Technology announced that it has received a written notification from The Nasdaq Stock Market dated March 25, 2026 indicat...",
+      "intensity": 55,
+      "sentimentScore": 0,
+      "url": "https://markets.businessinsider.com/news/stocks/autozi-internet-receives-nasdaq-notification-regarding-minimum-market-value-1035974223",
+      "source": "Markets Insider",
+      "publishedAt": "2026-03-29T14:40:06Z"
+    },
+    {
+      "id": "news-1774847871830-wxswb25z2",
+      "category": "economy",
+      "title": "Attention Investors! Stock Market Holidays In April 2026: Full List Of NSE, BSE Closures, Long Weekend Impact, Trading And Settlement Details Explained",
+      "detail": "Stock Market Holidays April 2026: NSE, BSE shut on April 3 and 14; long weekend from March-end may impact trading, settlement cycles.",
+      "intensity": 75,
+      "sentimentScore": -15,
+      "url": "https://www.newsx.com/business/attention-investors-stock-market-holidays-in-april-2026-full-list-of-nse-bse-closures-long-weekend-impact-trading-and-settlement-details-explained-190670/",
+      "source": "NewsX",
+      "publishedAt": "2026-03-29T14:32:23Z"
+    },
+    {
+      "id": "news-1774847871832-ooiktezz5",
+      "category": "economy",
+      "title": "Autozi Internet Technology (Global) Ltd. Receives NASDAQ Notification Regarding Minimum Market Value of Listed Securities",
+      "detail": "BEIJING, March 29, 2026 (GLOBE NEWSWIRE) -- Autozi Internet Technology (Global) Ltd. ('Autozi” or the 'Company”) (Nasdaq: AZI), one of China’s leading and fastest-growing lifecycle automotive service and supply-chain technology platforms, announced today that it has received a written notification (the 'Notification Letter') from The Nasdaq Stock Market LLC ('Nasdaq”) dated March 25, 2026 indicating that the Company is not in compliance with the minimum Market Value of Listed Securities ('MVLS”) of US$50,000,000 set forth in the Nasdaq Listing Rules for continued listing on the Nasdaq Global Market, as its MVLS for the 30 consecutive business days from February 10, 2026 to March 24, 2026 has failed to meet the minimum requirement. Pursuant to Nasdaq Listing Rule 5810(c)(3)(C), the Company has a compliance period of 180 calendar days, or until September 21, 2026, to regain compliance. If at any time during this compliance period the Company’s MVLS closes at US$50,000,000 or more for a minimum of ten consecutive business days, Nasdaq will notify the Company that it has achieved compliance with the MVLS requirement, and the MVLS matter will be closed. In the event the Company does not regain compliance with Rule 5450(b)(2)(A) prior to the expiration of the compliance period, it will receive written notification that its securities are subject to delisting. This notification does not impact the listing and trading of the Company’s securities at this time.",
+      "intensity": 55,
+      "sentimentScore": 0,
+      "url": "https://www.manilatimes.net/2026/03/29/tmt-newswire/globenewswire/autozi-internet-technology-global-ltd-receives-nasdaq-notification-regarding-minimum-market-value-of-listed-securities/2310039",
+      "source": "The Manila Times",
+      "publishedAt": "2026-03-29T14:10:20Z"
+    },
+    {
+      "id": "news-1774847871833-3ym14ofju",
+      "category": "military",
+      "title": "Wall Street Touts ‘Grind Lower’ Trades as Iran Weighs on Stocks",
+      "detail": "As the Iran war heads into a fifth week, Wall Street bank strategists have been touting trades that would pay off if a stock-market selloff is slow and steady.",
+      "intensity": 90,
+      "sentimentScore": -15,
+      "url": "https://news.bloombergtax.com/daily-tax-report/wall-street-touts-grind-lower-trades-as-iran-weighs-on-stocks",
+      "source": "Bloomberg Tax News",
+      "publishedAt": "2026-03-29T14:00:02Z"
+    },
+    {
+      "id": "news-1774847874165-5yyrji0fx",
+      "category": "health",
+      "title": "CM Revanth Reddy Lays Stone for Rs.157CR World-class Gaushala",
+      "detail": "The gaushala will shelter at least 1,000 cows and include facilities such as a veterinary hospital, isolation wards and staff residences.",
+      "intensity": 85,
+      "sentimentScore": -10,
+      "url": "https://www.deccanchronicle.com/southern-states/telangana/cm-revanth-reddy-lays-stone-for-rs157cr-world-class-gaushala-1947149",
+      "source": "Deccan Chronicle",
+      "publishedAt": "2026-03-29T17:13:54Z"
+    },
+    {
+      "id": "news-1774847874166-ssu2yub8t",
+      "category": "health",
+      "title": "Lethal bat disease detected in Alberta's Rocky Mountains for first time",
+      "detail": "White-nose syndrome, a deadly disease that has decimated bat populations across North America in recent years, has been detected in the Rocky Mountains of Alberta for the first time, marking a significant spread since it was first confirmed to be in the province two years ago.",
+      "intensity": 80,
+      "sentimentScore": 0,
+      "url": "https://www.cbc.ca/news/canada/calgary/white-nose-syndrome-bats-alberta-9.7144601",
+      "source": "CBC.ca",
+      "publishedAt": "2026-03-29T17:12:30Z"
+    },
+    {
+      "id": "news-1774847874167-6mb8i6nuq",
+      "category": "military",
+      "title": "Tulisa pays tribute to 'soul mate' amid their cancer battle & reveals it's prompted her to make major health change",
+      "detail": "TULISA has paid tribute to her close friend amid their cancer battle as she admitted to making a major health change to her own life.\nThe N-Dubz...",
+      "intensity": 70,
+      "sentimentScore": 5,
+      "url": "https://www.thesun.co.uk/tvandshowbiz/38666883/tulisa-tribute-soulmate-cancer-battle-health-change/",
+      "source": "The Sun",
+      "publishedAt": "2026-03-29T17:07:41Z"
+    },
+    {
+      "id": "news-1774847874167-z4njsugdu",
+      "category": "health",
+      "title": "OJ Da Juiceman Rushed to the Hospital for Medical Emergency While in Police Custody",
+      "detail": "OJ Da Juiceman has suffered from diabetes for several years and is currently in police custody for an alleged incident with a state trooper.",
+      "intensity": 100,
+      "sentimentScore": -5,
+      "url": "https://www.vice.com/en/article/oj-da-juiceman-rushed-to-the-hospital-for-medical-emergency-while-in-police-custody/",
+      "source": "VICE",
+      "publishedAt": "2026-03-29T17:06:30Z"
+    },
+    {
+      "id": "news-1774847874168-28l5keqh1",
+      "category": "health",
+      "title": "Norway ‘alarmed’ by attacks on journalists, health care workers in Lebanon",
+      "detail": "Norway’s foreign minister on Sunday expressed concern over attacks on journalists and health care workers in Lebanon, urging respect for international humanitarian law, Anadolu reports. “I am deepl…",
+      "intensity": 85,
+      "sentimentScore": -15,
+      "url": "https://www.middleeastmonitor.com/20260329-norway-alarmed-by-attacks-on-journalists-health-care-workers-in-lebanon/",
+      "source": "Middle East Monitor",
+      "publishedAt": "2026-03-29T17:05:23Z"
+    },
+    {
+      "id": "news-1774847874169-g3v5b4lbd",
+      "category": "health",
+      "title": "Delhi AIIMS Alumna Nisha Mehta Named Health Minister Of Nepal",
+      "detail": "Nisha Mehta was pursuing a degree in Bachelor of Science in Nursing at the institution from 2006 to 2010.",
+      "intensity": 65,
+      "sentimentScore": 13,
+      "url": "https://www.ndtv.com/india-news/delhi-aiims-alumna-nisha-mehta-named-health-minister-of-nepal-11283276",
+      "source": "NDTV.com",
+      "publishedAt": "2026-03-29T17:04:40Z"
+    },
+    {
+      "id": "news-1774847874170-vn76it1qv",
+      "category": "health",
+      "title": "Massive Wave Tragedy at Digha",
+      "detail": "Sources said that Rahul Arunoday Banerjee, ventured into the sea alone after wrapping up a shoot when a “massive wave” drowned him in front of his production unit members. He was taken to Digha hospital, West Bengal, where he was declared dead.",
+      "intensity": 65,
+      "sentimentScore": 5,
+      "url": "https://indianexpress.com/article/entertainment/regional/bengali-actor-rahul-arunoday-banerjee-death-digha-drowning-shooting-10608412/",
+      "source": "The Indian Express",
+      "publishedAt": "2026-03-29T17:04:14Z"
+    },
+    {
+      "id": "news-1774847874170-0vsu01ppw",
+      "category": "health",
+      "title": "Person taken to hospital after suspected stabbing in Newcastle",
+      "detail": "The incident, on Melbourne Street, saw several Northumbria Police and North East Ambulance Service vehicles descend on the area",
+      "intensity": 65,
+      "sentimentScore": 0,
+      "url": "https://www.chroniclelive.co.uk/news/north-east-news/person-taken-hospital-after-suspected-33680808",
+      "source": "Evening Chronicle",
+      "publishedAt": "2026-03-29T17:02:32Z"
+    }
+  ],
+  "globalMetrics": {
+    "dailyDeaths": 174194,
+    "hourlyDeaths": 7258,
+    "minuteDeaths": 121,
+    "secondDeaths": 2.02,
+    "deathsChange": "4.9",
+    "activeConflicts": 21,
+    "ecoCrises": 12,
+    "politicalInstabilityDelta": "9",
+    "scientificBreakthroughs": 3,
+    "healthCrises": 7,
+    "economicStress": 7
+  },
+  "adminEvents": [
+    {
+      "category": "popular",
+      "title": "WAR/POLITICS - 2026 Mar",
+      "detail": "Ukraine war escalation continues across Eastern Europe as multiple drone incidents were recorded across Baltic airspace in late March 2026, with at least 3 confirmed airspace violations reported by Lithuania, Latvia, and Estonia within a 48-hour window, intensifying NATO air-defense readiness along the 1,450 km eastern flank.",
+      "intensity": 80,
+      "id": "admin-1774799729145",
+      "createdAt": "2026-03-29T15:55:29.145Z",
+      "source": "admin"
+    },
+    {
+      "category": "popular",
+      "title": "TECHNOLOGY - 2026 Mar",
+      "detail": "Agentic AI transition accelerates in 2026, with over 60% of new enterprise AI deployments shifting from generative models to autonomous task-executing systems, while more than 12 major countries expand “digital sovereignty” policies aimed at controlling AI infrastructure, including GPU allocation exceeding 10,000 H100-equivalent units in national compute programs.",
+      "intensity": 80,
+      "id": "admin-1774799679872",
+      "createdAt": "2026-03-29T15:54:39.872Z",
+      "source": "admin"
+    },
+    {
+      "category": "popular",
+      "title": "ECONOMIC - 2026/Mar",
+      "detail": "Global economic fragmentation deepens as analysts describe a persistent K-shaped recovery, with household debt linked to buy-now-pay-later services exceeding double-digit annual growth rates in multiple OECD economies, while supply-chain volatility affects more than 30% of critical manufacturing inputs across semiconductor and energy sectors.",
+      "intensity": 80,
+      "id": "admin-1774799627902",
+      "createdAt": "2026-03-29T15:53:47.902Z",
+      "source": "admin"
+    }
+  ],
+  "lightningBrief": {
+    "items": [
+      {
+        "id": "brief-1774847883605-0",
+        "title": "Middle East war: UN initiatives support mediation efforts, ‘lifesaving’ fertiliser shipmentsKidnapped and tortured on an infamous migration route to Saudi ArabiaEscalating Violence and Influx of Returnees in DRC Fuel Regional InstabilityThe “Extremely Dangerous and Unpredictable” situation in Middle East and BeyondCaribbean Leaders and Civil Society Prepare for Global Push on Fossil Fuel Phase-OutWar in Iran, Middle East Threatens Global Agrifood SystemsPORTUGAL: ‘The Far Right’s Electoral Legitimacy Can Eventually Become Governmental Power’Syria: UN Commission documents grave violations in July 2025 escalation in SweidaMyanmar: WFP reports fragile recovery one year after deadly earthquakeMiddle East war: Attacks on vital healthcare, evacuation strike fearsShare thisLink to this page from your site/blog",
+        "description": "Saturday, March 28, 2026 - UN NewsJust hours after war broke out in the Middle East last month, United Nations Secretary-General António Guterres warn",
+        "url": "https://www.globalissues.org/news/2026/03/28/42658",
+        "date": "Saturday, March 28, 2026Saturday, March 28, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026Friday, March 27, 2026",
+        "category": "brief"
+      }
+    ],
+    "lastUpdated": "2026-03-30T05:18:03.605Z",
+    "source": "globalissues.org"
+  },
+  "lastUpdated": "2026-03-30T05:18:03.608Z"
+}
