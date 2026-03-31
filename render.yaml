@@ -1,4 +1,3 @@
-# render.yaml
 services:
   - type: web
     name: world-snapshot
@@ -12,15 +11,16 @@ services:
       - key: PORT
         value: 3000
       - key: ADMIN_TOKEN
-        generateValue: true  # Render автоматически сгенерирует случайный токен
+        sync: false  # Будет запрошен при деплое
       - key: GNEWS_API_KEY
-        sync: false  # Будет запрошено при деплое
+        sync: false
       - key: NEWSDATA_API_KEY
         sync: false
       - key: FRONTEND_URL
         value: https://world-snapshot.onrender.com
+      # Email alerts (опционально)
       - key: SMTP_HOST
-        sync: false  # Опционально
+        sync: false
       - key: SMTP_USER
         sync: false
       - key: SMTP_PASS
