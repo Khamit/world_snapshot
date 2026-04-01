@@ -1,13 +1,36 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Consent Mode for Google Analytics -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      
+      // Default consent settings
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      
+      // Update consent when Termly updates
+      document.addEventListener('termly_consent_update', function(event) {
+        const consent = event.detail;
+        gtag('consent', 'update', {
+          'analytics_storage': consent.analytics ? 'granted' : 'denied',
+          'ad_storage': consent.marketing ? 'granted' : 'denied'
+        });
+      });
+    </script>
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G9LM4NS44D"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-G9LM4NS44D');
     </script>
     <!-- Termly Consent Management Platform -->

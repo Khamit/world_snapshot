@@ -121,6 +121,23 @@ function MainApp() {
         </a>
         <i className="fas fa-database text-cyan-500/50 ml-1"></i>
       </div>
+      <div className="flex justify-center gap-4 mt-2">
+        <a 
+          href="https://www.termly.io/policies/cookie-policy/ef010db2-af94-473a-81c9-c5a9bfd0340a"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 hover:text-cyan-400 text-[10px] transition-colors"
+        >
+          Cookie Policy
+        </a>
+        <span className="text-gray-600">|</span>
+        <a 
+          href="#" 
+          className="termly-display-preferences text-gray-500 hover:text-cyan-400 text-[10px] transition-colors"
+        >
+          Cookie Preferences
+        </a>
+      </div>
     </div>
   );
 }
