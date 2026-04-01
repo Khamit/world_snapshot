@@ -34,27 +34,38 @@
       gtag('config', 'G-G9LM4NS44D');
     </script>
     <!-- Termly Consent Management Platform -->
-      <script src="https://app.termly.io/resource-blocker/ef010db2-af94-473a-81c9-c5a9bfd0340a?autoBlock=on"></script>
+    <script src="https://app.termly.io/resource-blocker/ef010db2-af94-473a-81c9-c5a9bfd0340a?autoBlock=on"></script>
     <!-- Style icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>world_snapshot</title>
+    <style>
+      .cookie-prefs-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #1e293b;
+        color: #94a3b8;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        z-index: 9999;
+        text-decoration: none;
+        font-family: sans-serif;
+        backdrop-filter: blur(4px);
+        transition: all 0.2s ease;
+      }
+      .cookie-prefs-btn:hover {
+        background: #334155;
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <!-- Cookie preferences link - fixed bottom right -->
-    <a 
-      href="#" 
-      class="termly-display-preferences" 
-      style="position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: #94a3b8; padding: 8px 16px; border-radius: 8px; font-size: 12px; z-index: 9999; text-decoration: none; font-family: sans-serif; backdrop-filter: blur(4px);"
-      onmouseover="this.style.backgroundColor='#334155'; this.style.color='white'"
-      onmouseout="this.style.backgroundColor='#1e293b'; this.style.color='#94a3b8'"
-    >
+    <a href="#" class="termly-display-preferences cookie-prefs-btn">
       🍪 Cookie Preferences
     </a>
     <script type="module" src="/src/main.tsx"></script>

@@ -126,7 +126,49 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://www.googletagmanager.com",
+          "https://app.termly.io",
+          "https://cdn-cookieyes.com",
+          "https://www.google-analytics.com",
+          "https://ssl.google-analytics.com",
+        ],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://cdnjs.cloudflare.com",
+          "https://fonts.googleapis.com",
+        ],
+        fontSrc: [
+          "'self'",
+          "https://cdnjs.cloudflare.com",
+          "https://fonts.gstatic.com",
+          "data:",
+        ],
+        imgSrc: [
+          "'self'",
+          "data:",
+          "https://www.google-analytics.com",
+          "https://ssl.google-analytics.com",
+        ],
+        connectSrc: [
+          "'self'",
+          "https://www.google-analytics.com",
+          "https://www.googletagmanager.com",
+          "https://app.termly.io",
+        ],
+        frameSrc: ["'self'", "https://app.termly.io"],
+      },
+    },
+  })
+);
 app.use(compression());
 app.use(cookieParser());
 
