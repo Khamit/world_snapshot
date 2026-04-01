@@ -1,6 +1,7 @@
 // world_snapshot/server/index.js
 import * as cheerio from 'cheerio';
 import compression from 'compression';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -12,11 +13,14 @@ import fetch from 'node-fetch';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import winston from 'winston';
+import analytics from './analytics.js';
 import { analyzeSentiment, calculateIntensity, categorizeNews, isOutdated } from './analyzer_new.js';
 let nodemailer;
+
+
 try {
-  nodemailer = await import('nodemailer');
-  nodemailer = nodemailer.default;
+  const nm = await import('nodemailer');
+  nodemailer = nm.default || nm;
 } catch (e) {
   console.log('nodemailer not installed, email alerts disabled');
 }
@@ -101,7 +105,9 @@ function logWithAlert(level, message, error = null, sendAlert = false) {
     logData.error = error.stack || error.message || error;
   }
   
-  logger.log(level, message, logData);
+  // Преобразуем 'crit' в 'error' для winston
+  const winstonLevel = level === 'crit' ? 'error' : level;
+  logger.log(winstonLevel, message, logData);
   
   if (sendAlert && (level === 'error' || level === 'crit')) {
     sendCriticalAlert(message, logData.error || message, error);
@@ -122,11 +128,60 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(helmet());
 app.use(compression());
+app.use(cookieParser());
 
+// Middleware для отслеживания всех запросов
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
+
+  // Получаем или создаем clientId ДО отправки ответа
+  let clientId = analytics.getClientId(req);
+  if (!clientId) {
+    clientId = analytics.generateClientId();
+    analytics.setClientIdCookie(res, clientId);
+  }
+  
+  // Сохраняем clientId в req для использования в обработчиках
+  req.clientId = clientId;
+
+  // Сохраняем время начала для расчета длительности
+  req._startTime = Date.now();
+  
+  // Добавляем обработчик окончания ответа (без установки cookie!)
+  res.on('finish', () => {
+    const duration = Date.now() - req._startTime;
+    
+    const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+    const country = req.headers['cf-ipcountry'] || 
+                    req.headers['x-country-code'] || 
+                    'unknown';
+    
+    // Отправляем page_view для всех GET запросов
+    if (req.method === 'GET') {
+      analytics.sendEvent(req.clientId, 'page_view', {
+        page_title: req.path,
+        page_location: fullUrl,
+        page_referrer: req.get('referer') || '',
+        country: country,
+        response_time_ms: duration,
+        status_code: res.statusCode
+      }, req);
+    }
+    
+    // Отправляем API запросы отдельно
+    if (req.path.startsWith('/api/')) {
+      analytics.sendEvent(req.clientId, 'api_request', {
+        api_endpoint: req.path,
+        method: req.method,
+        status_code: res.statusCode,
+        response_time_ms: duration,
+        country: country
+      }, req);
+    }
+  });
+
   next();
 });
 
@@ -139,7 +194,6 @@ console.log('=== API Status ===');
 console.log('GNews API Key:', GNEWS_API_KEY ? `${GNEWS_API_KEY.substring(0, 10)}... ` : ' NOT FOUND');
 console.log('NewsData API Key:', NEWSDATA_API_KEY ? `${NEWSDATA_API_KEY.substring(0, 10)}... ` : ' NOT FOUND');
 console.log('==================\n');
-
 
 // Маппинг названий стран для статистики смертей
 const countryNameMapping = {
@@ -443,7 +497,7 @@ async function fetchLightningBrief() {
 
     const briefItems = [];
 
-    // ✅ Прямой отбор div.node
+    // Прямой отбор div.node
     $('div.node').each((index, element) => {
       const titleElement = $(element).find('h2 a');
       const link = titleElement.attr('href');
@@ -541,11 +595,16 @@ async function fetchLightningBrief() {
 }
 
 // API endpoint для Lightning Brief
-app.get('/api/lightning-brief', (req, res) => {
+app.get('/api/lightning-brief', async (req, res) => {
   try {
     const BRIEF_PATH = path.join(__dirname, '../src/data/lightning_brief.json');
     if (fs.existsSync(BRIEF_PATH)) {
       const data = JSON.parse(fs.readFileSync(BRIEF_PATH, 'utf8'));
+      
+      await analytics.sendEvent(req.clientId, 'view_lightning_brief', {
+        items_count: data.items?.length || 0
+      });
+      
       res.json(data);
     } else {
       res.status(404).json({ error: 'No lightning brief data yet' });
@@ -891,10 +950,31 @@ app.post('/api/fetch-brief', heavyLimiter, async (req, res) => {
 });
 
 // В POST /api/fetch можно передавать force=true
-app.post('/api/fetch',heavyLimiter, async (req, res) => {
-  console.log('Manual fetch requested');
-  const data = await fetchNews(true); // force refresh
-  res.json({ success: !!data, data });
+app.post('/api/fetch', heavyLimiter, async (req, res) => {
+  const startTime = Date.now();
+  const clientId = req.clientId;
+  
+  try {
+    console.log('Manual fetch requested');
+    const data = await fetchNews(true);
+    
+    // Отправляем событие об успешном обновлении
+    await analytics.sendEvent(clientId, 'manual_fetch', {
+      success: true,
+      articles_count: data?.globalEvents?.length || 0,
+      duration: Date.now() - startTime
+    });
+    
+    res.json({ success: !!data, data });
+  } catch (error) {
+    await analytics.sendEvent(clientId, 'manual_fetch', {
+      success: false,
+      error: error.message,
+      duration: Date.now() - startTime
+    });
+    
+    throw error;
+  }
 });
 
 // API endpoints
@@ -938,10 +1018,19 @@ app.get('/api/snapshot', adminAuth, (req, res) => {
 });
 
 // Новый endpoint для получения статистики смертей (публичный)
-app.get('/api/deaths', (req, res) => {
+app.get('/api/deaths', async (req, res) => {
+  const clientId = req.clientId;
+  
   try {
     if (fs.existsSync(DEATHS_DATA_PATH)) {
       const data = JSON.parse(fs.readFileSync(DEATHS_DATA_PATH, 'utf8'));
+      
+      // Отправляем событие просмотра статистики смертей
+      await analytics.sendEvent(clientId, 'view_deaths_statistics', {
+        countries_count: Object.keys(data.countries || {}).length,
+        global_daily_deaths: data.global?.daily
+      });
+      
       res.json(data);
     } else {
       res.status(404).json({ error: 'No death statistics yet' });
@@ -1202,9 +1291,11 @@ app.put('/api/admin/metrics', adminAuth, (req, res) => {
 });
 
 
-app.get('/api/snapshot/history/:date', (req, res) => {
+app.get('/api/snapshot/history/:date', async (req, res) => {
+  const clientId = req.clientId;
+  const { date } = req.params;
+  
   try {
-    const { date } = req.params;
     
     // Валидация формата YYYY-MM-DD
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
@@ -1239,10 +1330,20 @@ app.get('/api/snapshot/history/:date', (req, res) => {
     }
     
     const data = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
-    res.json(data);
     
+    // Отправляем событие просмотра истории
+    await analytics.sendEvent(clientId, 'view_history_snapshot', {
+      date: date,
+      articles_count: data.globalEvents?.length || 0
+    });
+    
+    res.json(data);
   } catch (error) {
-    logger.error(`Error in /api/snapshot/history/${req.params.date}:`, error);
+    await analytics.sendEvent(clientId, 'history_error', {
+      date: date,
+      error: error.message
+    });
+    
     res.status(500).json({ error: 'Failed to read snapshot data' });
   }
 });
@@ -1334,7 +1435,7 @@ cron.schedule('0 12,0 * * *', async () => {
   await fetchLightningBrief();
 }, { timezone: "America/New_York" });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   logger.info(`Server started on port ${PORT}`);
   logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
   

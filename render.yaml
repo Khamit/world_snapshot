@@ -18,6 +18,11 @@ services:
         sync: false
       - key: FRONTEND_URL
         value: https://world-snapshot.onrender.com
+      # GA4 Analytics
+      - key: GA4_MEASUREMENT_ID
+        value: G-G9LM4NS44D
+      - key: GA4_API_SECRET
+        sync: false  # Добавите вручную в Render UI
       # Email alerts (опционально)
       - key: SMTP_HOST
         sync: false
