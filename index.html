@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Termly Consent Management Platform - ДОЛЖЕН БЫТЬ ПЕРВЫМ -->
+    <script src="https://app.termly.io/resource-blocker/ef010db2-af94-473a-81c9-c5a9bfd0340a?autoBlock=on"></script>
+    
     <!-- Consent Mode for Google Analytics -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       
-      // Default consent settings
       gtag('consent', 'default', {
         'ad_storage': 'denied',
         'analytics_storage': 'denied',
@@ -15,7 +17,6 @@
         'wait_for_update': 500
       });
       
-      // Update consent when Termly updates
       document.addEventListener('termly_consent_update', function(event) {
         const consent = event.detail;
         gtag('consent', 'update', {
@@ -33,9 +34,8 @@
       gtag('js', new Date());
       gtag('config', 'G-G9LM4NS44D');
     </script>
-    <!-- Termly Consent Management Platform -->
-    <script src="https://app.termly.io/resource-blocker/ef010db2-af94-473a-81c9-c5a9bfd0340a?autoBlock=on"></script>
-    <!-- Style icons -->
+    
+    <!-- остальные теги -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

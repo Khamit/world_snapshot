@@ -163,6 +163,8 @@ app.use(
           "https://www.google-analytics.com",
           "https://www.googletagmanager.com",
           "https://app.termly.io",
+          "https://us.consent.api.termly.io",
+          "https://api.termly.io", 
         ],
         frameSrc: ["'self'", "https://app.termly.io"],
       },
